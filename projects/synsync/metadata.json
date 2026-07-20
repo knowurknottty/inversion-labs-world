@@ -2,7 +2,7 @@
   "id": "synsync",
   "slug": "synsync",
   "name": "SynSync",
-  "subtitle": "State technology",
+  "subtitle": "Open-source neuroacoustic entrainment",
   "role": "State technology",
   "category": "Product",
   "type": "Product",
@@ -18,10 +18,10 @@
     -2,
     2
   ],
-  "thesis": "Neuroacoustic tools remain understandable and user-directed when sound is designed as an interface \u2014 not passive ambience.",
-  "description": "SynSync builds acoustic protocols for attention, entrainment, and state transition. Safety, agency, and honest claims are foreground constraints.",
-  "before": "Wellness audio is passive ambience.",
-  "after": "Sound becomes a calibrated, transparent state interface.",
+  "thesis": "Neuroacoustic tools remain understandable and user-directed when sound is designed as a calibrated interface — not passive ambience — and every claim is graded by the evidence behind it.",
+  "description": "SynSync is an open-source, local-first brainwave entrainment platform. It generates binaural and isochronic acoustic protocols for sleep, focus, calm, energy, mood, and creativity — each graded by an explicit evidence level (I–IV) with cited peer-reviewed research. Runs entirely in-browser, no account, no data leaves the device.",
+  "before": "Wellness audio is passive ambience with unverifiable claims.",
+  "after": "Sound becomes a transparent, evidence-graded state interface the user controls.",
   "links": [
     "biocapt",
     "hme",
@@ -33,50 +33,79 @@
   ],
   "reverse_dependencies": [],
   "requires": [
-    "audio output"
+    "audio output",
+    "headphones (for binaural protocols)"
   ],
   "provides": [
-    "synchronized-audio"
+    "synchronized-audio",
+    "evidence-graded-entrainment"
   ],
   "maintainers": [
     "Inversion Labs"
   ],
-  "license": "Proprietary (early access)",
+  "license": "Open source (MIT / GPLv3)",
   "tags": [
     "product",
     "audio",
-    "state"
+    "state",
+    "entrainment",
+    "open-source"
   ],
   "keywords": [
     "neuroacoustic",
+    "binaural",
+    "isochronic",
     "focus",
-    "rest"
+    "sleep",
+    "entrainment"
   ],
   "documentation_status": "product",
   "demo_status": "live",
   "test_status": "measured",
-  "release_channel": "early-access",
+  "release_channel": "stable",
   "risk": "low",
-  "stability": "beta",
-  "compatibility": "Web + mobile",
+  "stability": "stable",
+  "compatibility": "Web + mobile (browser-only, no install)",
   "updated_from": "registry.json",
   "generated": "2026-07-20",
   "source_of_truth": "curated",
   "verification_level": "curated",
+  "evidence_model": {
+    "levels": {
+      "I": "Strongest Evidence — Multiple high-quality studies with consistent findings",
+      "II": "Strong Evidence — Several peer-reviewed studies supporting this protocol",
+      "III": "Moderate Evidence — Preliminary research with promising results",
+      "IV": "Emerging Evidence — Limited studies, requires further validation"
+    },
+    "sample_citations": [
+      "Marshall, L. et al. (2006) \"Boosting slow oscillations during sleep.\" Nature",
+      "Lutz, A. et al. (2004) \"Long-term meditators self-induce high-amplitude gamma synchrony.\"",
+      "Chaieb, L. et al. (2015) \"Auditory Beat Stimulation and Mood States.\" Front Psychiatry",
+      "Padmanabhan, R. et al. (2005) \"Pre-operative anxiety reduction with 6Hz entrainment.\""
+    ],
+    "categories": [
+      "suffering_reduction",
+      "performance_focus",
+      "recovery_addiction",
+      "flow_state",
+      "altered_states"
+    ],
+    "technical": "48kHz/24-bit render, octave layers, warm carrier, pink noise, spatial rotation, binaural + isochronic modes"
+  },
   "proof": {
-    "exists": "Deployed product (early access)",
-    "for": "Individuals seeking focus, rest, transition",
-    "open": "inversion-labs-world.pages.dev/synsync",
-    "limit": "Early access; claims are measured, not certified",
+    "exists": "Deployed open-source product (live demo)",
+    "for": "Individuals seeking focus, rest, mood, and recovery support",
+    "open": "https://synsyncpro.netlify.app",
+    "limit": "Entrainment is supportive, not medical treatment; claims are evidence-graded, not certified",
     "url_tier": "project-specific",
-    "url_reachability": "unverified",
+    "url_reachability": "verified",
     "url_last_checked": "2026-07-20",
     "url_class": "demo"
   },
   "inv": {
-    "human": "Use a real system for attention and rest today.",
-    "builder": "API for state-transition audio.",
-    "researcher": "Acoustic entrainment with measured claims."
+    "human": "Use a real, open-source system for attention and rest today — no account, no tracking.",
+    "builder": "Embeddable entrainment engine with evidence-graded protocol library.",
+    "researcher": "Acoustic entrainment with cited literature and explicit evidence levels."
   },
   "depends_on": [
     "biocapt"
@@ -105,20 +134,28 @@
       "authority": "inversion-labs"
     },
     "proof.exists": {
-      "source": "curated",
-      "confidence": "curated",
+      "source": "live-verification",
+      "confidence": "verified",
       "verified_at": "2026-07-20",
-      "verified_by": "project-lead",
+      "verified_by": "release-engineer",
       "refresh_policy": "per-release",
       "authority": "inversion-labs"
     },
     "proof.open": {
-      "source": "curated",
-      "confidence": "needs-confirmation",
+      "source": "live-verification",
+      "confidence": "verified",
       "verified_at": "2026-07-20",
-      "verified_by": "project-lead",
+      "verified_by": "release-engineer",
       "refresh_policy": "per-release",
       "authority": "inversion-labs"
+    },
+    "evidence_model": {
+      "source": "product-inspection",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "synsync-product"
     },
     "documentation_status": {
       "source": "docs-ci-pending",
@@ -129,10 +166,10 @@
       "authority": "docs-pipeline"
     },
     "demo_status": {
-      "source": "deploy-health-pending",
-      "confidence": "inferred",
+      "source": "live-verification",
+      "confidence": "verified",
       "verified_at": "2026-07-20",
-      "verified_by": "ci",
+      "verified_by": "release-engineer",
       "refresh_policy": "on-deploy",
       "authority": "deploy-pipeline"
     },
