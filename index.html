@@ -215,7 +215,24 @@
 #endP .ea a.secondary{border:1px solid var(--glass-border)}
 #endP .ea a.secondary:hover{color:var(--text);border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.03)}
 
-/* TOAST */
+/* SEARCH */
+#sP{position:fixed;inset:0;z-index:42;display:none;align-items:center;justify-content:center;background:rgba(8,9,12,.7);backdrop-filter:blur(8px)}
+#sP.op{display:flex}
+#sP .mod{max-width:560px;width:90%}
+#sIn{width:100%;margin:1rem 0;padding:.7rem 1rem;background:rgba(255,255,255,.04);border:1px solid var(--glass-border);border-radius:8px;color:var(--text);font-family:"JetBrains Mono",monospace;font-size:.6rem}
+#sIn:focus{outline:none;border-color:rgba(224,102,89,.5)}
+.sres{display:flex;flex-direction:column;gap:.5rem;max-height:50vh;overflow-y:auto}
+.sres .item{padding:.7rem .9rem;border:1px solid var(--glass-border);border-radius:8px;cursor:pointer;transition:all .2s}
+.sres .item:hover{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.03)}
+.sres .item .nm{font-family:"Instrument Serif",Georgia,serif;font-size:1rem;color:var(--text)}
+.sres .item .why{font-size:.5rem;color:var(--muted);margin-top:.2rem;font-family:"JetBrains Mono",monospace}
+.sres .item .ty{font-size:.45rem;color:var(--dim);float:right}
+.sres .empty{color:var(--dim);font-size:.55rem;font-family:"JetBrains Mono",monospace}
+
+/* PROGRESSIVE DISCLOSURE */
+#modeBar{position:fixed;top:3.4rem;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:.3rem;padding:.3rem;border:1px solid var(--glass-border);border-radius:100px;background:rgba(12,13,17,.8);backdrop-filter:blur(6px)}
+#modeBar button{font-family:"JetBrains Mono",monospace;font-size:.45rem;letter-spacing:.04em;padding:.3rem .7rem;border-radius:100px;color:var(--muted);background:none;border:none;cursor:pointer;transition:all .2s}
+#modeBar button.active{background:rgba(224,102,89,.16);color:var(--text)}
 #tt{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);z-index:50;padding:.4rem 1rem;border-radius:100px;font-size:.55rem;color:var(--muted);font-family:"JetBrains Mono",monospace;letter-spacing:.04em;opacity:0;transition:all .5s var(--ease);pointer-events:none}
 #tt.sh{opacity:1;transform:translateX(-50%) translateY(0)}
 #sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
@@ -299,6 +316,7 @@
       <button id="viewSys">Systems view</button>
       <span class="sep"></span>
       <button id="allBtn">All systems</button>
+      <button id="searchBtn">Search</button>
       <span class="sep"></span>
       <button id="ctrlBtn">Controls</button>
     </div>
@@ -307,6 +325,14 @@
     <span class="hint">Select a system to understand its role</span>
     <button class="btn-sec" id="guideBtn">Guide me</button>
     <button class="btn-sec" id="thesisBtn">What is this?</button>
+  </div>
+  <div id="modeBar" aria-label="Experience level">
+    <button data-mode="all" class="active">All</button>
+    <button data-mode="beginner">Beginner</button>
+    <button data-mode="builder">Builder</button>
+    <button data-mode="researcher">Researcher</button>
+    <button data-mode="architecture">Architecture</button>
+    <button data-mode="protocol">Protocol</button>
   </div>
   <div id="endP">
     <div class="et">Build with us — <span>governed intelligence is a practice, not a product.</span></div>
@@ -331,6 +357,17 @@
   </div>
   <div class="dw-bd" id="dwBd"></div>
 </aside>
+
+<!-- SEARCH -->
+<section id="sP">
+  <div class="mod glass">
+    <div class="cr"><button class="pCl" aria-label="Close">×</button></div>
+    <div class="ey">Search the ecosystem</div>
+    <h2>Find what connects to your question.</h2>
+    <input type="text" id="sIn" placeholder="Try: memory, biology, local AI, protocol…" aria-label="Search projects">
+    <div id="sRes" class="sres"></div>
+  </div>
+</section>
 
 <!-- CONTROLS -->
 <section id="hP">
@@ -389,116 +426,19 @@
 <div id="sr" aria-live="polite"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script type="application/json" id="registry"><!--REGISTRY--></script>
 <script>
 (()=>{
 'use strict';
 
-const S=[
-{id:'capt',name:'CAPT',role:'Cognitive architecture',type:'Architecture',stage:'Live',c:0x6f94d1,cs:'#6f94d1',p:[0,0,0],
- t:'CAPT stores reasoning as modular, inspectable components. Instead of opaque prompt history, decisions retain their origin and evidence.',
- d:'CAPT is a modular cognitive architecture for persistent, inspectable AI systems. It separates memory, reasoning, and action into governed components.',
- b:'AI remembers you inside someone else\'s system.',
- a:'You govern persistent, inspectable intelligence.',
- l:['kb','ctp','khsb','biocapt'],
- proof:{exists:'Active open-source architecture',for:'Developers building local or sovereign AI',open:'github.com/knowurknottty'},
- inv:{human:'Understand how your own AI systems could be governed and inspected.',builder:'Core substrate: memory, protocol, orchestration components.',researcher:'Reference architecture for governed cognition.'}},
-{id:'biocapt',name:'bioCAPT',role:'Embodied intelligence',type:'Research program',stage:'Active development',c:0x45cfaa,cs:'#45cfaa',p:[-5,2,1],
- t:'Biological data remains governed when the body becomes part of the signal — not part of the product.',
- d:'bioCAPT learns from biological state, somatic context, and lived experience. Intelligence is temporal, relational, and embodied — not disembodied text prediction.',
- b:'Intelligence begins and ends with language.',
- a:'Cognition is embodied. The body is part of the signal.',
- l:['capt','synsync','hme'],
- proof:{exists:'Research architecture + prototypes',for:'Researchers, clinicians, individuals',open:'github.com/knowurknottty',limit:'Research stage; not a shipped product'},
- inv:{human:'See how your body\'s signals could inform a system that serves you.',builder:'Sensory + state ingestion interfaces.',researcher:'Embodied cognition datasets and protocols.'}},
-{id:'franken',name:'FrankenCAPT',role:'Skill governance',type:'Architecture',stage:'Active development',c:0xe1b453,cs:'#e1b453',p:[5,2,1],
- t:'Capability without governance becomes an uncontrolled pile of tools — not intelligence.',
- d:'FrankenCAPT ingests, evaluates, composes, and governs capabilities. It keeps the ecosystem coherent without bottlenecking growth.',
- b:'More tools automatically mean more intelligence.',
- a:'Capabilities become useful when curated, bounded, and composable.',
- l:['capt','ctp','khsb','kb'],
- proof:{exists:'Architecture + evaluation harness',for:'Builders integrating capabilities',open:'github.com/knowurknottty'},
- inv:{human:'Know that the tools you use are curated, not piled.',builder:'Capability registry, composition, bounds.',researcher:'Skill governance as a research problem.'}},
-{id:'synsync',name:'SynSync',role:'State technology',type:'Product',stage:'Live',c:0xa083e0,cs:'#a083e0',p:[-6,-2,2],
- t:'Neuroacoustic tools remain understandable and user-directed when sound is designed as an interface — not passive ambience.',
- d:'SynSync builds acoustic protocols for attention, entrainment, and state transition. Safety, agency, and honest claims are foreground constraints.',
- b:'Wellness audio is passive ambience.',
- a:'Sound becomes a calibrated, transparent state interface.',
- l:['biocapt','hme','research'],
- proof:{exists:'Deployed product (early access)',for:'Individuals seeking focus, rest, transition',open:'inversion-labs-world.pages.dev/synsync',limit:'Early access; claims are measured, not certified'},
- inv:{human:'Use a real system for attention and rest today.',builder:'API for state-transition audio.',researcher:'Acoustic entrainment with measured claims.'}},
-{id:'kb',name:'Knowledge Bubbles',role:'Portable knowledge',type:'Architecture',stage:'Live',c:0xc5c8d5,cs:'#c5c8d5',p:[0,4,-1],
- t:'Knowledge Bubbles attach source, confidence, and contradiction to every claim. A fact becomes portable instead of a detached sentence.',
- d:'Knowledge Bubbles preserve a claim together with its source, confidence, contradictions, and consent rules. That lets knowledge move between systems without losing the context that made it trustworthy.',
- b:'A fact is a detached sentence.',
- a:'Knowledge carries context, provenance, confidence, and disagreement.',
- l:['capt','franken','research','docs'],
- proof:{exists:'Architecture + reference implementation',for:'Anyone exchanging trustworthy info',open:'github.com/knowurknottty'},
- inv:{human:'Your notes could carry their own sources and doubts.',builder:'Portable semantic objects with provenance.',researcher:'Provenance as a first-class data property.'}},
-{id:'ctp',name:'CTP',role:'Transaction protocol',type:'Protocol',stage:'Live',c:0x5eb0ff,cs:'#5eb0ff',p:[4,-3,-1],
- t:'CTP wraps each agent request in an explicit contract. Instead of opaque message passing, work travels with its evidence and accountability.',
- d:'CTP structures cognitive requests, responses, evidence, and state transitions so agents can collaborate without dissolving accountability.',
- b:'Agents pass opaque messages and hope.',
- a:'Cognitive work travels through explicit, inspectable transactions.',
- l:['capt','franken','khsb'],
- proof:{exists:'Spec + reference implementation',for:'Builders of multi-agent systems',open:'github.com/knowurknottty'},
- inv:{human:'Know that AI-to-AI deals are visible, not hidden.',builder:'Transaction protocol for agent coordination.',researcher:'Accountability in distributed cognition.'}},
-{id:'khsb',name:'KHSB',role:'System nervous system',type:'Protocol',stage:'Live',c:0xf0d15a,cs:'#f0d15a',p:[7,0,-2],
- t:'KHSB connects local systems through bounded envelopes. Instead of open borders, interconnection uses explicit contracts and identity.',
- d:'KHSB is the communication tissue connecting systems through bounded envelopes, routing, identity, and protocol-aware exchange.',
- b:'Connectivity means opening every system to every other system.',
- a:'Systems communicate through explicit boundaries and contracts.',
- l:['capt','franken','ctp'],
- proof:{exists:'Spec + routing prototype',for:'Builders of local system meshes',open:'github.com/knowurknottty'},
- inv:{human:'Your devices talk to each other on your terms.',builder:'Bounded envelopes, routing, identity.',researcher:'Local-first system interoperability.'}},
-{id:'hme',name:'Human Metadata Engine',role:'Interpretive synthesis',type:'Research program',stage:'Active development',c:0xe06659,cs:'#e06659',p:[-7,0,-2],
- t:'A person cannot be reduced to one score or model. Multiple interpretive lenses can coexist without pretending to be absolute truth.',
- d:'Synthesizes multiple lenses — biological, behavioral, symbolic — while preserving uncertainty, source boundaries, and agency.',
- b:'One framework explains the whole person.',
- a:'Multiple lenses coexist without pretending to be absolute truth.',
- l:['biocapt','synsync','research'],
- proof:{exists:'Research architecture',for:'Individuals, clinicians, researchers',open:'github.com/knowurknottty',limit:'Concept stage; interpretive, not diagnostic'},
- inv:{human:'See yourself through more than one lens, honestly.',builder:'Multi-lens synthesis API.',researcher:'Interpretive synthesis under uncertainty.'}},
-{id:'excursion',name:'Inversion Excursion',role:'Field discovery',type:'Field practice',stage:'Living practice',c:0x65c995,cs:'#65c995',p:[-3,-5,-2],
- t:'The overlooked world is full of signal. Observation deserves a place before certainty.',
- d:'Carries the lab into ecology, mycology, medicine, place, and direct observation — where knowledge is encountered before it is abstracted.',
- b:'Knowledge only becomes real after institutions certify it.',
- a:'Direct observation begins inquiry. Evidence determines the claim.',
- l:['research','field','hme'],
- proof:{exists:'Living practice + field notes',for:'Anyone who observes the world',open:'inversion-labs-world.pages.dev/excursion'},
- inv:{human:'Join observation walks and field practice.',builder:'Data ingestion from field capture.',researcher:'Citizen science with provenance.'}},
-{id:'research',name:'Research',role:'Evidence layer',type:'Research program',stage:'Open research',c:0x8ca4c7,cs:'#8ca4c7',p:[0,-5,-3],
- t:'Frontier work becomes credible when its uncertainty is visible — not when its claims are loudest.',
- d:'Preserves architecture notes, experiments, benchmarks, limitations, failures, and the boundary between what is observed and what is merely hoped.',
- b:'A compelling story is enough.',
- a:'Claims earn trust through evidence, provenance, and reproducibility.',
- l:['kb','synsync','excursion','docs','repos'],
- proof:{exists:'Open research notes + benchmarks',for:'Researchers, builders, the curious',open:'github.com/knowurknottty'},
- inv:{human:'Read what we actually found, including failures.',builder:'Reproducible experiments.',researcher:'Evidence layer for the whole lab.'}},
-{id:'field',name:'Field Notes',role:'Observation practice',type:'Field practice',stage:'Living practice',c:0x9ab87a,cs:'#9ab87a',p:[-4,-1,-5],
- t:'Observation labeled honestly is valuable even before certainty arrives.',
- d:'Preserves ecological, medicinal, technical, and experiential observations with their source type and uncertainty intact.',
- b:'Unverified means worthless.',
- a:'Observation can be valuable when labeled honestly and tested carefully.',
- l:['excursion','research','kb'],
- proof:{exists:'Living notebook',for:'Observers, researchers',open:'inversion-labs-world.pages.dev/field'},
- inv:{human:'Contribute observations with honest uncertainty.',builder:'Structured observation ingestion.',researcher:'Raw signal with provenance.'}},
-{id:'repos',name:'Repositories',role:'Working evidence',type:'Protocol',stage:'Live',c:0xc08c68,cs:'#c08c68',p:[4,-1,-5],
- t:'Code is not proof of a vision — but it is evidence the vision is being built.',
- d:'Exposes implementation, architecture, release state, tests, and the gap between concept and production candidate.',
- b:'A polished claim proves a system exists.',
- a:'Artifacts, tests, and reproducible builds establish what is real.',
- l:['research','docs','franken'],
- proof:{exists:'Public repositories',for:'Developers, researchers, funders',open:'github.com/knowurknottty'},
- inv:{human:'See the actual code behind the claims.',builder:'Fork, build, contribute.',researcher:'Reproducible builds and tests.'}},
-{id:'docs',name:'Documentation',role:'Architecture memory',type:'Field practice',stage:'Living practice',c:0x8494b8,cs:'#8494b8',p:[0,1,-6],
- t:'Systems become governable when their decisions remain legible — not when the documentation was written once and forgotten.',
- d:'Preserves the why behind interfaces, protocols, safety boundaries, and release decisions so the architecture can evolve without forgetting itself.',
- b:'Documentation describes software after the fact.',
- a:'Documentation is part of the system\'s memory and governance.',
- l:['kb','research','repos'],
- proof:{exists:'Living documentation',for:'Builders, researchers',open:'github.com/knowurknottty'},
- inv:{human:'Understand the system\'s own memory.',builder:'Architecture decisions, explained.',researcher:'Governance through legibility.'}}
-];
+const REG = JSON.parse(document.getElementById('registry').textContent);
+const S = REG.projects.map(p => ({
+  id:p.id, name:p.name, role:p.role, type:p.type, stage:p.stage,
+  c:parseInt(p.color.replace('#','0x')), cs:p.color, p:p.position,
+  t:p.thesis, d:p.description, b:p.before, a:p.after, l:p.links,
+  proof:{exists:p.proof.exists, for:p.proof.for, open:p.proof.open, limit:p.proof.limit||null},
+  inv:p.inv
+}));
 
 const byId=Object.fromEntries(S.map(s=>[s.id,s]));
 const PATHS={
@@ -507,7 +447,7 @@ const PATHS={
   researcher:['biocapt','research','field','kb','docs','repos']
 };
 let scene,camera,renderer,group,raycaster,mouse,nList=[],selected=null,
-    museum=false,entered=false,pathsDone=false,rp=0,curPath=null,
+    museum=false,entered=false,pathsDone=false,rp=0,curPath=null,curMode='all',
     orbit=false,lx=0,ly=0,sx=0,sy=0,
     yaw=0,pitch=.05,ty=0,tp=.05,dist=19,td=19;
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -558,8 +498,8 @@ function nodes(){
 }
 
 function idx(){
-  $('#idxGd').innerHTML=S.map(s=>`<button class="it" data-id="${s.id}"><span class="dt" style="background:${s.cs}"></span><span class="nm">${s.name}</span><div class="rl">${s.role}</div><div class="ty">${s.type} · ${s.stage}</div></button>`).join('');
-  $('#idxGd').querySelectorAll('.it').forEach(b=>b.onclick=()=>{
+  $('#idxGd').innerHTML=S.map(s=>sysCard(s)).join('');
+  $('#idxGd').querySelectorAll('.sys').forEach(b=>b.onclick=()=>{
     $('#idx').classList.remove('op');pr(byId[b.dataset.id]);
   });
 }
@@ -636,7 +576,54 @@ function pr(s){
   sr.textContent=`${s.name}. ${s.t}`;
 }
 
-function mu(){museum=!museum;dr.classList.remove('open');selected=null;ts(museum?'Museum mode':'Exploration mode');}
+function searchEco(q){
+  q=q.trim().toLowerCase();
+  const res=$('#sRes');
+  if(!q){res.innerHTML='';return;}
+  const terms=q.split(/\s+/);
+  const scored=S.map(s=>{
+    const hay=(s.name+' '+s.role+' '+s.type+' '+s.t+' '+s.d+' '+s.l.map(id=>byId[id]?byId[id].name:'').join(' ')+' '+s.audience.join(' ')).toLowerCase();
+    let hits=0; const why=[];
+    terms.forEach(t=>{
+      if(s.name.toLowerCase().includes(t)){hits+=3;why.push('name match');}
+      else if(s.t.toLowerCase().includes(t)){hits+=2;why.push('thesis');}
+      else if(hay.includes(t)){hits+=1;why.push('related context');}
+    });
+    // semantic hints
+    const map={memory:['kb','capt'],biology:['biocapt','hme'],'local ai':['capt','ctp','khsb','kb'],protocol:['ctp','khsb'],sound:['synsync'],research:['research','biocapt'],observation:['field','excursion']};
+    Object.keys(map).forEach(k=>{if(q.includes(k)&&map[k].includes(s.id)){hits+=2;why.push('topic: '+k);}});
+    return {s,hits,why:why.slice(0,2)};
+  }).filter(x=>x.hits>0).sort((a,b)=>b.hits-a.hits);
+  if(!scored.length){res.innerHTML='<div class="empty">No systems match that query. Try a broader term.</div>';return;}
+  res.innerHTML=scored.map(x=>`<div class="item" data-id="${x.s.id}"><span class="ty">${x.s.type}</span><div class="nm">${x.s.name}</div><div class="why">${x.why.join(' · ')||'related'}</div></div>`).join('');
+  res.querySelectorAll('.item').forEach(b=>b.onclick=()=>{pr(byId[b.dataset.id]);$('#sP').classList.remove('op');});
+}
+
+function applyMode(mode){
+  curMode=mode;
+  $$('#modeBar button').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
+  const visible = mode==='all'?S:S.filter(s=>{
+    if(mode==='beginner')return ['synsync','kb','capt','research'].includes(s.id);
+    if(mode==='builder')return s.audience.some(a=>/builder|developer/i.test(a))||['capt','ctp','khsb','kb','franken','repos'].includes(s.id);
+    if(mode==='researcher')return ['biocapt','research','field','hme','kb','docs'].includes(s.id);
+    if(mode==='architecture')return s.type==='Architecture';
+    if(mode==='protocol')return s.type==='Protocol';
+    return true;
+  });
+  // Update index grid
+  const grid=$('#idxGrid');
+  if(grid){
+    grid.innerHTML=visible.map(s=>sysCard(s)).join('');
+    grid.querySelectorAll('.sys').forEach(b=>b.onclick=()=>pr(byId[b.dataset.id]));
+  }
+  // Update constellation visibility
+  nList.forEach(n=>{if(n.userData){const show=visible.some(v=>v.id===n.userData.id);n.visible=show;}});
+  ts(mode==='all'?'All systems':'View: '+mode);
+}
+
+function sysCard(s){
+  return `<button class="sys" data-id="${s.id}"><b>${s.name}</b><span>${s.role}</span><i>${s.type} · ${s.stage}</i></button>`;
+}
 
 function pick(e){
   if(!entered||rp<4)return;
@@ -662,6 +649,9 @@ function bind(){
   $('#viewWorld').onclick=()=>{$('#idx').classList.remove('op');$('#viewWorld').classList.add('active');$('#viewSys').classList.remove('active');ts('World view');};
   $('#viewSys').onclick=()=>{$('#idx').classList.add('op');$('#viewSys').classList.add('active');$('#viewWorld').classList.remove('active');ts('Systems view');};
   $('#ctrlBtn').onclick=()=>$('#hP').classList.add('op');
+  $('#searchBtn').onclick=()=>{$('#sP').classList.add('op');setTimeout(()=>$('#sIn').focus(),50);};
+  $('#sIn').oninput=e=>searchEco(e.target.value);
+  $$('#modeBar button').forEach(b=>b.onclick=()=>applyMode(b.dataset.mode));
   $('#idxCl').onclick=()=>{$('#idx').classList.remove('op');};
   $('#guideBtn').onclick=()=>{if(selected)dr.classList.remove('open');selected=null;pr(byId['capt']);ts('Guide: CAPT');};
   $('#thesisBtn').onclick=()=>$('#thP').classList.add('op');
@@ -672,6 +662,7 @@ function bind(){
       if($('#idx').classList.contains('op')){$('#idx').classList.remove('op');return;}
       if($('#thP').classList.contains('op')){$('#thP').classList.remove('op');return;}
       if($('#hP').classList.contains('op')){$('#hP').classList.remove('op');return;}
+      if($('#sP').classList.contains('op')){$('#sP').classList.remove('op');return;}
       if(selected){dr.classList.remove('open');selected=null;td=19;}
     }
     if(e.key.toLowerCase()==='m')mu();
