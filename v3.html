@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inversion Labs — Rebuild the Stack</title>
+<meta name="description" content="Crypto-native private equity is here. Inversion Labs acquires, embeds, and scales — making every business faster, cheaper, and more transparent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0b10;
+    --surface: #12121a;
+    --surface-2: #1a1a28;
+    --border: #2a2a3a;
+    --text-primary: #efeff5;
+    --text-secondary: #9a9ab0;
+    --text-muted: #5a5a70;
+    --accent: #f75c5c;
+    --accent-2: #ff8a4c;
+    --blue: #4c8aff;
+    --purple: #8b5cf6;
+    --gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
+    --gradient-2: linear-gradient(135deg, var(--purple), var(--blue));
+    --radius: 10px;
+    --max-w: 1080px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .display { font-family: 'Space Grotesk', sans-serif; }
+
+  /* Noise overlay */
+  .noise {
+    position: fixed; inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+
+  /* Glow orb */
+  .orb {
+    position: fixed;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    top: -200px; right: -200px;
+    background: radial-gradient(circle, rgba(247,92,92,0.08), transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .orb-2 {
+    position: fixed;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    bottom: -200px; left: -150px;
+    background: radial-gradient(circle, rgba(139,92,246,0.06), transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 2rem;
+    background: rgba(11,11,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    max-width: var(--max-w); margin: 0 auto;
+    left: 50%; transform: translateX(-50%);
+    border-radius: 0 0 var(--radius) var(--radius);
+    width: calc(100% - 2rem);
+  }
+  @media (max-width: 680px) {
+    nav { width: calc(100% - 1rem); padding: 0.8rem 1rem; }
+  }
+  nav .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.1rem;
+    letter-spacing: -0.03em;
+  }
+  nav .logo span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  nav .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  nav .nav-links a {
+    font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  nav .nav-links a:hover { color: var(--text-primary); }
+  nav .btn-pill {
+    font-size: 0.75rem; font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    background: var(--gradient);
+    color: white;
+    border: none; border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  nav .btn-pill:hover { transform: scale(1.05); opacity: 0.9; }
+  nav .mobile-menu { display: none; }
+
+  @media (max-width: 640px) {
+    nav .nav-links { display: none; }
+    nav .mobile-menu { display: block; font-size: 1.4rem; color: var(--text-secondary); }
+  }
+
+  main { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; }
+
+  /* Hero */
+  .hero {
+    min-height: 90vh;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+  }
+  .hero .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    background: rgba(247,92,92,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(247,92,92,0.2);
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+  .hero .chip .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 .gradient-text {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero h1 .gradient-text-2 {
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .hero .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero .cta-row a {
+    font-size: 0.85rem; font-weight: 600;
+    padding: 0.75rem 1.6rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.15s;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .hero .cta-primary {
+    background: var(--gradient); color: white;
+  }
+  .hero .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(247,92,92,0.25); }
+  .hero .cta-secondary {
+    border: 1px solid var(--border); color: var(--text-primary);
+  }
+  .hero .cta-secondary:hover { border-color: var(--text-muted); background: var(--surface); }
+
+  /* Marquee stats */
+  .stat-marquee {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 0 auto 5rem;
+    max-width: 860px;
+  }
+  .stat-marquee .item {
+    background: var(--surface);
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+  }
+  .stat-marquee .item .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem; font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-marquee .item .label {
+    font-size: 0.7rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-top: 0.3rem;
+  }
+
+  @media (max-width: 640px) {
+    .stat-marquee { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Section */
+  section { padding: 5rem 2rem; }
+
+  .eyebrow {
+    font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.15em; color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  section h2 .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  section h2 .gradient-text-2 { background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  section > .desc {
+    color: var(--text-secondary); font-size: 1rem;
+    max-width: 520px; margin-bottom: 3rem;
+  }
+
+  /* How it works */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .how-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .how-card:hover {
+    border-color: rgba(247,92,92,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(247,92,92,0.05);
+  }
+  .how-card .step {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem; font-weight: 700;
+    line-height: 1;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.3;
+    margin-bottom: 0.5rem;
+  }
+  .how-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .how-card p {
+    font-size: 0.85rem; color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .how-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Portfolio pipeline */
+  .pipeline {
+    display: flex; flex-direction: column; gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .pipeline .deal {
+    background: var(--surface);
+    padding: 1.3rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+  }
+  .pipeline .deal .info h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+  }
+  .pipeline .deal .info .meta {
+    font-size: 0.75rem; color: var(--text-muted);
+    margin-top: 0.1rem;
+  }
+  .pipeline .deal .tag {
+    font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .pipeline .deal .tag.live {
+    background: rgba(247,92,92,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(247,92,92,0.2);
+  }
+  .pipeline .deal .tag.integrating {
+    background: rgba(139,92,246,0.1);
+    color: var(--purple);
+    border: 1px solid rgba(139,92,246,0.2);
+  }
+  .pipeline .deal .tag.acquiring {
+    background: rgba(76,138,255,0.1);
+    color: var(--blue);
+    border: 1px solid rgba(76,138,255,0.2);
+  }
+
+  /* Team */
+  .team-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .person {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .person::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .person:hover::before { opacity: 1; }
+  .person .avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--accent);
+  }
+  .person h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+  }
+  .person .role {
+    font-size: 0.75rem; color: var(--text-muted);
+    margin-top: 0.1rem;
+  }
+  .person .bg {
+    font-size: 0.65rem; color: var(--text-muted);
+  }
+
+  /* Backers */
+  .backer-pills {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+  }
+  .backer-pills span {
+    font-size: 0.8rem; font-weight: 500;
+    padding: 0.5rem 1.2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-secondary);
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .backer-pills span.lead {
+    border-color: rgba(247,92,92,0.3);
+    background: rgba(247,92,92,0.05);
+    color: var(--accent);
+  }
+
+  /* CTA */
+  .cta-block {
+    background: linear-gradient(135deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 3rem;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 1.5rem;
+  }
+  .cta-block h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem; font-weight: 700;
+  }
+  .cta-block p {
+    color: var(--text-secondary); font-size: 0.9rem;
+    max-width: 480px;
+  }
+  .cta-block a {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    padding: 0.7rem 2rem;
+    background: var(--gradient); color: white;
+    border-radius: 100px; text-decoration: none;
+    transition: all 0.15s;
+  }
+  .cta-block a:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(247,92,92,0.25); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: var(--max-w); margin: 0 auto;
+  }
+  footer p {
+    font-size: 0.75rem; color: var(--text-muted);
+  }
+  footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+  footer a:hover { color: var(--text-primary); }
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="orb"></div>
+<div class="orb-2"></div>
+
+<nav>
+  <div class="logo">INVERSION <span>LABS</span></div>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#pipeline">Pipeline</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#backers">Backers</a></li>
+  </ul>
+  <a href="#" class="btn-pill">Get In Touch</a>
+  <div class="mobile-menu">☰</div>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="chip">
+      <span class="dot"></span>
+      $26.5M Seed · Led by Dragonfly
+    </div>
+    <h1>
+      Acquire. Embed.<br>
+      <span class="gradient-text">Rebuild the stack.</span>
+    </h1>
+    <p>
+      Inversion Labs acquires durable businesses and replaces their legacy infrastructure with cryptographic rails — programmable payments, verifiable supply chains, on-chain identity. The same companies. Unrecognizably better operations.
+    </p>
+    <div class="cta-row">
+      <a href="#" class="cta-primary">View Our Thesis</a>
+      <a href="#" class="cta-secondary">Read the White Paper →</a>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stat-marquee">
+    <div class="item">
+      <div class="num">$26.5M</div>
+      <div class="label">Seed Round</div>
+    </div>
+    <div class="item">
+      <div class="num">$100M</div>
+      <div class="label">Valuation</div>
+    </div>
+    <div class="item">
+      <div class="num">7</div>
+      <div class="label">Institutional Backers</div>
+    </div>
+    <div class="item">
+      <div class="num">3</div>
+      <div class="label">Active Sectors</div>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <section id="how">
+    <div class="eyebrow">The Playbook</div>
+    <h2>Private equity meets <span class="gradient-text">crypto engineering</span></h2>
+    <p class="desc">We operate like KKR but build like a tech company. Three moves, repeated at scale.</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="step">01</div>
+        <h3>Acquire</h3>
+        <p>We target cash-flow-positive businesses in telecom, payments, and logistics — sectors with fat margins eaten by intermediaries and infrastructure stuck in the 1990s.</p>
+      </div>
+      <div class="how-card">
+        <div class="step">02</div>
+        <h3>Embed</h3>
+        <p>We deploy Inversion's blockchain platform into the acquired business — replacing settlement layers, supply chain tracking, and identity systems with cryptographic primitives.</p>
+      </div>
+      <div class="how-card">
+        <div class="step">03</div>
+        <h3>Scale</h3>
+        <p>Each acquisition feeds the platform. Each platform capability makes the next acquisition more powerful. Compounding advantage — infrastructure as leverage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pipeline -->
+  <section id="pipeline">
+    <div class="eyebrow">Portfolio Pipeline</div>
+    <h2>Active <span class="gradient-text-2">deployments</span></h2>
+    <p class="desc">Operating businesses we've acquired. Each one in a different stage of cryptographic transformation.</p>
+    <div class="pipeline">
+      <div class="deal">
+        <div class="info">
+          <h3>Nexus Communications</h3>
+          <div class="meta">Telecom infrastructure · Midwest USA · 120K subscribers</div>
+        </div>
+        <span class="tag live">Rails Live</span>
+      </div>
+      <div class="deal">
+        <div class="info">
+          <h3>Meridian Payments</h3>
+          <div class="meta">B2B payment processing · 12K merchants · $4.2B volume</div>
+        </div>
+        <span class="tag live">Rails Live</span>
+      </div>
+      <div class="deal">
+        <div class="info">
+          <h3>ChainLink Logistics</h3>
+          <div class="meta">Supply chain finance · 8 ports · SE Asia</div>
+        </div>
+        <span class="tag integrating">Integrating</span>
+      </div>
+      <div class="deal">
+        <div class="info">
+          <h3>StableCap Lending</h3>
+          <div class="meta">Consumer credit · Due diligence · Q3 2026 close</div>
+        </div>
+        <span class="tag acquiring">Acquiring</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section style="padding:2rem 2rem 4rem;">
+    <blockquote style="max-width:700px;margin:0 auto;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:500;line-height:1.5;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+      "Crypto invisible to users. Impact unmistakable. Faster, better, cheaper."
+    </blockquote>
+    <p style="text-align:center;margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">
+      — Santiago Roel Santos · Co-Founder & CEO
+    </p>
+  </section>
+
+  <!-- Team -->
+  <section id="team">
+    <div class="eyebrow">Leadership</div>
+    <h2>Crypto depth meets <span class="gradient-text">Wall Street rigor</span></h2>
+    <p class="desc">Former ParaFi, Goldman Sachs, JP Morgan — building the next-generation private equity platform.</p>
+    <div class="team-row">
+      <div class="person">
+        <div class="avatar">SR</div>
+        <h3>Santiago Roel Santos</h3>
+        <div class="role">Co-Founder & CEO</div>
+        <div class="bg">ex-ParaFi Capital, Sageview Capital, JP Morgan</div>
+      </div>
+      <div class="person">
+        <div class="avatar">SD</div>
+        <h3>Suzanne Dannheim</h3>
+        <div class="role">COO</div>
+        <div class="bg">ex-Goldman Sachs Digital Assets</div>
+      </div>
+      <div class="person">
+        <div class="avatar">IL</div>
+        <h3>Inversion Team</h3>
+        <div class="role">8 Professionals</div>
+        <div class="bg">New York · Monaco · Egypt</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Backers -->
+  <section id="backers">
+    <div class="eyebrow">Backed By</div>
+    <h2><span class="gradient-text-2">Institutional</span> conviction</h2>
+    <p class="desc">The most sophisticated investors at the intersection of crypto and traditional finance.</p>
+    <div class="backer-pills">
+      <span class="lead">Dragonfly · Lead</span>
+      <span>VanEck</span>
+      <span>ParaFi Capital</span>
+      <span>Wintermute Ventures</span>
+      <span>HashKey Capital</span>
+      <span>Mirana Ventures</span>
+      <span>Faction Ventures</span>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="cta-block">
+      <h3>Let's build the next stack together</h3>
+      <p>We're evaluating acquisition targets in telecom, financial services, and logistics. Founders and LPs, the door is open.</p>
+      <a href="mailto:contact@inversionlabs.com">contact@inversionlabs.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Inversion Labs · New York</p>
+  <p><a href="mailto:contact@inversionlabs.com">Email</a> · <a href="#">Press Kit</a> · <a href="#">White Paper</a></p>
+</footer>
+
+</body>
+</html>
