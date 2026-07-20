@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@layer reset, tokens, layout, components, utilities;
+
+@import './layers/reset.css' layer(reset);
+@import './layers/tokens.css' layer(tokens);
+@import './layers/layout.css' layer(layout);
+@import './components/header.css' layer(components);
+@import './components/hero.css' layer(components);
+@import './components/synsync.css' layer(components);
+@import './components/memory-lens.css' layer(components);
+@import './components/ecosystem.css' layer(components);
+@import './components/architecture.css' layer(components);
+@import './components/principles.css' layer(components);
+@import './components/cta.css' layer(components);
+@import './components/footer.css' layer(components);
+@import './utilities.css' layer(utilities);
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100svh;
+}

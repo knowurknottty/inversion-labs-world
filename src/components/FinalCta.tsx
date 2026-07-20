@@ -1,85 +1,59 @@
-import { useState } from 'react';
-import { useMemoryObject } from '../context/MemoryObject';
+interface CtaAction {
+  rank: string;
+  label: string;
+  sub: string;
+  href: string;
+  primary?: boolean;
+}
 
-type Intent = null | 'experience' | 'understand' | 'contribute';
-
-const INTENT_PATHS = {
-  experience: [
-    { label: 'Open SynSync Pro', href: 'https://synsync.pro', external: true },
-    { label: 'Try the Lens demo', href: '#lens', external: false },
-  ],
-  understand: [
-    { label: 'Read the Evidence Ledger', href: '#evidence', external: false },
-    { label: 'Explore the Architecture', href: '#architecture', external: false },
-    { label: 'Download registry.json', href: '/registry.json', external: false },
-  ],
-  contribute: [
-    { label: 'View on GitHub', href: 'https://github.com/knowurknottty/inversion-labs-world', external: true },
-    { label: 'Read the governance model', href: '/GOVERNANCE.md', external: false },
-    { label: 'Verify CAPT protocol', href: '/capt-verification/protocol.md', external: false },
-  ],
-};
+const ACTIONS: CtaAction[] = [
+  {
+    rank: '01',
+    label: 'Open SynSync Pro',
+    sub: 'No account. Opens now.',
+    href: 'https://synsyncpro.netlify.app',
+    primary: true,
+  },
+  {
+    rank: '02',
+    label: 'Inspect registry.json',
+    sub: 'The raw source of truth for all ecosystem systems.',
+    href: '/registry.json',
+  },
+  {
+    rank: '03',
+    label: 'Open a GitHub issue',
+    sub: 'Found something wrong? The repo is public.',
+    href: 'https://github.com/knowurknottty/inversion-labs-world/issues',
+  },
+];
 
 export function FinalCta() {
-  const [intent, setIntent] = useState<Intent>(null);
-  const { addEvent } = useMemoryObject();
-
-  const handleIntent = (i: Intent) => {
-    setIntent(i);
-    if (i) addEvent('participate', `intent_selected_${i}`);
-  };
-
+  const buildDate = typeof __BUILD_DATE__ !== 'undefined' ? __BUILD_DATE__ : new Date().toISOString();
   return (
-    <section className="final-cta" id="participate" aria-labelledby="cta-title">
-      <div className="cta-header">
-        <p className="section-index"><span>Participate</span></p>
-        <h2 id="cta-title">What brought you here?</h2>
-        <p className="cta-subtitle">
-          Choose what fits. Your path through what's next will match your intent.
-        </p>
-      </div>
-
-      <div
-        className="intent-selector"
-        role="group"
-        aria-label="Select your intent"
-      >
-        {(['experience', 'understand', 'contribute'] as NonNullable<Intent>[]).map(i => (
-          <button
-            key={i}
-            className={`intent-option ${intent === i ? 'intent-option--active' : ''}`}
-            onClick={() => handleIntent(i)}
-            aria-pressed={intent === i}
-          >
-            <span className="intent-label">
-              {i === 'experience' && 'I want to experience the product'}
-              {i === 'understand' && 'I want to understand the architecture'}
-              {i === 'contribute' && 'I want to contribute'}
-            </span>
-          </button>
-        ))}
-      </div>
-
-      {intent && (
-        <nav
-          className="intent-paths"
-          aria-label={`Paths for intent: ${intent}`}
-        >
-          {INTENT_PATHS[intent].map(path => (
+    <section className="section final-cta" id="participate" aria-labelledby="final-cta-title">
+      <span className="section-index" aria-hidden="true">06</span>
+      <div className="container">
+        <p className="section-label">06 — Next steps</p>
+        <h2 className="section-heading" id="final-cta-title">Where to go from here</h2>
+        <div className="final-cta__actions">
+          {ACTIONS.map((action) => (
             <a
-              key={path.href}
-              href={path.href}
-              className="intent-path-link"
-              {...(path.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              key={action.rank}
+              href={action.href}
+              className={`final-cta__action${action.primary ? ' final-cta__action--primary' : ''}`}
+              target={action.href.startsWith('http') ? '_blank' : undefined}
+              rel={action.href.startsWith('http') ? 'noopener noreferrer' : undefined}
             >
-              {path.label}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="arrow-icon arrow-icon--right">
-                <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <span className="final-cta__action-rank">{action.rank}</span>
+              <span className="final-cta__action-label">{action.label}</span>
+              <span className="final-cta__action-sub">{action.sub}</span>
+              <span className="final-cta__action-arrow" aria-hidden="true">→</span>
             </a>
           ))}
-        </nav>
-      )}
+        </div>
+        <p className="final-cta__build-stamp">Last built: {buildDate}</p>
+      </div>
     </section>
   );
 }

@@ -1,0 +1,267 @@
+@layer components {
+  .ecosystem-atlas__maturity-bar {
+    display: flex;
+    height: var(--space-4);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    gap: 2px;
+    margin-block: var(--space-5);
+  }
+
+  .ecosystem-atlas__maturity-segment {
+    height: 100%;
+    transition: flex var(--transition-base);
+    min-width: 2px;
+  }
+
+  .ecosystem-atlas__maturity-segment[data-stage="concept"] {
+    background: var(--color-maturity-concept);
+  }
+  .ecosystem-atlas__maturity-segment[data-stage="open-research"] {
+    background: var(--color-maturity-open-research);
+  }
+  .ecosystem-atlas__maturity-segment[data-stage="active-development"] {
+    background: var(--color-maturity-active-development);
+  }
+  .ecosystem-atlas__maturity-segment[data-stage="living-practice"] {
+    background: var(--color-maturity-living-practice);
+  }
+  .ecosystem-atlas__maturity-segment[data-stage="live"] {
+    background: var(--color-maturity-live);
+  }
+
+  .ecosystem-atlas__maturity-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-7);
+  }
+
+  .ecosystem-atlas__legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .ecosystem-atlas__legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .ecosystem-atlas__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .ecosystem-atlas__filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    background: transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    min-height: 44px;
+  }
+
+  .ecosystem-atlas__filter-btn:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text);
+  }
+
+  .ecosystem-atlas__filter-btn.is-active {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: var(--color-accent-glow);
+  }
+
+  .ecosystem-atlas__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .ecosystem-atlas__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ecosystem-atlas__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .ecosystem-atlas__card {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
+      transform var(--transition-fast);
+    display: flex;
+  }
+
+  .ecosystem-atlas__card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .ecosystem-atlas__card-accent {
+    width: 4px;
+    flex-shrink: 0;
+  }
+
+  .ecosystem-atlas__card-body {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+  }
+
+  .ecosystem-atlas__card-name {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+  }
+
+  .ecosystem-atlas__card-tagline {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .ecosystem-atlas__card-meta {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: auto;
+    padding-top: var(--space-3);
+    align-items: center;
+  }
+
+  .ecosystem-atlas__maturity-badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px var(--space-2);
+    border-radius: 3px;
+  }
+
+  /* Detail drawer */
+  .ecosystem-atlas__drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 0.5);
+    z-index: var(--z-overlay);
+    opacity: 0;
+    animation: fade-in var(--transition-fast) forwards;
+  }
+
+  @keyframes fade-in {
+    to { opacity: 1; }
+  }
+
+  .ecosystem-atlas__drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(480px, 100vw);
+    background: var(--color-bg-surface);
+    border-left: 1px solid var(--color-border);
+    z-index: var(--z-drawer);
+    overflow-y: auto;
+    padding: var(--space-7) var(--space-6);
+    transform: translateX(100%);
+    animation: slide-in var(--transition-base) forwards;
+  }
+
+  @keyframes slide-in {
+    to { transform: translateX(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ecosystem-atlas__drawer {
+      animation: none;
+      transform: translateX(0);
+    }
+    .ecosystem-atlas__drawer-overlay {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .ecosystem-atlas__drawer {
+      top: auto;
+      width: 100vw;
+      border-left: none;
+      border-top: 1px solid var(--color-border);
+      max-height: 80svh;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      transform: translateY(100%);
+    }
+
+    @keyframes slide-in {
+      to { transform: translateY(0); }
+    }
+  }
+
+  .ecosystem-atlas__drawer-close {
+    position: absolute;
+    top: var(--space-5);
+    right: var(--space-5);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+
+  .ecosystem-atlas__drawer-close:hover {
+    background: var(--color-bg-raised);
+    color: var(--color-text);
+  }
+
+  .ecosystem-atlas__verified-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-verified);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-verified) 40%, transparent);
+    animation: dot-pulse 2s ease-out infinite;
+  }
+
+  @keyframes dot-pulse {
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-verified) 40%, transparent); }
+    70%  { box-shadow: 0 0 0 8px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ecosystem-atlas__verified-dot {
+      animation: none;
+    }
+  }
+}

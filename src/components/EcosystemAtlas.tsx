@@ -1,319 +1,298 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import {
-  ecosystemSystems,
-  evidenceLabel,
-  evidenceTone,
-  systemById,
-  verifiedProofUrl,
-} from '../data/ecosystem'
-import type { EcosystemCategory, EcosystemSystem, SystemStage } from '../types'
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { ecosystemSystems } from '../data/ecosystemData';
+import type { EcosystemSystemAdapted, MaturityStage } from '../data/ecosystemData';
 
-const categories: Array<'All' | EcosystemCategory> = [
-  'All',
-  'Product',
-  'Architecture',
-  'Protocol',
-  'Research program',
-  'Field practice',
-]
+const MATURITY_STAGES: { stage: MaturityStage; label: string; color: string }[] = [
+  { stage: 'concept', label: 'Concept', color: 'var(--color-maturity-concept)' },
+  { stage: 'open-research', label: 'Open research', color: 'var(--color-maturity-open-research)' },
+  { stage: 'active-development', label: 'Active development', color: 'var(--color-maturity-active-development)' },
+  { stage: 'living-practice', label: 'Living practice', color: 'var(--color-maturity-living-practice)' },
+  { stage: 'live', label: 'Live', color: 'var(--color-maturity-live)' },
+];
 
-const stages: SystemStage[] = ['Concept', 'Open research', 'Active development', 'Living practice', 'Live']
-const featuredIds = ['synsync', 'excursion', 'capt', 'biocapt', 'ctp', 'kb']
+const ONBOARDING_KEY = 'il_ecosystem_onboarding_seen';
 
-type ProofFilter = 'all' | 'verified' | 'curated'
+function MaturityBar({ systems }: { systems: EcosystemSystemAdapted[] }) {
+  const total = systems.length;
+  if (total === 0) return null;
 
-const relationshipGroups = [
-  ['depends_on', 'Depends on'],
-  ['integrates_with', 'Integrates with'],
-  ['related_to', 'Related to'],
-  ['derived_from', 'Derived from'],
-  ['optional_with', 'Optional with'],
-] as const
-
-function ProjectDetail({ system, onClose }: { system: EcosystemSystem; onClose: () => void }) {
-  const detailRef = useRef<HTMLElement>(null)
-  const proofUrl = verifiedProofUrl(system)
-
-  useEffect(() => {
-    detailRef.current?.focus()
-  }, [system.id])
+  const counts = MATURITY_STAGES.map(({ stage }) =>
+    systems.filter((s) => s.maturity === stage).length
+  );
 
   return (
-    <aside
-      className="system-detail"
-      id="system-detail"
-      ref={detailRef}
-      tabIndex={-1}
-      aria-labelledby="system-detail-title"
-    >
-      <div className="detail-topline">
-        <span>Governed project record</span>
-        <button type="button" onClick={onClose} aria-label={`Close ${system.name} details`}>Close ×</button>
-      </div>
-      <p className="detail-status">
-        <span className={`evidence-dot evidence-${evidenceTone(system)}`} aria-hidden="true" />
-        {system.stage} · {evidenceLabel(system)}
-      </p>
-      <h3 id="system-detail-title">{system.name}</h3>
-      <p className="detail-subtitle">{system.subtitle}</p>
-      <p className="detail-plain">{system.inv.human}</p>
-
-      <dl className="detail-ledger">
-        <div><dt>Category</dt><dd>{system.category}</dd></div>
-        <div><dt>Audience</dt><dd>{system.audience.join(', ')}</dd></div>
-        <div><dt>Evidence record</dt><dd>{system.proof.exists}</dd></div>
-        <div><dt>Documentation</dt><dd>{system.documentation_status}</dd></div>
-        <div><dt>Tests</dt><dd>{system.test_status}</dd></div>
-        <div><dt>License</dt><dd>{system.license}</dd></div>
-        <div><dt>Maintainer</dt><dd>{system.maintainers.join(', ')}</dd></div>
-      </dl>
-
-      <div className="detail-shift">
-        <div><span>Current pattern</span><p>{system.before}</p></div>
-        <div><span>Intended inversion</span><p>{system.after}</p></div>
-      </div>
-
-      {(system.requires.length > 0 || system.provides.length > 0) && (
-        <div className="detail-io">
-          <div>
-            <h4>Requires</h4>
-            {system.requires.length > 0
-              ? <ul>{system.requires.map((item) => <li key={item}>{item}</li>)}</ul>
-              : <p>None declared.</p>}
-          </div>
-          <div>
-            <h4>Provides</h4>
-            {system.provides.length > 0
-              ? <ul>{system.provides.map((item) => <li key={item}>{item}</li>)}</ul>
-              : <p>None declared.</p>}
-          </div>
-        </div>
-      )}
-
-      <div className="detail-relations">
-        <h4>Typed relationships</h4>
-        {relationshipGroups.map(([key, label]) => {
-          const ids = system[key]
-          if (ids.length === 0) return null
+    <div>
+      <div
+        className="ecosystem-atlas__maturity-bar"
+        role="img"
+        aria-label={`Maturity distribution: ${MATURITY_STAGES.map(({ label }, i) => `${counts[i] ?? 0} ${label}`).join(', ')}`}
+      >
+        {MATURITY_STAGES.map(({ stage, color }, i) => {
+          const count = counts[i] ?? 0;
+          if (count === 0) return null;
           return (
-            <p key={key}>
-              <span>{label}:</span>{' '}
-              {ids.map((id) => systemById.get(id)?.name ?? id).join(', ')}
-            </p>
-          )
+            <div
+              key={stage}
+              className="ecosystem-atlas__maturity-segment"
+              data-stage={stage}
+              style={{ flex: count / total, background: color }}
+              title={`${MATURITY_STAGES[i]?.label}: ${count}`}
+            />
+          );
         })}
       </div>
-
-      <div className="detail-limit">
-        <span>Known limitation</span>
-        <p>{system.proof.limit ?? 'No limitation is recorded in the current public registry.'}</p>
+      <div className="ecosystem-atlas__maturity-legend" aria-hidden="true">
+        {MATURITY_STAGES.map(({ stage, label, color }, i) => {
+          const count = counts[i] ?? 0;
+          if (count === 0) return null;
+          return (
+            <span key={stage} className="ecosystem-atlas__legend-item">
+              <span className="ecosystem-atlas__legend-dot" style={{ background: color }} />
+              {label} ({count})
+            </span>
+          );
+        })}
       </div>
+    </div>
+  );
+}
 
-      {proofUrl ? (
-        <a className="button button-primary" href={proofUrl} target="_blank" rel="noreferrer">
-          Open verified public surface <span aria-hidden="true">↗</span>
-        </a>
-      ) : (
-        <p className="detail-no-link">
-          No confirmed public link for this project. Nothing is presented as proof in its absence.
+function SystemCard({
+  system,
+  onSelect,
+}: {
+  system: EcosystemSystemAdapted;
+  onSelect: (s: EcosystemSystemAdapted) => void;
+}) {
+  const handleClick = useCallback(() => onSelect(system), [system, onSelect]);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onSelect(system);
+      }
+    },
+    [system, onSelect]
+  );
+
+  const stageInfo = MATURITY_STAGES.find((m) => m.stage === system.maturity);
+
+  return (
+    <article
+      className="ecosystem-atlas__card"
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label={`${system.name}: ${system.tagline}. Maturity: ${stageInfo?.label ?? system.maturity}. Click to view details.`}
+    >
+      <div
+        className="ecosystem-atlas__card-accent"
+        style={{ background: system.color }}
+        aria-hidden="true"
+      />
+      <div className="ecosystem-atlas__card-body">
+        <h3 className="ecosystem-atlas__card-name">{system.name}</h3>
+        <p className="ecosystem-atlas__card-tagline">{system.tagline}</p>
+        <div className="ecosystem-atlas__card-meta">
+          {system.evidenceTone === 'verified' && (
+            <span
+              className="ecosystem-atlas__verified-dot"
+              title="Verified public surface"
+              aria-label="Verified: public surface reachable"
+            />
+          )}
+          <span
+            className="ecosystem-atlas__maturity-badge"
+            style={{
+              background: `color-mix(in srgb, ${stageInfo?.color ?? '#888'} 15%, transparent)`,
+              color: stageInfo?.color ?? '#888',
+              border: `1px solid color-mix(in srgb, ${stageInfo?.color ?? '#888'} 30%, transparent)`,
+            }}
+          >
+            {stageInfo?.label ?? system.maturity}
+          </span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ProjectDetail({
+  system,
+  onClose,
+}: {
+  system: EcosystemSystemAdapted;
+  onClose: () => void;
+}) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    closeRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [onClose]);
+
+  const stageInfo = MATURITY_STAGES.find((m) => m.stage === system.maturity);
+
+  return (
+    <>
+      <div
+        className="ecosystem-atlas__drawer-overlay"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <aside
+        className="ecosystem-atlas__drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="drawer-title"
+      >
+        <button
+          ref={closeRef}
+          className="ecosystem-atlas__drawer-close"
+          onClick={onClose}
+          aria-label="Close detail panel"
+          type="button"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <line x1="2" y1="2" x2="14" y2="14" />
+            <line x1="14" y1="2" x2="2" y2="14" />
+          </svg>
+        </button>
+
+        <div
+          style={{
+            width: 8, height: 8, borderRadius: '50%',
+            background: system.color, marginBottom: 'var(--space-4)',
+          }}
+          aria-hidden="true"
+        />
+        <h2 id="drawer-title" style={{ marginBottom: 'var(--space-2)' }}>{system.name}</h2>
+        <p style={{ color: 'var(--color-text-muted)', fontSize: '0.875rem', marginBottom: 'var(--space-5)' }}>
+          {system.tagline}
         </p>
-      )}
-    </aside>
-  )
+        <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: 'var(--space-5)' }}>
+          {system.description}
+        </p>
+        <dl style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)' }}>
+          <div>
+            <dt style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: 'var(--space-1)' }}>
+              Maturity
+            </dt>
+            <dd style={{ color: stageInfo?.color ?? 'var(--color-text)', fontFamily: 'var(--font-mono)', fontSize: '0.875rem' }}>
+              {stageInfo?.label ?? system.maturity}
+            </dd>
+          </div>
+          <div>
+            <dt style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: 'var(--space-1)' }}>
+              Evidence Level
+            </dt>
+            <dd style={{ color: 'var(--color-verified)', fontFamily: 'var(--font-mono)', fontSize: '0.875rem' }}>
+              {system.proof.level}
+            </dd>
+          </div>
+        </dl>
+        <a
+          href={system.proof.open}
+          className="btn btn--primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ marginTop: 'var(--space-6)', width: '100%', justifyContent: 'center' }}
+        >
+          Open {system.name} →
+        </a>
+      </aside>
+    </>
+  );
 }
 
 export function EcosystemAtlas() {
-  const [query, setQuery] = useState('')
-  const [category, setCategory] = useState<(typeof categories)[number]>('All')
-  const [proof, setProof] = useState<ProofFilter>('all')
-  const [selectedId, setSelectedId] = useState<string | null>(null)
-  const [showAll, setShowAll] = useState(false)
-  const detailTriggerRef = useRef<HTMLButtonElement | null>(null)
-
-  const filtered = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase()
-    const matches = ecosystemSystems.filter((system) => {
-      const matchesQuery = !normalizedQuery || [system.name, system.subtitle, system.role, system.category]
-        .join(' ')
-        .toLowerCase()
-        .includes(normalizedQuery)
-      const matchesCategory = category === 'All' || system.category === category
-      const matchesProof = proof === 'all'
-        || (proof === 'verified' && system.proof.url_reachability === 'verified')
-        || (proof === 'curated' && system.proof.url_reachability !== 'verified')
-      return matchesQuery && matchesCategory && matchesProof
-    })
-    if (normalizedQuery || category !== 'All' || proof !== 'all') return matches
-    return [...matches].sort((a, b) => {
-      const aIndex = featuredIds.indexOf(a.id)
-      const bIndex = featuredIds.indexOf(b.id)
-      if (aIndex === -1 && bIndex === -1) return a.display_order - b.display_order
-      if (aIndex === -1) return 1
-      if (bIndex === -1) return -1
-      return aIndex - bIndex
-    })
-  }, [category, proof, query])
-
-  const hasActiveFilter = query.trim() !== '' || category !== 'All' || proof !== 'all'
-  const displayed = showAll || hasActiveFilter ? filtered : filtered.slice(0, 4)
-  const selected = selectedId ? systemById.get(selectedId) ?? null : null
-
-  const closeDetail = useCallback(() => {
-    const trigger = detailTriggerRef.current
-    setSelectedId(null)
-    window.setTimeout(() => trigger?.focus(), 0)
-  }, [])
-
-  // Fix: proper dep array so this effect does not re-register on every render
-  const handleEscapeClose = useCallback((event: KeyboardEvent) => {
-    if (event.key === 'Escape') closeDetail()
-  }, [closeDetail])
+  const [activeFilter, setActiveFilter] = useState<MaturityStage | 'all'>('all');
+  const [selectedSystem, setSelectedSystem] = useState<EcosystemSystemAdapted | null>(null);
+  const [onboardingSeen, setOnboardingSeen] = useState(true);
 
   useEffect(() => {
-    if (!selectedId) return
-    window.addEventListener('keydown', handleEscapeClose)
-    return () => window.removeEventListener('keydown', handleEscapeClose)
-  }, [selectedId, handleEscapeClose])
+    const seen = localStorage.getItem(ONBOARDING_KEY);
+    if (!seen) setOnboardingSeen(false);
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const filter = params.get('maturity') as MaturityStage | null;
+    if (filter) setActiveFilter(filter);
+  }, []);
+
+  const handleFilterChange = useCallback((stage: MaturityStage | 'all') => {
+    setActiveFilter(stage);
+    const params = new URLSearchParams(window.location.search);
+    if (stage === 'all') {
+      params.delete('maturity');
+    } else {
+      params.set('maturity', stage);
+    }
+    window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
+  }, []);
+
+  const filteredSystems = activeFilter === 'all'
+    ? ecosystemSystems
+    : ecosystemSystems.filter((s) => s.maturity === activeFilter);
 
   return (
-    <section className="ecosystem-atlas" id="systems" aria-labelledby="systems-title">
-      <div className="section-heading atlas-heading">
-        <p className="section-index"><span>04</span> Governed ecosystem registry</p>
-        <h2 id="systems-title">Thirteen records. Different maturity levels. No blurred categories.</h2>
-        <p>
-          Products, protocols, architecture, research programs, and field practices are distinct things.
-          This registry exposes the status, public proof, audience, relationships, and known limitations
-          recorded for each system — unfiltered.
-        </p>
-      </div>
-
-      <div className="maturity-map" aria-labelledby="maturity-title">
-        <div className="maturity-intro">
-          <p>Portfolio maturity</p>
-          <h3 id="maturity-title">Breadth is not the same as readiness.</h3>
-        </div>
-        <ol>
-          {stages.map((stage) => {
-            const stageSystems = ecosystemSystems.filter((system) => system.stage === stage)
-            return (
-              <li key={stage}>
-                <span>{stage}</span>
-                <strong>{stageSystems.length}</strong>
-                <p>{stageSystems.length > 0
-                  ? stageSystems.map((system) => system.name).join(' · ')
-                  : 'No public records at this stage'}
-                </p>
-              </li>
-            )
-          })}
-        </ol>
-        <p className="maturity-note">
-          Counts are live — generated from the registry validated at every production build.
-        </p>
-      </div>
-
-      <div className="atlas-controls" aria-label="Filter ecosystem records">
-        <label>
-          <span>Find a system</span>
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="search"
-            placeholder="Search by name or role"
-            aria-label="Search ecosystem systems"
-          />
-        </label>
-        <label>
-          <span>Category</span>
-          <select
-            value={category}
-            onChange={(event) => setCategory(event.target.value as (typeof categories)[number])}
-            aria-label="Filter by category"
+    <section className="section" id="ecosystem" aria-labelledby="ecosystem-heading">
+      <span className="section-index" aria-hidden="true">03</span>
+      <div className="container">
+        <p className="section-label">03 — Ecosystem registry</p>
+        <h2 className="section-heading" id="ecosystem-heading">
+          {ecosystemSystems.length} governed systems
+        </h2>
+        {!onboardingSeen && (
+          <p className="text-muted" style={{ marginBottom: 'var(--space-5)', fontSize: '0.875rem' }}>
+            This registry tracks every system Inversion Labs is building or researching.
+            Maturity levels are evidence-based: Live means deployed and publicly accessible;
+            Concept means a design exists but no code has shipped.
+          </p>
+        )}
+        <MaturityBar systems={ecosystemSystems} />
+        <div className="ecosystem-atlas__filters" role="group" aria-label="Filter by maturity">
+          <button
+            className={`ecosystem-atlas__filter-btn${activeFilter === 'all' ? ' is-active' : ''}`}
+            onClick={() => handleFilterChange('all')}
+            aria-pressed={activeFilter === 'all'}
+            type="button"
           >
-            {categories.map((item) => <option key={item}>{item}</option>)}
-          </select>
-        </label>
-        <label>
-          <span>Public evidence</span>
-          <select
-            value={proof}
-            onChange={(event) => setProof(event.target.value as ProofFilter)}
-            aria-label="Filter by evidence level"
-          >
-            <option value="all">All records</option>
-            <option value="verified">Verified public surface only</option>
-            <option value="curated">Curated claims only</option>
-          </select>
-        </label>
-        <p aria-live="polite" aria-atomic="true">
-          Showing {displayed.length} of {filtered.length}{filtered.length !== ecosystemSystems.length ? ` filtered from ${ecosystemSystems.length}` : ''} records
-        </p>
-      </div>
-
-      <div className={`atlas-workspace ${selected ? 'has-selection' : ''}`}>
-        <div className="system-grid">
-          {displayed.map((system, index) => (
-            <article className="system-card" key={system.id} data-tone={evidenceTone(system)}>
-              <div className="system-card-topline">
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <span>{system.category}</span>
-              </div>
-              <p className="system-evidence">
-                <span className={`evidence-dot evidence-${evidenceTone(system)}`} aria-hidden="true" />
-                {evidenceLabel(system)}
-              </p>
-              <h3>{system.name}</h3>
-              <p>{system.subtitle}</p>
-              <dl>
-                <div><dt>Maturity</dt><dd>{system.stage}</dd></div>
-                <div><dt>Public link</dt><dd>{system.proof.url_reachability === 'verified' ? 'Verified' : 'Not confirmed'}</dd></div>
-              </dl>
-              <button
-                type="button"
-                aria-controls="system-detail"
-                aria-expanded={selectedId === system.id}
-                onClick={(event) => {
-                  detailTriggerRef.current = event.currentTarget
-                  setSelectedId(system.id)
-                }}
-              >
-                Inspect record <span aria-hidden="true">→</span>
-              </button>
-            </article>
+            All
+          </button>
+          {MATURITY_STAGES.map(({ stage, label }) => (
+            <button
+              key={stage}
+              className={`ecosystem-atlas__filter-btn${activeFilter === stage ? ' is-active' : ''}`}
+              onClick={() => handleFilterChange(stage)}
+              aria-pressed={activeFilter === stage}
+              type="button"
+            >
+              {label}
+            </button>
           ))}
-          {filtered.length === 0 && (
-            <div className="atlas-empty">
-              <h3>No records match those filters.</h3>
-              <button
-                type="button"
-                onClick={() => { setQuery(''); setCategory('All'); setProof('all') }}
-              >
-                Clear all filters
-              </button>
-            </div>
-          )}
-          {!hasActiveFilter && filtered.length > 4 && (
-            <div className="atlas-reveal">
-              <p>
-                {showAll
-                  ? 'All governed records are visible.'
-                  : `${filtered.length - 4} additional records — architecture, research, protocol, and practice — are hidden.`
-                }
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setShowAll((current) => !current)
-                  setSelectedId(null)
-                }}
-              >
-                {showAll ? 'Show featured records only' : `Show all ${filtered.length} records`}
-              </button>
-            </div>
-          )}
         </div>
-        {selected && <ProjectDetail system={selected} onClose={closeDetail} />}
+        <div className="ecosystem-atlas__grid">
+          {filteredSystems.map((system) => (
+            <SystemCard key={system.id} system={system} onSelect={setSelectedSystem} />
+          ))}
+        </div>
+        <p className="text-muted" style={{ marginTop: 'var(--space-6)', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
+          Registry data is maintained manually. Count accuracy is only as current as the last verified build date shown in the footer.
+        </p>
       </div>
+      {selectedSystem && (
+        <ProjectDetail system={selectedSystem} onClose={() => setSelectedSystem(null)} />
+      )}
     </section>
-  )
+  );
 }

@@ -1,36 +1,34 @@
-const FOOTER_NAV = [
-  { href: '#evidence', label: 'Evidence' },
-  { href: '#systems', label: 'Systems' },
-  { href: '#architecture', label: 'Architecture' },
-  { href: '#principles', label: 'Principles' },
-  { href: '#participate', label: 'Participate' },
-]
+import { ecosystemSystems } from '../data/ecosystemData';
 
 export function SiteFooter() {
+  const year = new Date().getFullYear();
+  const firstChecked = ecosystemSystems[0]?.proof.url_last_checked ?? 'unknown';
   return (
-    <footer className="site-footer">
-      <div className="footer-top">
-        <a className="wordmark" href="#top">
-          <span className="wordmark-mark" aria-hidden="true">I/L</span>
-          <span>Inversion Labs</span>
-        </a>
-        <nav aria-label="Footer navigation">
-          {FOOTER_NAV.map((item) => (
-            <a key={item.href} href={item.href}>{item.label}</a>
-          ))}
+    <footer className="site-footer" role="contentinfo">
+      <div className="container site-footer__inner">
+        <div className="site-footer__brand">
+          <strong>Inversion Labs</strong>
+          © {year} Inversion Labs. One person. Birmingham, Alabama.
+          <br />
+          {ecosystemSystems.length} governed records
+          <br />
+          Registry last verified: {firstChecked}
+        </div>
+        <div className="site-footer__stats">
+          <span className="site-footer__stat">Systems: <span>{ecosystemSystems.length}</span></span>
+          <span className="site-footer__stat">Live: <span>{ecosystemSystems.filter((s) => s.maturity === 'live').length}</span></span>
+          <span className="site-footer__stat">Accounts required: <span>0</span></span>
+        </div>
+        <nav className="site-footer__links" aria-label="Footer links">
+          <a className="site-footer__link" href="https://github.com/knowurknottty/inversion-labs-world" target="_blank" rel="noopener noreferrer">Source repository</a>
+          <a className="site-footer__link" href="/registry.json">Registry JSON</a>
+          <a className="site-footer__link" href="/verification.json">Verification record</a>
+          <a className="site-footer__link" href="https://synsyncpro.netlify.app" target="_blank" rel="noopener noreferrer">SynSync Pro</a>
         </nav>
       </div>
-      <div className="footer-bottom">
-        <p>
-          Inversion Excursion is the interactive field guide to the Inversion Labs ecosystem.
-          No tracking. No analytics. Source available on{' '}
-          <a href="https://github.com/knowurknottty/inversion-labs-world" target="_blank" rel="noreferrer">GitHub</a>.
-        </p>
-        <p className="footer-build">
-          Built local-first. &copy; {new Date().getFullYear()} Inversion Labs.
-        </p>
+      <div className="container site-footer__bottom">
+        Inversion Labs — local-first instruments. The customer is never the product.
       </div>
-      <a className="footer-return" href="#top">Back to top ↑</a>
     </footer>
-  )
+  );
 }

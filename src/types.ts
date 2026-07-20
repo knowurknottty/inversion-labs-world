@@ -118,4 +118,5 @@ export interface EcosystemSystem {
   extends: string[]
   derived_from: string[]
   optional_with: string[]
+  color?: string
 }

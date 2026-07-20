@@ -1,92 +1,121 @@
-import { useEffect } from 'react';
-import { useMemoryObject } from '../context/MemoryObject';
+import { useEffect, useRef, useState } from 'react';
 
-export function Hero() {
-  const { addEvent } = useMemoryObject();
+const TERMINAL_LINES = [
+  '> INVERSION LABS // LOCAL-FIRST INSTRUMENTS',
+  '> operator: one person, Birmingham AL',
+  '> constraint: the customer is never the product',
+  '> status: 1 live deployment, 12 active systems',
+  '> SynSync Pro: ONLINE',
+];
+
+const PROOF_CARDS = [
+  { value: '1', label: 'Live instrument' },
+  { value: 'I–IV', label: 'Evidence grades' },
+  { value: '0', label: 'Accounts required' },
+  { value: '100%', label: 'Local audio render' },
+];
+
+function useTerminalLines(lines: string[]) {
+  const [visibleCount, setVisibleCount] = useState(0);
+  const rafRef = useRef<number | null>(null);
+  const indexRef = useRef(0);
+  const lastTimeRef = useRef<number | null>(null);
+  const INTERVAL_MS = 280;
 
   useEffect(() => {
-    addEvent('hero', 'section_entered');
-  }, [addEvent]);
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      setVisibleCount(lines.length);
+      return;
+    }
+
+    function step(timestamp: number) {
+      if (lastTimeRef.current === null) {
+        lastTimeRef.current = timestamp;
+      }
+      const elapsed = timestamp - lastTimeRef.current;
+      if (elapsed >= INTERVAL_MS && indexRef.current < lines.length) {
+        indexRef.current += 1;
+        setVisibleCount(indexRef.current);
+        lastTimeRef.current = timestamp;
+      }
+      if (indexRef.current < lines.length) {
+        rafRef.current = requestAnimationFrame(step);
+      }
+    }
+
+    rafRef.current = requestAnimationFrame(step);
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [lines.length]);
+
+  return visibleCount;
+}
+
+export function Hero() {
+  const visibleCount = useTerminalLines(TERMINAL_LINES);
 
   return (
-    <section className="hero" id="hero" aria-labelledby="hero-title">
-      <div className="hero-grid" aria-hidden="true" />
+    <section className="hero" id="hero" aria-labelledby="hero-headline">
+      <div
+        className="hero__scanline"
+        aria-label="Animated scan line — active signal monitor aesthetic"
+        role="img"
+      />
+      <div className="container hero__layout">
+        <div className="hero__copy">
+          <p className="hero__eyebrow">Independent lab — Birmingham, Alabama</p>
+          <h1 className="hero__headline" id="hero-headline">
+            Every context window you feed an AI is stored, indexed, and{' '}
+            <em>owned by the platform.</em>{' '}
+            We build the alternative.
+          </h1>
+          <div className="hero__actions">
+            <a
+              href="https://synsyncpro.netlify.app"
+              className="btn btn--primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open SynSync Pro →
+            </a>
+            <a href="#ecosystem" className="btn btn--secondary">
+              Inspect the registry
+            </a>
+          </div>
+          <div className="hero__proof-row" aria-label="Proof surface metrics">
+            {PROOF_CARDS.map((card) => (
+              <div key={card.label} className="hero__proof-card">
+                <span className="hero__proof-card-value">{card.value}</span>
+                <span className="hero__proof-card-label">{card.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
 
-      <div className="hero-copy">
-        <p className="section-index" aria-label="Section threshold">
-          <span>Threshold</span>
-        </p>
-
-        <h1 id="hero-title" className="hero-h1">
-          <span className="hero-h1-word hero-h1-word--1">Your</span>{' '}
-          <span className="hero-h1-word hero-h1-word--2">context</span>{' '}
-          <span className="hero-h1-word hero-h1-word--3">is</span>{' '}
-          <span className="hero-h1-word hero-h1-word--4">not</span>{' '}
-          <span className="hero-h1-word hero-h1-word--5">platform</span>{' '}
-          <span className="hero-h1-word hero-h1-word--6">inventory.</span>
-        </h1>
-
-        <p className="hero-lede">
-          Most AI tools own your context the moment you use them.
-          Inversion Labs builds instruments that keep memory, attention, and
-          coordination under your control — locally, verifiably, inspectably.
-        </p>
-
-        <p className="hero-lede hero-lede--secondary">
-          This field guide shows what is deployed and inspectable, what is
-          still a claim, and where the evidence lives — so you can decide
-          what to trust.
-        </p>
-
-        <div className="hero-actions">
-          <a className="button button-primary" href="#evidence">
-            Start with the evidence
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="arrow-icon">
-              <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
-          <a className="text-link" href="#lens">
-            See the inversion
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="arrow-icon arrow-icon--right">
-              <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
+        <div
+          className="hero__terminal"
+          role="log"
+          aria-label="System status readout"
+          aria-live="polite"
+          aria-atomic="false"
+        >
+          {TERMINAL_LINES.map((line, i) => (
+            <span
+              key={i}
+              className={`hero__terminal-line${i < visibleCount ? ' is-visible' : ''}`}
+              aria-hidden={i >= visibleCount ? 'true' : undefined}
+            >
+              {line}
+              {'\n'}
+            </span>
+          ))}
+          {visibleCount >= TERMINAL_LINES.length && (
+            <span className="hero__terminal-cursor" aria-hidden="true" />
+          )}
         </div>
       </div>
-
-      <aside className="hero-specimen" aria-label="Memory object specimen: IL—00">
-        <div className="specimen-envelope specimen-envelope--arriving">
-          <div className="specimen-corner specimen-corner--tl" aria-hidden="true" />
-          <div className="specimen-corner specimen-corner--tr" aria-hidden="true" />
-          <div className="specimen-corner specimen-corner--bl" aria-hidden="true" />
-          <div className="specimen-corner specimen-corner--br" aria-hidden="true" />
-          <p className="specimen-type">MEMORY OBJECT</p>
-          <p className="specimen-id">IL — 00</p>
-          <dl className="specimen-meta">
-            <div className="specimen-meta-row">
-              <dt>status</dt>
-              <dd className="specimen-status">arriving</dd>
-            </div>
-            <div className="specimen-meta-row">
-              <dt>origin</dt>
-              <dd>local session</dd>
-            </div>
-            <div className="specimen-meta-row">
-              <dt>constraint</dt>
-              <dd>person-portable</dd>
-            </div>
-            <div className="specimen-meta-row">
-              <dt>platform claim</dt>
-              <dd className="specimen-denied">denied</dd>
-            </div>
-          </dl>
-          <p className="specimen-inversion">Intelligence should answer to you.</p>
-        </div>
-      </aside>
-
-      <p className="hero-wayfinding" aria-label="Page structure">
-        Evidence <span aria-hidden="true">→</span> Lens <span aria-hidden="true">→</span> SynSync <span aria-hidden="true">→</span> Atlas <span aria-hidden="true">→</span> Architecture <span aria-hidden="true">→</span> Principles
-      </p>
     </section>
   );
 }

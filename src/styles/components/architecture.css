@@ -1,0 +1,134 @@
+@layer components {
+  .arch-explorer {
+    min-height: 70vh;
+  }
+
+  .arch-explorer__canvas-wrap {
+    position: relative;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    height: 500px;
+  }
+
+  .arch-explorer__svg {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+  }
+
+  .arch-explorer__svg:active {
+    cursor: grabbing;
+  }
+
+  .arch-explorer__node {
+    cursor: pointer;
+  }
+
+  .arch-explorer__node circle {
+    transition: r var(--transition-fast), stroke var(--transition-fast);
+  }
+
+  .arch-explorer__node:hover circle,
+  .arch-explorer__node[aria-pressed="true"] circle {
+    stroke: var(--color-accent);
+    stroke-width: 2;
+  }
+
+  .arch-explorer__node-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    fill: var(--color-text-muted);
+    pointer-events: none;
+    text-anchor: middle;
+    dominant-baseline: hanging;
+  }
+
+  .arch-explorer__edge {
+    stroke: var(--color-border);
+    stroke-width: 1;
+    fill: none;
+  }
+
+  .arch-explorer__inspector {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    margin-top: var(--space-5);
+  }
+
+  .arch-explorer__depth-bar {
+    display: flex;
+    gap: 3px;
+    margin-top: var(--space-3);
+  }
+
+  .arch-explorer__depth-pip {
+    height: 6px;
+    flex: 1;
+    border-radius: 3px;
+    background: var(--color-border);
+    transition: background var(--transition-fast);
+  }
+
+  .arch-explorer__depth-pip.is-filled {
+    background: var(--color-accent);
+  }
+
+  /* Museum / guided tour */
+  .arch-museum {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5);
+    background: rgb(0 0 0 / 0.7);
+  }
+
+  .arch-museum__card {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+  }
+
+  .arch-museum__counter {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .arch-museum__controls {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    align-items: center;
+  }
+
+  .arch-museum__pause-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    min-height: 44px;
+    transition: all var(--transition-fast);
+  }
+
+  .arch-museum__pause-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+}

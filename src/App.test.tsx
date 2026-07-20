@@ -5,94 +5,70 @@ import App from './App'
 describe('Inversion Labs experience', () => {
   beforeEach(() => {
     window.history.replaceState({}, '', '/')
+    localStorage.clear()
   })
 
-  it('leads with evidence and labels the demonstration data', () => {
+  it('leads with the local-first thesis and a live instrument CTA', () => {
     render(<App />)
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Intelligence should answer to you')
-    expect(screen.getByRole('heading', { name: /Start with what can be opened/i })).toBeInTheDocument()
-    expect(screen.getByText('verified public experiences')).toBeInTheDocument()
-    expect(screen.getAllByRole('heading', { name: 'SynSync Pro' }).length).toBeGreaterThan(0)
-    expect(screen.queryByText(/Demonstration data · not live telemetry/i)).not.toBeInTheDocument()
-
-    fireEvent.click(screen.getByRole('button', { name: 'Open the manual explorer' }))
-    expect(screen.getByText(/Demonstration data · not live telemetry/i)).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+      /Every context window you feed an AI is stored/i,
+    )
+    expect(
+      screen.getAllByRole('link', { name: /Open SynSync Pro/i }).some(
+        (link) => link.getAttribute('href') === 'https://synsyncpro.netlify.app',
+      ),
+    ).toBe(true)
+    expect(screen.getAllByText(/the customer is never the product/i).length).toBeGreaterThan(0)
   })
 
-  it('navigates meaningful depth and opens a governance object', () => {
+  it('renders the memory ownership inversion with a working toggle', () => {
     render(<App />)
 
-    fireEvent.click(screen.getByRole('button', { name: 'Open the manual explorer' }))
-    fireEvent.click(screen.getByRole('button', { name: /4 Governance/ }))
-    expect(screen.getByText('Use remains permissioned')).toBeInTheDocument()
+    const section = screen.getByRole('region', { name: /What changes when you own the memory object/i })
+    expect(within(section).getByRole('heading', { name: /What changes when you own the memory object/i })).toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('button', { name: /Access rule, Permission/ }))
-    expect(screen.getByRole('heading', { name: 'Access rule' })).toBeInTheDocument()
-    expect(window.location.search).toContain('node=permission')
+    const youOwn = within(section).getByRole('button', { name: /You own it/i })
+    fireEvent.click(youOwn)
+    expect(within(section).getByRole('img', { name: /MEM\/0137 has moved outside the application boundary/i })).toBeInTheDocument()
   })
 
-  it('opens and exits the guided observation with Escape', () => {
+  it('renders the governed ecosystem with all 13 systems and opens a detail drawer', () => {
     render(<App />)
 
-    fireEvent.click(screen.getByRole('button', { name: 'Take the guided tour' }))
-    expect(screen.getByRole('dialog', { name: 'Begin at the boundary' })).toBeInTheDocument()
+    const atlas = screen.getByRole('region', { name: /13 governed systems/i })
+    expect(within(atlas).getByRole('heading', { name: /13 governed systems/i })).toBeInTheDocument()
 
-    fireEvent.keyDown(window, { key: 'Escape' })
+    const synsyncCard = within(atlas).getByRole('button', { name: /SynSync/i })
+    fireEvent.click(synsyncCard)
+    expect(screen.getByRole('dialog', { name: /SynSync/i })).toBeInTheDocument()
+
+    fireEvent.keyDown(document, { key: 'Escape' })
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
 
-  it('applies and restores a governance action within the demo session', () => {
+  it('filters the ecosystem by maturity stage', () => {
     render(<App />)
 
-    fireEvent.click(screen.getByRole('button', { name: 'Open the manual explorer' }))
-    fireEvent.click(screen.getByRole('button', { name: /4 Governance/ }))
-    fireEvent.click(screen.getByRole('button', { name: /Access rule, Permission/ }))
-    fireEvent.click(screen.getByRole('tab', { name: 'governance' }))
-    fireEvent.click(screen.getByRole('button', { name: 'Revoke access' }))
-    expect(screen.getByText(/Demo state: revoked/i)).toBeInTheDocument()
-
-    fireEvent.click(screen.getByRole('button', { name: 'Restore demo object' }))
-    expect(screen.getByText(/Demo state: active/i)).toBeInTheDocument()
+    const atlas = screen.getByRole('region', { name: /13 governed systems/i })
+    fireEvent.click(within(atlas).getByRole('button', { name: 'Live' }))
+    expect(within(atlas).getByRole('button', { name: /SynSync/i })).toBeInTheDocument()
   })
 
-  it('presents SynSync as an Inversion Labs product with a truthful boundary', () => {
+  it('presents operating principles with architecture consequences', () => {
     render(<App />)
 
-    expect(screen.getByRole('heading', { name: 'A public product you can use now.' })).toBeInTheDocument()
-    expect(screen.getAllByText('The customer is never the product.').length).toBeGreaterThan(0)
-    expect(screen.getByText(/does not imply institutional affiliation/i)).toBeInTheDocument()
-    expect(screen.getByText(/supportive, not medical treatment/i)).toBeInTheDocument()
-    expect(screen.getAllByRole('link', { name: /Open SynSync Pro/ }).some(
-      (link) => link.getAttribute('href') === 'https://synsyncpro.netlify.app',
-    )).toBe(true)
+    const principles = screen.getByRole('region', { name: /How decisions get made/i })
+    expect(within(principles).getByText(/Evidence before aesthetics/i)).toBeInTheDocument()
+    expect(within(principles).getByText(/Local execution by default/i)).toBeInTheDocument()
   })
 
-  it('renders the governed ecosystem and exposes maturity, proof, and limitations', () => {
+  it('offers ranked next steps ending with a build stamp', () => {
     render(<App />)
 
-    const atlas = screen.getByRole('region', { name: /Thirteen records/i })
-    expect(within(atlas).getByRole('heading', { name: 'CAPT' })).toBeInTheDocument()
-    expect(within(atlas).getByRole('heading', { name: 'Inversion Excursion' })).toBeInTheDocument()
-    expect(within(atlas).getAllByText('Curated claim').length).toBeGreaterThan(0)
-
-    const captCard = within(atlas).getByRole('heading', { name: 'CAPT' }).closest('article')
-    expect(captCard).not.toBeNull()
-    fireEvent.click(within(captCard!).getByRole('button', { name: /Inspect record/ }))
-    expect(within(atlas).getAllByRole('heading', { name: 'CAPT' })).toHaveLength(2)
-    expect(within(atlas).getByText(/specific CAPT repository to be confirmed/i)).toBeInTheDocument()
-    expect(within(atlas).getByText(/project-specific public link is not confirmed/i)).toBeInTheDocument()
-    fireEvent.keyDown(window, { key: 'Escape' })
-    expect(document.querySelector('#system-detail')).not.toBeInTheDocument()
-  })
-
-  it('filters systems without hiding the maturity context', () => {
-    render(<App />)
-
-    const atlas = screen.getByRole('region', { name: /Thirteen records/i })
-    fireEvent.change(within(atlas).getByLabelText('Category'), { target: { value: 'Product' } })
-    expect(within(atlas).getByText('Showing 1 of 1 matches')).toBeInTheDocument()
-    expect(within(atlas).getByRole('heading', { name: 'SynSync' })).toBeInTheDocument()
-    expect(within(atlas).queryByRole('heading', { name: 'CAPT' })).not.toBeInTheDocument()
+    const cta = screen.getByRole('region', { name: /Where to go from here/i })
+    expect(within(cta).getByRole('link', { name: /Open SynSync Pro/i })).toBeInTheDocument()
+    expect(within(cta).getByRole('link', { name: /Inspect registry\.json/i })).toBeInTheDocument()
+    expect(within(cta).getByText(/Last built:/i)).toBeInTheDocument()
   })
 })

@@ -1,25 +1,36 @@
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
+/// <reference types="vitest/config" />
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+import legacy from '@vitejs/plugin-legacy';
+import compression from 'vite-plugin-compression';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+    }),
+    compression({ algorithm: 'gzip', ext: '.gz' }),
+    compression({ algorithm: 'brotliCompress', ext: '.br' }),
+  ],
+  define: {
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
+  },
   build: {
-    target: 'es2022',
-    cssCodeSplit: true,
     chunkSizeWarningLimit: 400,
     rollupOptions: {
       output: {
         manualChunks: {
           'vendor-react': ['react', 'react-dom'],
-          'data-architecture': ['./src/data/architecture'],
-          'data-ecosystem': ['./src/data/ecosystem'],
+          'data-ecosystem': ['./src/data/ecosystemData.ts'],
+          'data-architecture': ['./src/data/architectureData.ts'],
         },
       },
     },
   },
   test: {
     environment: 'jsdom',
-    setupFiles: './src/test/setup.ts',
-    css: true,
+    globals: true,
+    setupFiles: ['./src/test-setup.ts'],
   },
-})
+});
