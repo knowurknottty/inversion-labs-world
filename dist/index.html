@@ -298,6 +298,30 @@
 <div id="tt" class="glass"></div>
 <div id="sr" aria-live="polite"></div>
 
+<script id="boot-guard">
+(() => {
+  const release = (reason = 'fallback') => {
+    const boot = document.getElementById('boot');
+    if (boot) {
+      const label = boot.querySelector('.boot-label');
+      if (label && reason !== 'ready') label.textContent = 'SAFE MODE';
+      boot.classList.add('hidden');
+      window.setTimeout(() => boot.remove(), 900);
+    }
+  };
+
+  window.__releaseInversionBoot = release;
+  window.addEventListener('error', event => {
+    console.error('[Inversion Labs] runtime fallback:', event.error || event.message);
+    release('runtime-error');
+  });
+  window.addEventListener('unhandledrejection', event => {
+    console.error('[Inversion Labs] rejected promise:', event.reason);
+    release('promise-error');
+  });
+  window.setTimeout(() => release('timeout'), 4500);
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (()=>{
@@ -409,7 +433,7 @@ function init(){
   raycaster=new THREE.Raycaster();mouse=new THREE.Vector2();
   bg();nodes();camera.position.set(0,3,19);anim();setTimeout(rd,800);
 }
-function rd(){boot.classList.add('hidden');setTimeout(()=>boot.remove(),900);}
+function rd(){window.__releaseInversionBoot?.('ready');boot.classList.add('hidden');setTimeout(()=>boot.remove(),900);}
 
 function bg(){
   const g=new THREE.BufferGeometry(),n=1600,a=new Float32Array(n*3);

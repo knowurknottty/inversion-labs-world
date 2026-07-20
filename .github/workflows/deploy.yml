@@ -35,4 +35,5 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 78185b6c535f393038cde92a703d9768
           command: pages deploy dist --project-name inversion-labs-world --branch main --commit-hash ${{ github.sha }} --commit-message "${{ github.event.head_commit.message || 'Manual deployment' }}"
