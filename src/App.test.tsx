@@ -60,4 +60,17 @@ describe('Inversion Labs experience', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Restore demo object' }))
     expect(screen.getByText(/Demo state: active/i)).toBeInTheDocument()
   })
+
+  it('presents SynSync as an Inversion Labs product with a truthful boundary', () => {
+    render(<App />)
+
+    expect(screen.getByRole('heading', { name: 'State technology, returned to the public.' })).toBeInTheDocument()
+    expect(screen.getByText('The customer is never the product.')).toBeInTheDocument()
+    expect(screen.getByText(/does not imply institutional affiliation/i)).toBeInTheDocument()
+    expect(screen.getByText(/supportive, not medical treatment/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Open SynSync Pro/ })).toHaveAttribute(
+      'href',
+      'https://synsyncpro.netlify.app',
+    )
+  })
 })

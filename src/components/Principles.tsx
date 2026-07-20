@@ -25,7 +25,7 @@ export function Principles() {
   return (
     <section className="principles" id="principles" aria-labelledby="principles-title">
       <div className="section-heading principles-heading">
-        <p className="section-index"><span>04</span> Operating principles</p>
+        <p className="section-index"><span>05</span> Operating principles</p>
         <h2 id="principles-title">Control needs structure, not a settings promise.</h2>
         <p>These are design requirements for the architecture under exploration—not claims of a finished standard.</p>
       </div>

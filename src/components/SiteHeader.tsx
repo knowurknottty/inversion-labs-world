@@ -8,6 +8,7 @@ export function SiteHeader() {
       <nav aria-label="Primary navigation">
         <a href="#thesis">Thesis</a>
         <a href="#architecture">Architecture</a>
+        <a href="#synsync">SynSync</a>
         <a href="#principles">Principles</a>
       </nav>
       <a className="header-cta" href="https://github.com/knowurknottty/inversion-labs-world">

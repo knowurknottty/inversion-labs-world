@@ -2,7 +2,7 @@ export function FinalCta() {
   return (
     <section className="final-cta" aria-labelledby="final-title">
       <div>
-        <p className="section-index"><span>05</span> Continue the inspection</p>
+        <p className="section-index"><span>06</span> Continue the inspection</p>
         <h2 id="final-title">Memory infrastructure should be open to examination.</h2>
       </div>
       <p>
