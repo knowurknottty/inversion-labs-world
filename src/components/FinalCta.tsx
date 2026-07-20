@@ -2,16 +2,20 @@ export function FinalCta() {
   return (
     <section className="final-cta" aria-labelledby="final-title">
       <div>
-        <p className="section-index"><span>06</span> Continue the inspection</p>
-        <h2 id="final-title">Memory infrastructure should be open to examination.</h2>
+        <p className="section-index"><span>07</span> Choose where to enter</p>
+        <h2 id="final-title">Use the product. Inspect the thinking.</h2>
       </div>
       <p>
-        This site is an interactive architecture demonstration. For the available implementation evidence and project
-        history, inspect the public repository.
+        Start with the public tool, take the guided memory tour, or inspect the implementation. Each path is open;
+        none requires an account.
       </p>
-      <a className="button button-light" href="https://github.com/knowurknottty/inversion-labs-world">
-        View the repository <span aria-hidden="true">↗</span>
-      </a>
+      <div className="final-actions">
+        <a className="button button-light" href="https://synsyncpro.netlify.app" target="_blank" rel="noreferrer">
+          Open SynSync Pro <span aria-hidden="true">↗</span>
+        </a>
+        <a href="#architecture">Explore the memory model <span aria-hidden="true">↑</span></a>
+        <a href="https://github.com/knowurknottty/inversion-labs-world">View source <span aria-hidden="true">↗</span></a>
+      </div>
     </section>
   )
 }

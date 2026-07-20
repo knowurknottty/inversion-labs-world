@@ -13,7 +13,7 @@ export function SynSyncProduct() {
       <div className="synsync-field" aria-hidden="true" />
 
       <div className="section-heading synsync-heading">
-        <p className="section-index"><span>04</span> Product / SynSync Pro</p>
+        <p className="section-index"><span>03</span> Live product / SynSync Pro</p>
         <h2 id="synsync-title">State technology, returned to the public.</h2>
         <p>
           SynSync Pro turns brainwave entrainment into an open, user-directed instrument. It is built to become the
@@ -60,39 +60,41 @@ export function SynSyncProduct() {
         </div>
       </div>
 
-      <div className="lineage-panel" aria-labelledby="lineage-title">
-        <div className="lineage-intro">
-          <p className="product-kicker">The product inversion</p>
-          <h3 id="lineage-title">Institutional research becomes a personal instrument.</h3>
-        </div>
-        <div className="lineage-flow">
-          <ul aria-label="Source threads named in the Inversion Labs product thesis">
-            {sourceThreads.map((thread, index) => (
-              <li key={thread}>
-                <span>0{index + 1}</span>
-                <strong>{thread}</strong>
-              </li>
-            ))}
-          </ul>
-          <div className="lineage-turn" aria-hidden="true">
-            <span>Invert</span>
-            <i>→</i>
+      <div className="synsync-lower">
+        <div className="lineage-panel" aria-labelledby="lineage-title">
+          <div className="lineage-intro">
+            <p className="product-kicker">The product inversion</p>
+            <h3 id="lineage-title">Institutional research becomes a personal instrument.</h3>
           </div>
-          <div className="lineage-result">
-            <span>Public / inspectable / user-directed</span>
-            <strong>SynSync</strong>
+          <div className="lineage-flow">
+            <ul aria-label="Source threads named in the Inversion Labs product thesis">
+              {sourceThreads.map((thread, index) => (
+                <li key={thread}>
+                  <span>0{index + 1}</span>
+                  <strong>{thread}</strong>
+                </li>
+              ))}
+            </ul>
+            <div className="lineage-turn" aria-hidden="true">
+              <span>Invert</span>
+              <i>→</i>
+            </div>
+            <div className="lineage-result">
+              <span>Public / inspectable / user-directed</span>
+              <strong>SynSync</strong>
+            </div>
           </div>
+          <p className="lineage-boundary">
+            This lineage is Inversion Labs&apos; framing of the product thesis. It does not imply institutional affiliation,
+            endorsement, or proof of efficacy.
+          </p>
         </div>
-        <p className="lineage-boundary">
-          This lineage is Inversion Labs&apos; framing of the product thesis. It does not imply institutional affiliation,
-          endorsement, or proof of efficacy.
-        </p>
-      </div>
 
-      <blockquote className="customer-principle">
-        <p>The customer is never the product.</p>
-        <footer>Inversion Labs / line in the sand</footer>
-      </blockquote>
+        <blockquote className="customer-principle">
+          <p>The customer is never the product.</p>
+          <footer>Inversion Labs / line in the sand</footer>
+        </blockquote>
+      </div>
 
       <p className="synsync-safety">
         Brainwave entrainment is supportive, not medical treatment. Effects vary. Review protocol evidence and

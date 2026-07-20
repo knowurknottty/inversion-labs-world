@@ -194,6 +194,7 @@ export function ArchitectureExplorer() {
   const [editedContent, setEditedContent] = useState<Record<string, string>>({})
   const [editingId, setEditingId] = useState<string | null>(null)
   const [announcement, setAnnouncement] = useState('Architecture overview loaded.')
+  const [explorerStarted, setExplorerStarted] = useState(false)
   const museumDialogRef = useRef<HTMLDivElement>(null)
 
   const selectedNode = getNode(selectedId)
@@ -240,6 +241,7 @@ export function ArchitectureExplorer() {
     const nodeId = new URL(window.location.href).searchParams.get('node')
     const restored = architectureNodes.find((node) => node.id === nodeId)
     if (restored) {
+      setExplorerStarted(true)
       setSelectedId(restored.id)
       setDepth(restored.minDepth)
       setInspectorOpen(true)
@@ -281,7 +283,10 @@ export function ArchitectureExplorer() {
     return () => window.clearTimeout(timer)
   }, [museumIndex])
 
-  const startMuseum = () => setMuseumIndex(0)
+  const startMuseum = () => {
+    setExplorerStarted(true)
+    setMuseumIndex(0)
+  }
 
   const handleMuseumKeys = (event: ReactKeyboardEvent<HTMLDivElement>) => {
     if (event.key !== 'Tab' || !museumDialogRef.current) return
@@ -331,7 +336,7 @@ export function ArchitectureExplorer() {
   return (
     <section className="architecture-section" id="architecture" aria-labelledby="architecture-title">
       <div className="section-heading architecture-heading">
-        <p className="section-index"><span>03</span> Inspect the architecture</p>
+        <p className="section-index"><span>05</span> Inspect the memory architecture</p>
         <h2 id="architecture-title">Move from the system to the object—and keep the trail.</h2>
         <p>
           This deterministic, illustrative map shows how nodes, connections, depth, and an agent role fit together.
@@ -339,6 +344,48 @@ export function ArchitectureExplorer() {
         </p>
       </div>
 
+      {!explorerStarted ? (
+        <div className="architecture-entry">
+          <div className="entry-intro">
+            <p className="entry-kicker">Start with the relationship, not the controls</p>
+            <h3>Content is only trustworthy when its trail and authority travel with it.</h3>
+          </div>
+          <ol className="entry-flow" aria-label="Memory architecture in three steps">
+            <li>
+              <span>01</span>
+              <strong>Memory object</strong>
+              <p>The content remains a discrete thing a person can inspect and move.</p>
+            </li>
+            <li>
+              <span>02</span>
+              <strong>Provenance trail</strong>
+              <p>Source and transformations stay attached instead of disappearing into a model.</p>
+            </li>
+            <li>
+              <span>03</span>
+              <strong>Governance rule</strong>
+              <p>Permission, revision, export, revocation, and deletion remain available.</p>
+            </li>
+          </ol>
+          <div className="entry-actions">
+            <button type="button" className="button button-primary" onClick={startMuseum}>
+              Take the guided tour <span aria-hidden="true">▷</span>
+            </button>
+            <button
+              type="button"
+              className="text-button"
+              onClick={() => {
+                setExplorerStarted(true)
+                setAnnouncement('Manual architecture explorer opened at overview depth.')
+              }}
+            >
+              Open the manual explorer
+            </button>
+            <p>Advanced depth, graph, and governance controls appear after you choose a path.</p>
+          </div>
+        </div>
+      ) : (
+        <>
       <div className="architecture-metrics" aria-label="Illustrative map totals">
         <div><strong>{architectureNodes.length}</strong><span>illustrative entities</span></div>
         <div><strong>{architectureConnections.length}</strong><span>named relationships</span></div>
@@ -498,6 +545,9 @@ export function ArchitectureExplorer() {
           </div>
         )}
       </div>
+
+        </>
+      )}
 
       <p className="sr-only" aria-live="polite">{announcement}</p>
 

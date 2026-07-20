@@ -6,6 +6,7 @@ import { Principles } from './components/Principles'
 import { SiteFooter } from './components/SiteFooter'
 import { SiteHeader } from './components/SiteHeader'
 import { SynSyncProduct } from './components/SynSyncProduct'
+import { WorkOverview } from './components/WorkOverview'
 
 export default function App() {
   return (
@@ -14,9 +15,10 @@ export default function App() {
       <SiteHeader />
       <main id="main">
         <Hero />
+        <WorkOverview />
+        <SynSyncProduct />
         <LensSection />
         <ArchitectureExplorer />
-        <SynSyncProduct />
         <Principles />
         <FinalCta />
       </main>

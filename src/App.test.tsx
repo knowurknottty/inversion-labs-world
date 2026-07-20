@@ -10,8 +10,12 @@ describe('Inversion Labs experience', () => {
   it('explains the product premise and labels the demonstration data', () => {
     render(<App />)
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Your AI remembers')
-    expect(screen.getAllByText(/portable, inspectable memory infrastructure/i).length).toBeGreaterThan(0)
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Technology is getting personal')
+    expect(screen.getByRole('heading', { name: 'Human-governed memory' })).toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { name: 'SynSync Pro' }).length).toBeGreaterThan(0)
+    expect(screen.queryByText(/Demonstration data · not live telemetry/i)).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Open the manual explorer' }))
     expect(screen.getByText(/Demonstration data · not live telemetry/i)).toBeInTheDocument()
   })
 
@@ -30,6 +34,7 @@ describe('Inversion Labs experience', () => {
   it('navigates meaningful depth and opens a governance object', () => {
     render(<App />)
 
+    fireEvent.click(screen.getByRole('button', { name: 'Open the manual explorer' }))
     fireEvent.click(screen.getByRole('button', { name: /4 Governance/ }))
     expect(screen.getByText('Use remains permissioned')).toBeInTheDocument()
 
@@ -41,7 +46,7 @@ describe('Inversion Labs experience', () => {
   it('opens and exits the guided observation with Escape', () => {
     render(<App />)
 
-    fireEvent.click(screen.getByRole('button', { name: 'Guide me' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Take the guided tour' }))
     expect(screen.getByRole('dialog', { name: 'Begin at the boundary' })).toBeInTheDocument()
 
     fireEvent.keyDown(window, { key: 'Escape' })
@@ -51,6 +56,7 @@ describe('Inversion Labs experience', () => {
   it('applies and restores a governance action within the demo session', () => {
     render(<App />)
 
+    fireEvent.click(screen.getByRole('button', { name: 'Open the manual explorer' }))
     fireEvent.click(screen.getByRole('button', { name: /4 Governance/ }))
     fireEvent.click(screen.getByRole('button', { name: /Access rule, Permission/ }))
     fireEvent.click(screen.getByRole('tab', { name: 'governance' }))
@@ -65,12 +71,11 @@ describe('Inversion Labs experience', () => {
     render(<App />)
 
     expect(screen.getByRole('heading', { name: 'State technology, returned to the public.' })).toBeInTheDocument()
-    expect(screen.getByText('The customer is never the product.')).toBeInTheDocument()
+    expect(screen.getAllByText('The customer is never the product.').length).toBeGreaterThan(0)
     expect(screen.getByText(/does not imply institutional affiliation/i)).toBeInTheDocument()
     expect(screen.getByText(/supportive, not medical treatment/i)).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Open SynSync Pro/ })).toHaveAttribute(
-      'href',
-      'https://synsyncpro.netlify.app',
-    )
+    expect(screen.getAllByRole('link', { name: /Open SynSync Pro/ }).some(
+      (link) => link.getAttribute('href') === 'https://synsyncpro.netlify.app',
+    )).toBe(true)
   })
 })
