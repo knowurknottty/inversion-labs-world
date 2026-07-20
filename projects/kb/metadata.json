@@ -1,0 +1,81 @@
+{
+  "id": "kb",
+  "slug": "kb",
+  "name": "Knowledge Bubbles",
+  "subtitle": "Portable knowledge",
+  "role": "Portable knowledge",
+  "category": "Architecture",
+  "type": "Architecture",
+  "stage": "Live",
+  "visibility": "public",
+  "display_order": 5,
+  "audience": [
+    "Anyone exchanging trustworthy info"
+  ],
+  "color": "#c5c8d5",
+  "position": [
+    0,
+    4,
+    -1
+  ],
+  "thesis": "Knowledge Bubbles attach source, confidence, and contradiction to every claim. A fact becomes portable instead of a detached sentence.",
+  "description": "Knowledge Bubbles preserve a claim together with its source, confidence, contradictions, and consent rules. That lets knowledge move between systems without losing the context that made it trustworthy.",
+  "before": "A fact is a detached sentence.",
+  "after": "Knowledge carries context, provenance, confidence, and disagreement.",
+  "links": [
+    "capt",
+    "franken",
+    "research",
+    "docs"
+  ],
+  "dependencies": [
+    "capt"
+  ],
+  "reverse_dependencies": [
+    "research",
+    "docs",
+    "franken"
+  ],
+  "requires": [
+    "CAPT"
+  ],
+  "provides": [
+    "portable knowledge objects",
+    "provenance"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "MIT (planned)",
+  "tags": [
+    "knowledge",
+    "provenance",
+    "portability"
+  ],
+  "keywords": [
+    "knowledge bubbles",
+    "provenance"
+  ],
+  "documentation_status": "living",
+  "demo_status": "none",
+  "test_status": "reference",
+  "release_channel": "main",
+  "risk": "low",
+  "stability": "stable",
+  "compatibility": "Node 18+",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Architecture + reference implementation",
+    "for": "Anyone exchanging trustworthy info",
+    "open": "github.com/knowurknottty",
+    "limit": null
+  },
+  "inv": {
+    "human": "Your notes could carry their own sources and doubts.",
+    "builder": "Portable semantic objects with provenance.",
+    "researcher": "Provenance as a first-class data property."
+  }
+}

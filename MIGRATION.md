@@ -1,49 +1,60 @@
-# Migration Notes — Phase V (Living Ecosystem)
+# Migration Notes — Phase V+ (Ecosystem Metadata)
 
-## Before (Phase III/IV)
+## Before (Phase V initial)
 
-- Project metadata hardcoded in `index.html` as a `const S=[...]` array.
-- Adding a project required editing UI logic + the array + the constellation positions.
-- No search, no progressive disclosure, no single source of truth.
+- Single `registry.json` with 13 projects, basic fields.
+- `prepare_deploy.py` validated JSON only.
+- No versioning, no dependency graph, no semantic validation.
 
-## After (Phase V)
+## After (Phase V+ ecosystem metadata)
 
-- `registry.json` is the single source of truth (P1, P2).
-- `index.html` contains `<script type="application/json" id="registry"><!--REGISTRY--></script>`.
-- `prepare_deploy.py` validates `registry.json` (JSON parse + required fields) and injects it into the placeholder at build time.
-- UI renders from `REG.projects` — no hardcoded array.
-- Search (`searchEco`) queries registry with semantic hints (P6).
-- Progressive disclosure (`applyMode`) filters by experience level (P7).
-- Docs: `VERIFICATION.md`, `METRICS.md`, `GOVERNANCE.md` (P4, P5, P10).
+- `projects/<id>/metadata.json` — one file per project (reduces merge conflicts).
+- `projects/_registry.json` — versioning + validation rules (root).
+- `prepare_deploy.py` assembles `projects/*` into the injected registry.
+- **Semantic validation** (schema compiler): dependency existence, no cycles,
+  no duplicate IDs, valid stages/categories/visibility/verification levels,
+  no broken links, no broken reverse-dependencies.
+- **Versioning**: `registry_version`, `schema_version`, `content_version`,
+  `generated_at`, `generated_by`, `verified_at`.
+- **Extended schema**: slug, display_order, visibility, dependencies,
+  reverse_dependencies, requires, provides, maintainers, license, tags,
+  keywords, documentation_status, demo_status, test_status, release_channel,
+  risk, stability, compatibility, updated_from, generated, source_of_truth,
+  verification_level.
+- **Search abstraction**: `Search.query()` provider seam — curated now,
+  embedding-ready later. UI code unchanged.
+- **`capt-verification/`**: reusable protocol promoted out of the website into
+  shared IP (protocol.md, schema.json, report-template.md).
 
 ## How to Add a Project
 
-1. Add an entry to `registry.json` with all required fields.
-2. Run `python3 scripts/prepare_deploy.py` (validates + builds `dist/`).
+1. Create `projects/<id>/metadata.json` with all required fields.
+2. Run `python3 scripts/prepare_deploy.py` — assembles + semantically validates.
 3. Commit + push `main` → GitHub Actions deploys.
-4. No HTML/JS edit required. Constellation position comes from `position` field.
+4. No `index.html`/JS edit needed.
 
 ## How to Update Proof/Stage
 
-1. Edit the field in `registry.json`.
-2. Update `lastValidated` date.
+1. Edit the field in `projects/<id>/metadata.json`.
+2. Update `projects/_registry.json` `verified_at` date.
 3. Rebuild + deploy.
 
 ## Breaking Changes
 
-- `S` array removed. Any external script referencing `window.S` must use `REG.projects`.
-- `idx()` now uses `sysCard()` helper (shared by index + mode filter).
-- `pr()` unchanged in signature; reads from mapped `S` (same shape as before).
+- `registry.json` removed. Source is now `projects/`.
+- Injected registry shape: `{registry_version, schema_version, content_version,
+  generated_at, generated_by, verified_at, source, projects:[...]}`.
+- `index.html` reads `REG.projects` (unchanged access pattern).
+- `searchEco` now delegates to `Search.query()` (provider seam).
 
-## Verification
+## Semantic Validation Catches
 
-- `node --check` on extracted script: PASS.
-- `prepare_deploy.py`: validates registry, injects, exits 0.
-- Production: registry present in DOM, search + mode filter functional.
+- Self/cycle dependencies (e.g. excursion↔field mutual dependency → caught, fixed).
+- Broken links, missing required fields, invalid enums.
 
 ## Known Limitations
 
-- Search is client-side keyword + curated semantic map, not NLP.
-- Live data (releases, repo activity) not fetched — `source: curated` in registry.
+- Live data (releases, repo activity) not fetched — `source: curated`.
 - Telemetry schema defined but not implemented (see METRICS.md).
 - Per-system repo URLs still point to org where no specific repo confirmed.
+- Embedding search not yet implemented; `Search.provider='curated'`.

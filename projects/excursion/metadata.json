@@ -1,0 +1,77 @@
+{
+  "id": "excursion",
+  "slug": "excursion",
+  "name": "Inversion Excursion",
+  "subtitle": "Field discovery",
+  "role": "Field discovery",
+  "category": "Field practice",
+  "type": "Field practice",
+  "stage": "Living practice",
+  "visibility": "public",
+  "display_order": 9,
+  "audience": [
+    "Anyone who observes the world"
+  ],
+  "color": "#65c995",
+  "position": [
+    -3,
+    -5,
+    -2
+  ],
+  "thesis": "The overlooked world is full of signal. Observation deserves a place before certainty.",
+  "description": "Carries the lab into ecology, mycology, medicine, place, and direct observation \u2014 where knowledge is encountered before it is abstracted.",
+  "before": "Knowledge only becomes real after institutions certify it.",
+  "after": "Direct observation begins inquiry. Evidence determines the claim.",
+  "links": [
+    "research",
+    "field",
+    "hme"
+  ],
+  "dependencies": [
+    "research"
+  ],
+  "reverse_dependencies": [],
+  "requires": [
+    "observation practice"
+  ],
+  "provides": [
+    "field discovery",
+    "ecological signal"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "CC-BY (field notes)",
+  "tags": [
+    "field",
+    "observation",
+    "practice"
+  ],
+  "keywords": [
+    "excursion",
+    "mycology",
+    "ecology"
+  ],
+  "documentation_status": "living",
+  "demo_status": "live",
+  "test_status": "practice",
+  "release_channel": "living",
+  "risk": "low",
+  "stability": "living",
+  "compatibility": "Web",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Living practice + field notes",
+    "for": "Anyone who observes the world",
+    "open": "inversion-labs-world.pages.dev/excursion",
+    "limit": null
+  },
+  "inv": {
+    "human": "Join observation walks and field practice.",
+    "builder": "Data ingestion from field capture.",
+    "researcher": "Citizen science with provenance."
+  }
+}

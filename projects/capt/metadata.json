@@ -1,0 +1,85 @@
+{
+  "id": "capt",
+  "slug": "capt",
+  "name": "CAPT",
+  "subtitle": "Governed cognitive architecture",
+  "role": "Cognitive architecture",
+  "category": "Architecture",
+  "type": "Architecture",
+  "stage": "Live",
+  "visibility": "public",
+  "display_order": 1,
+  "audience": [
+    "Developers",
+    "Researchers"
+  ],
+  "color": "#6f94d1",
+  "position": [
+    0,
+    0,
+    0
+  ],
+  "thesis": "CAPT stores reasoning as modular, inspectable components. Instead of opaque prompt history, decisions retain their origin and evidence.",
+  "description": "CAPT is a modular cognitive architecture for persistent, inspectable AI systems. It separates memory, reasoning, and action into governed components.",
+  "before": "AI remembers you inside someone else's system.",
+  "after": "You govern persistent, inspectable intelligence.",
+  "links": [
+    "kb",
+    "ctp",
+    "khsb",
+    "biocapt"
+  ],
+  "dependencies": [],
+  "reverse_dependencies": [
+    "kb",
+    "ctp",
+    "khsb",
+    "franken",
+    "biocapt"
+  ],
+  "requires": [
+    "local-first runtime"
+  ],
+  "provides": [
+    "memory substrate",
+    "protocol orchestration",
+    "governed reasoning"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "MIT (planned)",
+  "tags": [
+    "architecture",
+    "cognition",
+    "memory",
+    "governance"
+  ],
+  "keywords": [
+    "cognitive architecture",
+    "inspectable AI",
+    "local-first"
+  ],
+  "documentation_status": "living",
+  "demo_status": "none",
+  "test_status": "partial",
+  "release_channel": "main",
+  "risk": "low",
+  "stability": "stable",
+  "compatibility": "Node 18+, browser",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Active open-source architecture",
+    "for": "Developers building local or sovereign AI",
+    "open": "github.com/knowurknottty",
+    "limit": null
+  },
+  "inv": {
+    "human": "Understand how your own AI systems could be governed and inspected.",
+    "builder": "Core substrate: memory, protocol, orchestration components.",
+    "researcher": "Reference architecture for governed cognition."
+  }
+}

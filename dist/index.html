@@ -451,54 +451,84 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script type="application/json" id="registry">{
-  "schemaVersion": "1.0",
-  "lastValidated": "2026-07-20",
+  "registry_version": "1.0.0",
+  "schema_version": "2.0.0",
+  "content_version": "2026.07.20",
+  "generated_at": "2026-07-20",
+  "generated_by": "prepare_deploy.py",
+  "verified_at": "2026-07-20",
   "source": "curated",
   "projects": [
     {
-      "id": "capt",
-      "name": "CAPT",
-      "subtitle": "Governed cognitive architecture",
-      "role": "Cognitive architecture",
-      "category": "Architecture",
-      "type": "Architecture",
-      "stage": "Live",
-      "audience": ["Developers", "Researchers"],
-      "color": "#6f94d1",
-      "position": [0, 0, 0],
-      "thesis": "CAPT stores reasoning as modular, inspectable components. Instead of opaque prompt history, decisions retain their origin and evidence.",
-      "description": "CAPT is a modular cognitive architecture for persistent, inspectable AI systems. It separates memory, reasoning, and action into governed components.",
-      "before": "AI remembers you inside someone else's system.",
-      "after": "You govern persistent, inspectable intelligence.",
-      "links": ["kb", "ctp", "khsb", "biocapt"],
-      "proof": {
-        "exists": "Active open-source architecture",
-        "for": "Developers building local or sovereign AI",
-        "open": "github.com/knowurknottty",
-        "limit": null
-      },
-      "inv": {
-        "human": "Understand how your own AI systems could be governed and inspected.",
-        "builder": "Core substrate: memory, protocol, orchestration components.",
-        "researcher": "Reference architecture for governed cognition."
-      }
-    },
-    {
       "id": "biocapt",
+      "slug": "biocapt",
       "name": "bioCAPT",
       "subtitle": "Embodied intelligence research",
       "role": "Embodied intelligence",
       "category": "Research program",
       "type": "Research program",
       "stage": "Active development",
-      "audience": ["Researchers", "Clinicians", "Individuals"],
+      "visibility": "public",
+      "display_order": 2,
+      "audience": [
+        "Researchers",
+        "Clinicians",
+        "Individuals"
+      ],
       "color": "#45cfaa",
-      "position": [-5, 2, 1],
-      "thesis": "Biological data remains governed when the body becomes part of the signal — not part of the product.",
-      "description": "bioCAPT learns from biological state, somatic context, and lived experience. Intelligence is temporal, relational, and embodied — not disembodied text prediction.",
+      "position": [
+        -5,
+        2,
+        1
+      ],
+      "thesis": "Biological data remains governed when the body becomes part of the signal \u2014 not part of the product.",
+      "description": "bioCAPT learns from biological state, somatic context, and lived experience. Intelligence is temporal, relational, and embodied \u2014 not disembodied text prediction.",
       "before": "Intelligence begins and ends with language.",
       "after": "Cognition is embodied. The body is part of the signal.",
-      "links": ["capt", "synsync", "hme"],
+      "links": [
+        "capt",
+        "synsync",
+        "hme"
+      ],
+      "dependencies": [
+        "capt"
+      ],
+      "reverse_dependencies": [
+        "hme",
+        "synsync"
+      ],
+      "requires": [
+        "biological signal ingestion"
+      ],
+      "provides": [
+        "embodied cognition model",
+        "somatic context"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "Research (no license yet)",
+      "tags": [
+        "biology",
+        "embodied",
+        "signals"
+      ],
+      "keywords": [
+        "embodied AI",
+        "biofeedback",
+        "somatic"
+      ],
+      "documentation_status": "research",
+      "demo_status": "none",
+      "test_status": "prototype",
+      "release_channel": "research",
+      "risk": "medium",
+      "stability": "experimental",
+      "compatibility": "Browser + device APIs",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
       "proof": {
         "exists": "Research architecture + prototypes",
         "for": "Researchers, clinicians, individuals",
@@ -512,105 +542,157 @@
       }
     },
     {
-      "id": "franken",
-      "name": "FrankenCAPT",
-      "subtitle": "Skill governance",
-      "role": "Skill governance",
+      "id": "capt",
+      "slug": "capt",
+      "name": "CAPT",
+      "subtitle": "Governed cognitive architecture",
+      "role": "Cognitive architecture",
       "category": "Architecture",
       "type": "Architecture",
-      "stage": "Active development",
-      "audience": ["Builders"],
-      "color": "#e1b453",
-      "position": [5, 2, 1],
-      "thesis": "Capability without governance becomes an uncontrolled pile of tools — not intelligence.",
-      "description": "FrankenCAPT ingests, evaluates, composes, and governs capabilities. It keeps the ecosystem coherent without bottlenecking growth.",
-      "before": "More tools automatically mean more intelligence.",
-      "after": "Capabilities become useful when curated, bounded, and composable.",
-      "links": ["capt", "ctp", "khsb", "kb"],
+      "stage": "Live",
+      "visibility": "public",
+      "display_order": 1,
+      "audience": [
+        "Developers",
+        "Researchers"
+      ],
+      "color": "#6f94d1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "thesis": "CAPT stores reasoning as modular, inspectable components. Instead of opaque prompt history, decisions retain their origin and evidence.",
+      "description": "CAPT is a modular cognitive architecture for persistent, inspectable AI systems. It separates memory, reasoning, and action into governed components.",
+      "before": "AI remembers you inside someone else's system.",
+      "after": "You govern persistent, inspectable intelligence.",
+      "links": [
+        "kb",
+        "ctp",
+        "khsb",
+        "biocapt"
+      ],
+      "dependencies": [],
+      "reverse_dependencies": [
+        "kb",
+        "ctp",
+        "khsb",
+        "franken",
+        "biocapt"
+      ],
+      "requires": [
+        "local-first runtime"
+      ],
+      "provides": [
+        "memory substrate",
+        "protocol orchestration",
+        "governed reasoning"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "MIT (planned)",
+      "tags": [
+        "architecture",
+        "cognition",
+        "memory",
+        "governance"
+      ],
+      "keywords": [
+        "cognitive architecture",
+        "inspectable AI",
+        "local-first"
+      ],
+      "documentation_status": "living",
+      "demo_status": "none",
+      "test_status": "partial",
+      "release_channel": "main",
+      "risk": "low",
+      "stability": "stable",
+      "compatibility": "Node 18+, browser",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
       "proof": {
-        "exists": "Architecture + evaluation harness",
-        "for": "Builders integrating capabilities",
+        "exists": "Active open-source architecture",
+        "for": "Developers building local or sovereign AI",
         "open": "github.com/knowurknottty",
         "limit": null
       },
       "inv": {
-        "human": "Know that the tools you use are curated, not piled.",
-        "builder": "Capability registry, composition, bounds.",
-        "researcher": "Skill governance as a research problem."
-      }
-    },
-    {
-      "id": "synsync",
-      "name": "SynSync",
-      "subtitle": "State technology",
-      "role": "State technology",
-      "category": "Product",
-      "type": "Product",
-      "stage": "Live",
-      "audience": ["Individuals"],
-      "color": "#a083e0",
-      "position": [-6, -2, 2],
-      "thesis": "Neuroacoustic tools remain understandable and user-directed when sound is designed as an interface — not passive ambience.",
-      "description": "SynSync builds acoustic protocols for attention, entrainment, and state transition. Safety, agency, and honest claims are foreground constraints.",
-      "before": "Wellness audio is passive ambience.",
-      "after": "Sound becomes a calibrated, transparent state interface.",
-      "links": ["biocapt", "hme", "research"],
-      "proof": {
-        "exists": "Deployed product (early access)",
-        "for": "Individuals seeking focus, rest, transition",
-        "open": "inversion-labs-world.pages.dev/synsync",
-        "limit": "Early access; claims are measured, not certified"
-      },
-      "inv": {
-        "human": "Use a real system for attention and rest today.",
-        "builder": "API for state-transition audio.",
-        "researcher": "Acoustic entrainment with measured claims."
-      }
-    },
-    {
-      "id": "kb",
-      "name": "Knowledge Bubbles",
-      "subtitle": "Portable knowledge",
-      "role": "Portable knowledge",
-      "category": "Architecture",
-      "type": "Architecture",
-      "stage": "Live",
-      "audience": ["Anyone exchanging trustworthy info"],
-      "color": "#c5c8d5",
-      "position": [0, 4, -1],
-      "thesis": "Knowledge Bubbles attach source, confidence, and contradiction to every claim. A fact becomes portable instead of a detached sentence.",
-      "description": "Knowledge Bubbles preserve a claim together with its source, confidence, contradictions, and consent rules. That lets knowledge move between systems without losing the context that made it trustworthy.",
-      "before": "A fact is a detached sentence.",
-      "after": "Knowledge carries context, provenance, confidence, and disagreement.",
-      "links": ["capt", "franken", "research", "docs"],
-      "proof": {
-        "exists": "Architecture + reference implementation",
-        "for": "Anyone exchanging trustworthy info",
-        "open": "github.com/knowurknottty",
-        "limit": null
-      },
-      "inv": {
-        "human": "Your notes could carry their own sources and doubts.",
-        "builder": "Portable semantic objects with provenance.",
-        "researcher": "Provenance as a first-class data property."
+        "human": "Understand how your own AI systems could be governed and inspected.",
+        "builder": "Core substrate: memory, protocol, orchestration components.",
+        "researcher": "Reference architecture for governed cognition."
       }
     },
     {
       "id": "ctp",
+      "slug": "ctp",
       "name": "CTP",
       "subtitle": "Transaction protocol",
       "role": "Transaction protocol",
       "category": "Protocol",
       "type": "Protocol",
       "stage": "Live",
-      "audience": ["Builders of multi-agent systems"],
+      "visibility": "public",
+      "display_order": 6,
+      "audience": [
+        "Builders of multi-agent systems"
+      ],
       "color": "#5eb0ff",
-      "position": [4, -3, -1],
+      "position": [
+        4,
+        -3,
+        -1
+      ],
       "thesis": "CTP wraps each agent request in an explicit contract. Instead of opaque message passing, work travels with its evidence and accountability.",
       "description": "CTP structures cognitive requests, responses, evidence, and state transitions so agents can collaborate without dissolving accountability.",
       "before": "Agents pass opaque messages and hope.",
       "after": "Cognitive work travels through explicit, inspectable transactions.",
-      "links": ["capt", "franken", "khsb"],
+      "links": [
+        "capt",
+        "franken",
+        "khsb"
+      ],
+      "dependencies": [
+        "capt"
+      ],
+      "reverse_dependencies": [
+        "khsb",
+        "franken"
+      ],
+      "requires": [
+        "CAPT"
+      ],
+      "provides": [
+        "transaction protocol",
+        "agent contracts"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "MIT (planned)",
+      "tags": [
+        "protocol",
+        "agents",
+        "transactions"
+      ],
+      "keywords": [
+        "agent protocol",
+        "contracts"
+      ],
+      "documentation_status": "spec",
+      "demo_status": "none",
+      "test_status": "reference",
+      "release_channel": "main",
+      "risk": "low",
+      "stability": "stable",
+      "compatibility": "Any",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
       "proof": {
         "exists": "Spec + reference implementation",
         "for": "Builders of multi-agent systems",
@@ -624,77 +706,148 @@
       }
     },
     {
-      "id": "khsb",
-      "name": "KHSB",
-      "subtitle": "System nervous system",
-      "role": "System nervous system",
-      "category": "Protocol",
-      "type": "Protocol",
-      "stage": "Live",
-      "audience": ["Builders of local system meshes"],
-      "color": "#f0d15a",
-      "position": [7, 0, -2],
-      "thesis": "KHSB connects local systems through bounded envelopes. Instead of open borders, interconnection uses explicit contracts and identity.",
-      "description": "KHSB is the communication tissue connecting systems through bounded envelopes, routing, identity, and protocol-aware exchange.",
-      "before": "Connectivity means opening every system to every other system.",
-      "after": "Systems communicate through explicit boundaries and contracts.",
-      "links": ["capt", "franken", "ctp"],
+      "id": "docs",
+      "slug": "docs",
+      "name": "Documentation",
+      "subtitle": "Architecture memory",
+      "role": "Architecture memory",
+      "category": "Field practice",
+      "type": "Field practice",
+      "stage": "Living practice",
+      "visibility": "public",
+      "display_order": 13,
+      "audience": [
+        "Builders",
+        "Researchers"
+      ],
+      "color": "#8494b8",
+      "position": [
+        0,
+        1,
+        -6
+      ],
+      "thesis": "Systems become governable when their decisions remain legible \u2014 not when the documentation was written once and forgotten.",
+      "description": "Preserves the why behind interfaces, protocols, safety boundaries, and release decisions so the architecture can evolve without forgetting itself.",
+      "before": "Documentation describes software after the fact.",
+      "after": "Documentation is part of the system's memory and governance.",
+      "links": [
+        "kb",
+        "research",
+        "repos"
+      ],
+      "dependencies": [
+        "kb",
+        "research"
+      ],
+      "reverse_dependencies": [],
+      "requires": [
+        "Knowledge Bubbles"
+      ],
+      "provides": [
+        "architecture memory",
+        "governance docs"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "CC-BY",
+      "tags": [
+        "documentation",
+        "governance",
+        "memory"
+      ],
+      "keywords": [
+        "docs",
+        "architecture memory"
+      ],
+      "documentation_status": "living",
+      "demo_status": "none",
+      "test_status": "living",
+      "release_channel": "living",
+      "risk": "low",
+      "stability": "living",
+      "compatibility": "Web",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
       "proof": {
-        "exists": "Spec + routing prototype",
-        "for": "Builders of local system meshes",
+        "exists": "Living documentation",
+        "for": "Builders, researchers",
         "open": "github.com/knowurknottty",
         "limit": null
       },
       "inv": {
-        "human": "Your devices talk to each other on your terms.",
-        "builder": "Bounded envelopes, routing, identity.",
-        "researcher": "Local-first system interoperability."
-      }
-    },
-    {
-      "id": "hme",
-      "name": "Human Metadata Engine",
-      "subtitle": "Interpretive synthesis",
-      "role": "Interpretive synthesis",
-      "category": "Research program",
-      "type": "Research program",
-      "stage": "Active development",
-      "audience": ["Individuals", "Clinicians", "Researchers"],
-      "color": "#e06659",
-      "position": [-7, 0, -2],
-      "thesis": "A person cannot be reduced to one score or model. Multiple interpretive lenses can coexist without pretending to be absolute truth.",
-      "description": "Synthesizes multiple lenses — biological, behavioral, symbolic — while preserving uncertainty, source boundaries, and agency.",
-      "before": "One framework explains the whole person.",
-      "after": "Multiple lenses coexist without pretending to be absolute truth.",
-      "links": ["biocapt", "synsync", "research"],
-      "proof": {
-        "exists": "Research architecture",
-        "for": "Individuals, clinicians, researchers",
-        "open": "github.com/knowurknottty",
-        "limit": "Concept stage; interpretive, not diagnostic"
-      },
-      "inv": {
-        "human": "See yourself through more than one lens, honestly.",
-        "builder": "Multi-lens synthesis API.",
-        "researcher": "Interpretive synthesis under uncertainty."
+        "human": "Understand the system's own memory.",
+        "builder": "Architecture decisions, explained.",
+        "researcher": "Governance through legibility."
       }
     },
     {
       "id": "excursion",
+      "slug": "excursion",
       "name": "Inversion Excursion",
       "subtitle": "Field discovery",
       "role": "Field discovery",
       "category": "Field practice",
       "type": "Field practice",
       "stage": "Living practice",
-      "audience": ["Anyone who observes the world"],
+      "visibility": "public",
+      "display_order": 9,
+      "audience": [
+        "Anyone who observes the world"
+      ],
       "color": "#65c995",
-      "position": [-3, -5, -2],
+      "position": [
+        -3,
+        -5,
+        -2
+      ],
       "thesis": "The overlooked world is full of signal. Observation deserves a place before certainty.",
-      "description": "Carries the lab into ecology, mycology, medicine, place, and direct observation — where knowledge is encountered before it is abstracted.",
+      "description": "Carries the lab into ecology, mycology, medicine, place, and direct observation \u2014 where knowledge is encountered before it is abstracted.",
       "before": "Knowledge only becomes real after institutions certify it.",
       "after": "Direct observation begins inquiry. Evidence determines the claim.",
-      "links": ["research", "field", "hme"],
+      "links": [
+        "research",
+        "field",
+        "hme"
+      ],
+      "dependencies": [
+        "research"
+      ],
+      "reverse_dependencies": [],
+      "requires": [
+        "observation practice"
+      ],
+      "provides": [
+        "field discovery",
+        "ecological signal"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "CC-BY (field notes)",
+      "tags": [
+        "field",
+        "observation",
+        "practice"
+      ],
+      "keywords": [
+        "excursion",
+        "mycology",
+        "ecology"
+      ],
+      "documentation_status": "living",
+      "demo_status": "live",
+      "test_status": "practice",
+      "release_channel": "living",
+      "risk": "low",
+      "stability": "living",
+      "compatibility": "Web",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
       "proof": {
         "exists": "Living practice + field notes",
         "for": "Anyone who observes the world",
@@ -708,49 +861,70 @@
       }
     },
     {
-      "id": "research",
-      "name": "Research",
-      "subtitle": "Evidence layer",
-      "role": "Evidence layer",
-      "category": "Research program",
-      "type": "Research program",
-      "stage": "Open research",
-      "audience": ["Researchers", "Builders", "The curious"],
-      "color": "#8ca4c7",
-      "position": [0, -5, -3],
-      "thesis": "Frontier work becomes credible when its uncertainty is visible — not when its claims are loudest.",
-      "description": "Preserves architecture notes, experiments, benchmarks, limitations, failures, and the boundary between what is observed and what is merely hoped.",
-      "before": "A compelling story is enough.",
-      "after": "Claims earn trust through evidence, provenance, and reproducibility.",
-      "links": ["kb", "synsync", "excursion", "docs", "repos"],
-      "proof": {
-        "exists": "Open research notes + benchmarks",
-        "for": "Researchers, builders, the curious",
-        "open": "github.com/knowurknottty",
-        "limit": null
-      },
-      "inv": {
-        "human": "Read what we actually found, including failures.",
-        "builder": "Reproducible experiments.",
-        "researcher": "Evidence layer for the whole lab."
-      }
-    },
-    {
       "id": "field",
+      "slug": "field",
       "name": "Field Notes",
       "subtitle": "Observation practice",
       "role": "Observation practice",
       "category": "Field practice",
       "type": "Field practice",
       "stage": "Living practice",
-      "audience": ["Observers", "Researchers"],
+      "visibility": "public",
+      "display_order": 11,
+      "audience": [
+        "Observers",
+        "Researchers"
+      ],
       "color": "#9ab87a",
-      "position": [-4, -1, -5],
+      "position": [
+        -4,
+        -1,
+        -5
+      ],
       "thesis": "Observation labeled honestly is valuable even before certainty arrives.",
       "description": "Preserves ecological, medicinal, technical, and experiential observations with their source type and uncertainty intact.",
       "before": "Unverified means worthless.",
       "after": "Observation can be valuable when labeled honestly and tested carefully.",
-      "links": ["excursion", "research", "kb"],
+      "links": [
+        "excursion",
+        "research",
+        "kb"
+      ],
+      "dependencies": [
+        "excursion",
+        "research"
+      ],
+      "reverse_dependencies": [],
+      "requires": [
+        "Excursion"
+      ],
+      "provides": [
+        "structured observation",
+        "provenance"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "CC-BY",
+      "tags": [
+        "field notes",
+        "observation"
+      ],
+      "keywords": [
+        "field notes",
+        "citizen science"
+      ],
+      "documentation_status": "living",
+      "demo_status": "live",
+      "test_status": "practice",
+      "release_channel": "living",
+      "risk": "low",
+      "stability": "living",
+      "compatibility": "Web",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
       "proof": {
         "exists": "Living notebook",
         "for": "Observers, researchers",
@@ -764,21 +938,388 @@
       }
     },
     {
+      "id": "franken",
+      "slug": "franken",
+      "name": "FrankenCAPT",
+      "subtitle": "Skill governance",
+      "role": "Skill governance",
+      "category": "Architecture",
+      "type": "Architecture",
+      "stage": "Active development",
+      "visibility": "public",
+      "display_order": 3,
+      "audience": [
+        "Builders"
+      ],
+      "color": "#e1b453",
+      "position": [
+        5,
+        2,
+        1
+      ],
+      "thesis": "Capability without governance becomes an uncontrolled pile of tools \u2014 not intelligence.",
+      "description": "FrankenCAPT ingests, evaluates, composes, and governs capabilities. It keeps the ecosystem coherent without bottlenecking growth.",
+      "before": "More tools automatically mean more intelligence.",
+      "after": "Capabilities become useful when curated, bounded, and composable.",
+      "links": [
+        "capt",
+        "ctp",
+        "khsb",
+        "kb"
+      ],
+      "dependencies": [
+        "capt"
+      ],
+      "reverse_dependencies": [],
+      "requires": [
+        "CAPT"
+      ],
+      "provides": [
+        "skill registry",
+        "composition bounds"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "MIT (planned)",
+      "tags": [
+        "skills",
+        "governance",
+        "composition"
+      ],
+      "keywords": [
+        "capability governance",
+        "skill registry"
+      ],
+      "documentation_status": "living",
+      "demo_status": "none",
+      "test_status": "partial",
+      "release_channel": "main",
+      "risk": "low",
+      "stability": "stable",
+      "compatibility": "Node 18+",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
+      "proof": {
+        "exists": "Architecture + evaluation harness",
+        "for": "Builders integrating capabilities",
+        "open": "github.com/knowurknottty",
+        "limit": null
+      },
+      "inv": {
+        "human": "Know that the tools you use are curated, not piled.",
+        "builder": "Capability registry, composition, bounds.",
+        "researcher": "Skill governance as a research problem."
+      }
+    },
+    {
+      "id": "hme",
+      "slug": "hme",
+      "name": "Human Metadata Engine",
+      "subtitle": "Interpretive synthesis",
+      "role": "Interpretive synthesis",
+      "category": "Research program",
+      "type": "Research program",
+      "stage": "Active development",
+      "visibility": "public",
+      "display_order": 8,
+      "audience": [
+        "Individuals",
+        "Clinicians",
+        "Researchers"
+      ],
+      "color": "#e06659",
+      "position": [
+        -7,
+        0,
+        -2
+      ],
+      "thesis": "A person cannot be reduced to one score or model. Multiple interpretive lenses can coexist without pretending to be absolute truth.",
+      "description": "Synthesizes multiple lenses \u2014 biological, behavioral, symbolic \u2014 while preserving uncertainty, source boundaries, and agency.",
+      "before": "One framework explains the whole person.",
+      "after": "Multiple lenses coexist without pretending to be absolute truth.",
+      "links": [
+        "biocapt",
+        "synsync",
+        "research"
+      ],
+      "dependencies": [
+        "biocapt"
+      ],
+      "reverse_dependencies": [],
+      "requires": [
+        "bioCAPT"
+      ],
+      "provides": [
+        "multi-lens synthesis",
+        "interpretive API"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "Research (no license yet)",
+      "tags": [
+        "interpretive",
+        "synthesis",
+        "lenses"
+      ],
+      "keywords": [
+        "human metadata",
+        "multi-lens"
+      ],
+      "documentation_status": "research",
+      "demo_status": "none",
+      "test_status": "concept",
+      "release_channel": "research",
+      "risk": "medium",
+      "stability": "experimental",
+      "compatibility": "Browser",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
+      "proof": {
+        "exists": "Research architecture",
+        "for": "Individuals, clinicians, researchers",
+        "open": "github.com/knowurknottty",
+        "limit": "Concept stage; interpretive, not diagnostic"
+      },
+      "inv": {
+        "human": "See yourself through more than one lens, honestly.",
+        "builder": "Multi-lens synthesis API.",
+        "researcher": "Interpretive synthesis under uncertainty."
+      }
+    },
+    {
+      "id": "kb",
+      "slug": "kb",
+      "name": "Knowledge Bubbles",
+      "subtitle": "Portable knowledge",
+      "role": "Portable knowledge",
+      "category": "Architecture",
+      "type": "Architecture",
+      "stage": "Live",
+      "visibility": "public",
+      "display_order": 5,
+      "audience": [
+        "Anyone exchanging trustworthy info"
+      ],
+      "color": "#c5c8d5",
+      "position": [
+        0,
+        4,
+        -1
+      ],
+      "thesis": "Knowledge Bubbles attach source, confidence, and contradiction to every claim. A fact becomes portable instead of a detached sentence.",
+      "description": "Knowledge Bubbles preserve a claim together with its source, confidence, contradictions, and consent rules. That lets knowledge move between systems without losing the context that made it trustworthy.",
+      "before": "A fact is a detached sentence.",
+      "after": "Knowledge carries context, provenance, confidence, and disagreement.",
+      "links": [
+        "capt",
+        "franken",
+        "research",
+        "docs"
+      ],
+      "dependencies": [
+        "capt"
+      ],
+      "reverse_dependencies": [
+        "research",
+        "docs",
+        "franken"
+      ],
+      "requires": [
+        "CAPT"
+      ],
+      "provides": [
+        "portable knowledge objects",
+        "provenance"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "MIT (planned)",
+      "tags": [
+        "knowledge",
+        "provenance",
+        "portability"
+      ],
+      "keywords": [
+        "knowledge bubbles",
+        "provenance"
+      ],
+      "documentation_status": "living",
+      "demo_status": "none",
+      "test_status": "reference",
+      "release_channel": "main",
+      "risk": "low",
+      "stability": "stable",
+      "compatibility": "Node 18+",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
+      "proof": {
+        "exists": "Architecture + reference implementation",
+        "for": "Anyone exchanging trustworthy info",
+        "open": "github.com/knowurknottty",
+        "limit": null
+      },
+      "inv": {
+        "human": "Your notes could carry their own sources and doubts.",
+        "builder": "Portable semantic objects with provenance.",
+        "researcher": "Provenance as a first-class data property."
+      }
+    },
+    {
+      "id": "khsb",
+      "slug": "khsb",
+      "name": "KHSB",
+      "subtitle": "System nervous system",
+      "role": "System nervous system",
+      "category": "Protocol",
+      "type": "Protocol",
+      "stage": "Live",
+      "visibility": "public",
+      "display_order": 7,
+      "audience": [
+        "Builders of local system meshes"
+      ],
+      "color": "#f0d15a",
+      "position": [
+        7,
+        0,
+        -2
+      ],
+      "thesis": "KHSB connects local systems through bounded envelopes. Instead of open borders, interconnection uses explicit contracts and identity.",
+      "description": "KHSB is the communication tissue connecting systems through bounded envelopes, routing, identity, and protocol-aware exchange.",
+      "before": "Connectivity means opening every system to every other system.",
+      "after": "Systems communicate through explicit boundaries and contracts.",
+      "links": [
+        "capt",
+        "franken",
+        "ctp"
+      ],
+      "dependencies": [
+        "capt",
+        "ctp"
+      ],
+      "reverse_dependencies": [
+        "franken"
+      ],
+      "requires": [
+        "CTP"
+      ],
+      "provides": [
+        "bounded envelopes",
+        "routing",
+        "identity"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "MIT (planned)",
+      "tags": [
+        "protocol",
+        "mesh",
+        "local-first"
+      ],
+      "keywords": [
+        "system mesh",
+        "interop"
+      ],
+      "documentation_status": "spec",
+      "demo_status": "none",
+      "test_status": "prototype",
+      "release_channel": "main",
+      "risk": "low",
+      "stability": "stable",
+      "compatibility": "Local network",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
+      "proof": {
+        "exists": "Spec + routing prototype",
+        "for": "Builders of local system meshes",
+        "open": "github.com/knowurknottty",
+        "limit": null
+      },
+      "inv": {
+        "human": "Your devices talk to each other on your terms.",
+        "builder": "Bounded envelopes, routing, identity.",
+        "researcher": "Local-first system interoperability."
+      }
+    },
+    {
       "id": "repos",
+      "slug": "repos",
       "name": "Repositories",
       "subtitle": "Working evidence",
       "role": "Working evidence",
       "category": "Protocol",
       "type": "Protocol",
       "stage": "Live",
-      "audience": ["Developers", "Researchers", "Funders"],
+      "visibility": "public",
+      "display_order": 12,
+      "audience": [
+        "Developers",
+        "Researchers",
+        "Funders"
+      ],
       "color": "#c08c68",
-      "position": [4, -1, -5],
-      "thesis": "Code is not proof of a vision — but it is evidence the vision is being built.",
+      "position": [
+        4,
+        -1,
+        -5
+      ],
+      "thesis": "Code is not proof of a vision \u2014 but it is evidence the vision is being built.",
       "description": "Exposes implementation, architecture, release state, tests, and the gap between concept and production candidate.",
       "before": "A polished claim proves a system exists.",
       "after": "Artifacts, tests, and reproducible builds establish what is real.",
-      "links": ["research", "docs", "franken"],
+      "links": [
+        "research",
+        "docs",
+        "franken"
+      ],
+      "dependencies": [
+        "research",
+        "docs"
+      ],
+      "reverse_dependencies": [],
+      "requires": [
+        "GitHub"
+      ],
+      "provides": [
+        "public code",
+        "reproducible builds"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "MIT (per repo)",
+      "tags": [
+        "code",
+        "repositories",
+        "evidence"
+      ],
+      "keywords": [
+        "repositories",
+        "open source"
+      ],
+      "documentation_status": "living",
+      "demo_status": "none",
+      "test_status": "CI",
+      "release_channel": "main",
+      "risk": "low",
+      "stability": "stable",
+      "compatibility": "GitHub",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
       "proof": {
         "exists": "Public repositories",
         "for": "Developers, researchers, funders",
@@ -792,31 +1333,168 @@
       }
     },
     {
-      "id": "docs",
-      "name": "Documentation",
-      "subtitle": "Architecture memory",
-      "role": "Architecture memory",
-      "category": "Field practice",
-      "type": "Field practice",
-      "stage": "Living practice",
-      "audience": ["Builders", "Researchers"],
-      "color": "#8494b8",
-      "position": [0, 1, -6],
-      "thesis": "Systems become governable when their decisions remain legible — not when the documentation was written once and forgotten.",
-      "description": "Preserves the why behind interfaces, protocols, safety boundaries, and release decisions so the architecture can evolve without forgetting itself.",
-      "before": "Documentation describes software after the fact.",
-      "after": "Documentation is part of the system's memory and governance.",
-      "links": ["kb", "research", "repos"],
+      "id": "research",
+      "slug": "research",
+      "name": "Research",
+      "subtitle": "Evidence layer",
+      "role": "Evidence layer",
+      "category": "Research program",
+      "type": "Research program",
+      "stage": "Open research",
+      "visibility": "public",
+      "display_order": 10,
+      "audience": [
+        "Researchers",
+        "Builders",
+        "The curious"
+      ],
+      "color": "#8ca4c7",
+      "position": [
+        0,
+        -5,
+        -3
+      ],
+      "thesis": "Frontier work becomes credible when its uncertainty is visible \u2014 not when its claims are loudest.",
+      "description": "Preserves architecture notes, experiments, benchmarks, limitations, failures, and the boundary between what is observed and what is merely hoped.",
+      "before": "A compelling story is enough.",
+      "after": "Claims earn trust through evidence, provenance, and reproducibility.",
+      "links": [
+        "kb",
+        "synsync",
+        "excursion",
+        "docs",
+        "repos"
+      ],
+      "dependencies": [
+        "kb"
+      ],
+      "reverse_dependencies": [
+        "biocapt",
+        "synsync",
+        "excursion",
+        "field",
+        "docs",
+        "repos"
+      ],
+      "requires": [
+        "Knowledge Bubbles"
+      ],
+      "provides": [
+        "evidence layer",
+        "benchmarks"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "CC-BY",
+      "tags": [
+        "research",
+        "evidence",
+        "benchmarks"
+      ],
+      "keywords": [
+        "open research",
+        "reproducibility"
+      ],
+      "documentation_status": "living",
+      "demo_status": "none",
+      "test_status": "open",
+      "release_channel": "open",
+      "risk": "low",
+      "stability": "living",
+      "compatibility": "Web",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
       "proof": {
-        "exists": "Living documentation",
-        "for": "Builders, researchers",
+        "exists": "Open research notes + benchmarks",
+        "for": "Researchers, builders, the curious",
         "open": "github.com/knowurknottty",
         "limit": null
       },
       "inv": {
-        "human": "Understand the system's own memory.",
-        "builder": "Architecture decisions, explained.",
-        "researcher": "Governance through legibility."
+        "human": "Read what we actually found, including failures.",
+        "builder": "Reproducible experiments.",
+        "researcher": "Evidence layer for the whole lab."
+      }
+    },
+    {
+      "id": "synsync",
+      "slug": "synsync",
+      "name": "SynSync",
+      "subtitle": "State technology",
+      "role": "State technology",
+      "category": "Product",
+      "type": "Product",
+      "stage": "Live",
+      "visibility": "public",
+      "display_order": 4,
+      "audience": [
+        "Individuals"
+      ],
+      "color": "#a083e0",
+      "position": [
+        -6,
+        -2,
+        2
+      ],
+      "thesis": "Neuroacoustic tools remain understandable and user-directed when sound is designed as an interface \u2014 not passive ambience.",
+      "description": "SynSync builds acoustic protocols for attention, entrainment, and state transition. Safety, agency, and honest claims are foreground constraints.",
+      "before": "Wellness audio is passive ambience.",
+      "after": "Sound becomes a calibrated, transparent state interface.",
+      "links": [
+        "biocapt",
+        "hme",
+        "research"
+      ],
+      "dependencies": [
+        "biocapt",
+        "hme"
+      ],
+      "reverse_dependencies": [],
+      "requires": [
+        "audio output"
+      ],
+      "provides": [
+        "state-transition audio",
+        "entrainment protocol"
+      ],
+      "maintainers": [
+        "Inversion Labs"
+      ],
+      "license": "Proprietary (early access)",
+      "tags": [
+        "product",
+        "audio",
+        "state"
+      ],
+      "keywords": [
+        "neuroacoustic",
+        "focus",
+        "rest"
+      ],
+      "documentation_status": "product",
+      "demo_status": "live",
+      "test_status": "measured",
+      "release_channel": "early-access",
+      "risk": "low",
+      "stability": "beta",
+      "compatibility": "Web + mobile",
+      "updated_from": "registry.json",
+      "generated": "2026-07-20",
+      "source_of_truth": "curated",
+      "verification_level": "curated",
+      "proof": {
+        "exists": "Deployed product (early access)",
+        "for": "Individuals seeking focus, rest, transition",
+        "open": "inversion-labs-world.pages.dev/synsync",
+        "limit": "Early access; claims are measured, not certified"
+      },
+      "inv": {
+        "human": "Use a real system for attention and rest today.",
+        "builder": "API for state-transition audio.",
+        "researcher": "Acoustic entrainment with measured claims."
       }
     }
   ]
@@ -970,24 +1648,41 @@ function pr(s){
   sr.textContent=`${s.name}. ${s.t}`;
 }
 
+// Search abstraction: swap provider without changing UI.
+// Current: curated keyword + semantic map. Future: embedding index.
+const Search = {
+  provider: 'curated',
+  // Curated semantic hints — replace with embedding lookup when available.
+  semanticMap: {
+    memory: ['kb','capt'], biology: ['biocapt','hme'],
+    'local ai': ['capt','ctp','khsb','kb'], protocol: ['ctp','khsb'],
+    sound: ['synsync'], research: ['research','biocapt'], observation: ['field','excursion']
+  },
+  query(q) {
+    q = q.trim().toLowerCase();
+    if (!q) return [];
+    const terms = q.split(/\s+/);
+    return S.map(s => {
+      const hay = (s.name+' '+s.role+' '+s.type+' '+s.t+' '+s.d+' '+
+        s.l.map(id=>byId[id]?byId[id].name:'').join(' ')+' '+s.audience.join(' ')).toLowerCase();
+      let hits = 0; const why = [];
+      terms.forEach(t => {
+        if (s.name.toLowerCase().includes(t)) { hits += 3; why.push('name match'); }
+        else if (s.t.toLowerCase().includes(t)) { hits += 2; why.push('thesis'); }
+        else if (hay.includes(t)) { hits += 1; why.push('related context'); }
+      });
+      Object.keys(this.semanticMap).forEach(k => {
+        if (q.includes(k) && this.semanticMap[k].includes(s.id)) { hits += 2; why.push('topic: '+k); }
+      });
+      return { s, hits, why: why.slice(0,2) };
+    }).filter(x => x.hits > 0).sort((a,b) => b.hits - a.hits);
+  }
+};
+
 function searchEco(q){
-  q=q.trim().toLowerCase();
   const res=$('#sRes');
-  if(!q){res.innerHTML='';return;}
-  const terms=q.split(/\s+/);
-  const scored=S.map(s=>{
-    const hay=(s.name+' '+s.role+' '+s.type+' '+s.t+' '+s.d+' '+s.l.map(id=>byId[id]?byId[id].name:'').join(' ')+' '+s.audience.join(' ')).toLowerCase();
-    let hits=0; const why=[];
-    terms.forEach(t=>{
-      if(s.name.toLowerCase().includes(t)){hits+=3;why.push('name match');}
-      else if(s.t.toLowerCase().includes(t)){hits+=2;why.push('thesis');}
-      else if(hay.includes(t)){hits+=1;why.push('related context');}
-    });
-    // semantic hints
-    const map={memory:['kb','capt'],biology:['biocapt','hme'],'local ai':['capt','ctp','khsb','kb'],protocol:['ctp','khsb'],sound:['synsync'],research:['research','biocapt'],observation:['field','excursion']};
-    Object.keys(map).forEach(k=>{if(q.includes(k)&&map[k].includes(s.id)){hits+=2;why.push('topic: '+k);}});
-    return {s,hits,why:why.slice(0,2)};
-  }).filter(x=>x.hits>0).sort((a,b)=>b.hits-a.hits);
+  if(!q.trim()){res.innerHTML='';return;}
+  const scored=Search.query(q);
   if(!scored.length){res.innerHTML='<div class="empty">No systems match that query. Try a broader term.</div>';return;}
   res.innerHTML=scored.map(x=>`<div class="item" data-id="${x.s.id}"><span class="ty">${x.s.type}</span><div class="nm">${x.s.name}</div><div class="why">${x.why.join(' · ')||'related'}</div></div>`).join('');
   res.querySelectorAll('.item').forEach(b=>b.onclick=()=>{pr(byId[b.dataset.id]);$('#sP').classList.remove('op');});

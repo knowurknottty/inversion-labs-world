@@ -576,24 +576,41 @@ function pr(s){
   sr.textContent=`${s.name}. ${s.t}`;
 }
 
+// Search abstraction: swap provider without changing UI.
+// Current: curated keyword + semantic map. Future: embedding index.
+const Search = {
+  provider: 'curated',
+  // Curated semantic hints — replace with embedding lookup when available.
+  semanticMap: {
+    memory: ['kb','capt'], biology: ['biocapt','hme'],
+    'local ai': ['capt','ctp','khsb','kb'], protocol: ['ctp','khsb'],
+    sound: ['synsync'], research: ['research','biocapt'], observation: ['field','excursion']
+  },
+  query(q) {
+    q = q.trim().toLowerCase();
+    if (!q) return [];
+    const terms = q.split(/\s+/);
+    return S.map(s => {
+      const hay = (s.name+' '+s.role+' '+s.type+' '+s.t+' '+s.d+' '+
+        s.l.map(id=>byId[id]?byId[id].name:'').join(' ')+' '+s.audience.join(' ')).toLowerCase();
+      let hits = 0; const why = [];
+      terms.forEach(t => {
+        if (s.name.toLowerCase().includes(t)) { hits += 3; why.push('name match'); }
+        else if (s.t.toLowerCase().includes(t)) { hits += 2; why.push('thesis'); }
+        else if (hay.includes(t)) { hits += 1; why.push('related context'); }
+      });
+      Object.keys(this.semanticMap).forEach(k => {
+        if (q.includes(k) && this.semanticMap[k].includes(s.id)) { hits += 2; why.push('topic: '+k); }
+      });
+      return { s, hits, why: why.slice(0,2) };
+    }).filter(x => x.hits > 0).sort((a,b) => b.hits - a.hits);
+  }
+};
+
 function searchEco(q){
-  q=q.trim().toLowerCase();
   const res=$('#sRes');
-  if(!q){res.innerHTML='';return;}
-  const terms=q.split(/\s+/);
-  const scored=S.map(s=>{
-    const hay=(s.name+' '+s.role+' '+s.type+' '+s.t+' '+s.d+' '+s.l.map(id=>byId[id]?byId[id].name:'').join(' ')+' '+s.audience.join(' ')).toLowerCase();
-    let hits=0; const why=[];
-    terms.forEach(t=>{
-      if(s.name.toLowerCase().includes(t)){hits+=3;why.push('name match');}
-      else if(s.t.toLowerCase().includes(t)){hits+=2;why.push('thesis');}
-      else if(hay.includes(t)){hits+=1;why.push('related context');}
-    });
-    // semantic hints
-    const map={memory:['kb','capt'],biology:['biocapt','hme'],'local ai':['capt','ctp','khsb','kb'],protocol:['ctp','khsb'],sound:['synsync'],research:['research','biocapt'],observation:['field','excursion']};
-    Object.keys(map).forEach(k=>{if(q.includes(k)&&map[k].includes(s.id)){hits+=2;why.push('topic: '+k);}});
-    return {s,hits,why:why.slice(0,2)};
-  }).filter(x=>x.hits>0).sort((a,b)=>b.hits-a.hits);
+  if(!q.trim()){res.innerHTML='';return;}
+  const scored=Search.query(q);
   if(!scored.length){res.innerHTML='<div class="empty">No systems match that query. Try a broader term.</div>';return;}
   res.innerHTML=scored.map(x=>`<div class="item" data-id="${x.s.id}"><span class="ty">${x.s.type}</span><div class="nm">${x.s.name}</div><div class="why">${x.why.join(' · ')||'related'}</div></div>`).join('');
   res.querySelectorAll('.item').forEach(b=>b.onclick=()=>{pr(byId[b.dataset.id]);$('#sP').classList.remove('op');});

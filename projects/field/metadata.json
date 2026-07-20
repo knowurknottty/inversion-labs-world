@@ -1,0 +1,77 @@
+{
+  "id": "field",
+  "slug": "field",
+  "name": "Field Notes",
+  "subtitle": "Observation practice",
+  "role": "Observation practice",
+  "category": "Field practice",
+  "type": "Field practice",
+  "stage": "Living practice",
+  "visibility": "public",
+  "display_order": 11,
+  "audience": [
+    "Observers",
+    "Researchers"
+  ],
+  "color": "#9ab87a",
+  "position": [
+    -4,
+    -1,
+    -5
+  ],
+  "thesis": "Observation labeled honestly is valuable even before certainty arrives.",
+  "description": "Preserves ecological, medicinal, technical, and experiential observations with their source type and uncertainty intact.",
+  "before": "Unverified means worthless.",
+  "after": "Observation can be valuable when labeled honestly and tested carefully.",
+  "links": [
+    "excursion",
+    "research",
+    "kb"
+  ],
+  "dependencies": [
+    "excursion",
+    "research"
+  ],
+  "reverse_dependencies": [],
+  "requires": [
+    "Excursion"
+  ],
+  "provides": [
+    "structured observation",
+    "provenance"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "CC-BY",
+  "tags": [
+    "field notes",
+    "observation"
+  ],
+  "keywords": [
+    "field notes",
+    "citizen science"
+  ],
+  "documentation_status": "living",
+  "demo_status": "live",
+  "test_status": "practice",
+  "release_channel": "living",
+  "risk": "low",
+  "stability": "living",
+  "compatibility": "Web",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Living notebook",
+    "for": "Observers, researchers",
+    "open": "inversion-labs-world.pages.dev/field",
+    "limit": null
+  },
+  "inv": {
+    "human": "Contribute observations with honest uncertainty.",
+    "builder": "Structured observation ingestion.",
+    "researcher": "Raw signal with provenance."
+  }
+}

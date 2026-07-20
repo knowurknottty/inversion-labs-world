@@ -1,0 +1,79 @@
+{
+  "id": "repos",
+  "slug": "repos",
+  "name": "Repositories",
+  "subtitle": "Working evidence",
+  "role": "Working evidence",
+  "category": "Protocol",
+  "type": "Protocol",
+  "stage": "Live",
+  "visibility": "public",
+  "display_order": 12,
+  "audience": [
+    "Developers",
+    "Researchers",
+    "Funders"
+  ],
+  "color": "#c08c68",
+  "position": [
+    4,
+    -1,
+    -5
+  ],
+  "thesis": "Code is not proof of a vision \u2014 but it is evidence the vision is being built.",
+  "description": "Exposes implementation, architecture, release state, tests, and the gap between concept and production candidate.",
+  "before": "A polished claim proves a system exists.",
+  "after": "Artifacts, tests, and reproducible builds establish what is real.",
+  "links": [
+    "research",
+    "docs",
+    "franken"
+  ],
+  "dependencies": [
+    "research",
+    "docs"
+  ],
+  "reverse_dependencies": [],
+  "requires": [
+    "GitHub"
+  ],
+  "provides": [
+    "public code",
+    "reproducible builds"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "MIT (per repo)",
+  "tags": [
+    "code",
+    "repositories",
+    "evidence"
+  ],
+  "keywords": [
+    "repositories",
+    "open source"
+  ],
+  "documentation_status": "living",
+  "demo_status": "none",
+  "test_status": "CI",
+  "release_channel": "main",
+  "risk": "low",
+  "stability": "stable",
+  "compatibility": "GitHub",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Public repositories",
+    "for": "Developers, researchers, funders",
+    "open": "github.com/knowurknottty",
+    "limit": null
+  },
+  "inv": {
+    "human": "See the actual code behind the claims.",
+    "builder": "Fork, build, contribute.",
+    "researcher": "Reproducible builds and tests."
+  }
+}

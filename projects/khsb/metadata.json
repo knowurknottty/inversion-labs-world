@@ -1,0 +1,80 @@
+{
+  "id": "khsb",
+  "slug": "khsb",
+  "name": "KHSB",
+  "subtitle": "System nervous system",
+  "role": "System nervous system",
+  "category": "Protocol",
+  "type": "Protocol",
+  "stage": "Live",
+  "visibility": "public",
+  "display_order": 7,
+  "audience": [
+    "Builders of local system meshes"
+  ],
+  "color": "#f0d15a",
+  "position": [
+    7,
+    0,
+    -2
+  ],
+  "thesis": "KHSB connects local systems through bounded envelopes. Instead of open borders, interconnection uses explicit contracts and identity.",
+  "description": "KHSB is the communication tissue connecting systems through bounded envelopes, routing, identity, and protocol-aware exchange.",
+  "before": "Connectivity means opening every system to every other system.",
+  "after": "Systems communicate through explicit boundaries and contracts.",
+  "links": [
+    "capt",
+    "franken",
+    "ctp"
+  ],
+  "dependencies": [
+    "capt",
+    "ctp"
+  ],
+  "reverse_dependencies": [
+    "franken"
+  ],
+  "requires": [
+    "CTP"
+  ],
+  "provides": [
+    "bounded envelopes",
+    "routing",
+    "identity"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "MIT (planned)",
+  "tags": [
+    "protocol",
+    "mesh",
+    "local-first"
+  ],
+  "keywords": [
+    "system mesh",
+    "interop"
+  ],
+  "documentation_status": "spec",
+  "demo_status": "none",
+  "test_status": "prototype",
+  "release_channel": "main",
+  "risk": "low",
+  "stability": "stable",
+  "compatibility": "Local network",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Spec + routing prototype",
+    "for": "Builders of local system meshes",
+    "open": "github.com/knowurknottty",
+    "limit": null
+  },
+  "inv": {
+    "human": "Your devices talk to each other on your terms.",
+    "builder": "Bounded envelopes, routing, identity.",
+    "researcher": "Local-first system interoperability."
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "id": "synsync",
+  "slug": "synsync",
+  "name": "SynSync",
+  "subtitle": "State technology",
+  "role": "State technology",
+  "category": "Product",
+  "type": "Product",
+  "stage": "Live",
+  "visibility": "public",
+  "display_order": 4,
+  "audience": [
+    "Individuals"
+  ],
+  "color": "#a083e0",
+  "position": [
+    -6,
+    -2,
+    2
+  ],
+  "thesis": "Neuroacoustic tools remain understandable and user-directed when sound is designed as an interface \u2014 not passive ambience.",
+  "description": "SynSync builds acoustic protocols for attention, entrainment, and state transition. Safety, agency, and honest claims are foreground constraints.",
+  "before": "Wellness audio is passive ambience.",
+  "after": "Sound becomes a calibrated, transparent state interface.",
+  "links": [
+    "biocapt",
+    "hme",
+    "research"
+  ],
+  "dependencies": [
+    "biocapt",
+    "hme"
+  ],
+  "reverse_dependencies": [],
+  "requires": [
+    "audio output"
+  ],
+  "provides": [
+    "state-transition audio",
+    "entrainment protocol"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "Proprietary (early access)",
+  "tags": [
+    "product",
+    "audio",
+    "state"
+  ],
+  "keywords": [
+    "neuroacoustic",
+    "focus",
+    "rest"
+  ],
+  "documentation_status": "product",
+  "demo_status": "live",
+  "test_status": "measured",
+  "release_channel": "early-access",
+  "risk": "low",
+  "stability": "beta",
+  "compatibility": "Web + mobile",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Deployed product (early access)",
+    "for": "Individuals seeking focus, rest, transition",
+    "open": "inversion-labs-world.pages.dev/synsync",
+    "limit": "Early access; claims are measured, not certified"
+  },
+  "inv": {
+    "human": "Use a real system for attention and rest today.",
+    "builder": "API for state-transition audio.",
+    "researcher": "Acoustic entrainment with measured claims."
+  }
+}

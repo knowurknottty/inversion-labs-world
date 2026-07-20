@@ -1,0 +1,78 @@
+{
+  "id": "hme",
+  "slug": "hme",
+  "name": "Human Metadata Engine",
+  "subtitle": "Interpretive synthesis",
+  "role": "Interpretive synthesis",
+  "category": "Research program",
+  "type": "Research program",
+  "stage": "Active development",
+  "visibility": "public",
+  "display_order": 8,
+  "audience": [
+    "Individuals",
+    "Clinicians",
+    "Researchers"
+  ],
+  "color": "#e06659",
+  "position": [
+    -7,
+    0,
+    -2
+  ],
+  "thesis": "A person cannot be reduced to one score or model. Multiple interpretive lenses can coexist without pretending to be absolute truth.",
+  "description": "Synthesizes multiple lenses \u2014 biological, behavioral, symbolic \u2014 while preserving uncertainty, source boundaries, and agency.",
+  "before": "One framework explains the whole person.",
+  "after": "Multiple lenses coexist without pretending to be absolute truth.",
+  "links": [
+    "biocapt",
+    "synsync",
+    "research"
+  ],
+  "dependencies": [
+    "biocapt"
+  ],
+  "reverse_dependencies": [],
+  "requires": [
+    "bioCAPT"
+  ],
+  "provides": [
+    "multi-lens synthesis",
+    "interpretive API"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "Research (no license yet)",
+  "tags": [
+    "interpretive",
+    "synthesis",
+    "lenses"
+  ],
+  "keywords": [
+    "human metadata",
+    "multi-lens"
+  ],
+  "documentation_status": "research",
+  "demo_status": "none",
+  "test_status": "concept",
+  "release_channel": "research",
+  "risk": "medium",
+  "stability": "experimental",
+  "compatibility": "Browser",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Research architecture",
+    "for": "Individuals, clinicians, researchers",
+    "open": "github.com/knowurknottty",
+    "limit": "Concept stage; interpretive, not diagnostic"
+  },
+  "inv": {
+    "human": "See yourself through more than one lens, honestly.",
+    "builder": "Multi-lens synthesis API.",
+    "researcher": "Interpretive synthesis under uncertainty."
+  }
+}

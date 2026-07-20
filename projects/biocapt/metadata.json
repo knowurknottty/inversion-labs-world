@@ -1,0 +1,82 @@
+{
+  "id": "biocapt",
+  "slug": "biocapt",
+  "name": "bioCAPT",
+  "subtitle": "Embodied intelligence research",
+  "role": "Embodied intelligence",
+  "category": "Research program",
+  "type": "Research program",
+  "stage": "Active development",
+  "visibility": "public",
+  "display_order": 2,
+  "audience": [
+    "Researchers",
+    "Clinicians",
+    "Individuals"
+  ],
+  "color": "#45cfaa",
+  "position": [
+    -5,
+    2,
+    1
+  ],
+  "thesis": "Biological data remains governed when the body becomes part of the signal \u2014 not part of the product.",
+  "description": "bioCAPT learns from biological state, somatic context, and lived experience. Intelligence is temporal, relational, and embodied \u2014 not disembodied text prediction.",
+  "before": "Intelligence begins and ends with language.",
+  "after": "Cognition is embodied. The body is part of the signal.",
+  "links": [
+    "capt",
+    "synsync",
+    "hme"
+  ],
+  "dependencies": [
+    "capt"
+  ],
+  "reverse_dependencies": [
+    "hme",
+    "synsync"
+  ],
+  "requires": [
+    "biological signal ingestion"
+  ],
+  "provides": [
+    "embodied cognition model",
+    "somatic context"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "Research (no license yet)",
+  "tags": [
+    "biology",
+    "embodied",
+    "signals"
+  ],
+  "keywords": [
+    "embodied AI",
+    "biofeedback",
+    "somatic"
+  ],
+  "documentation_status": "research",
+  "demo_status": "none",
+  "test_status": "prototype",
+  "release_channel": "research",
+  "risk": "medium",
+  "stability": "experimental",
+  "compatibility": "Browser + device APIs",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Research architecture + prototypes",
+    "for": "Researchers, clinicians, individuals",
+    "open": "github.com/knowurknottty",
+    "limit": "Research stage; not a shipped product"
+  },
+  "inv": {
+    "human": "See how your body's signals could inform a system that serves you.",
+    "builder": "Sensory + state ingestion interfaces.",
+    "researcher": "Embodied cognition datasets and protocols."
+  }
+}

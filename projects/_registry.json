@@ -1,0 +1,16 @@
+{
+  "registry_version": "1.0.0",
+  "schema_version": "2.0.0",
+  "content_version": "2026.07.20",
+  "generated_at": "2026-07-20",
+  "generated_by": "prepare_deploy.py",
+  "verified_at": "2026-07-20",
+  "source": "curated",
+  "validation": {
+    "required_fields": ["id", "slug", "name", "type", "stage", "thesis", "description", "links", "proof"],
+    "valid_stages": ["Live", "Active development", "Open research", "Living practice", "Concept", "Archived"],
+    "valid_categories": ["Architecture", "Protocol", "Product", "Research program", "Field practice"],
+    "valid_visibility": ["public", "experimental", "internal", "archived"],
+    "valid_verification_levels": ["verified", "inferred", "curated", "needs-confirmation"]
+  }
+}

@@ -4,6 +4,9 @@ Every release report, audit, benchmark, and deployment note for Inversion Labs
 must classify evidence using the categories below. This is enforced by the
 agent's reporting discipline and is part of the product's honesty guarantee.
 
+**Canonical source:** `capt-verification/protocol.md` (promoted out of the website
+into reusable IP). This file is a consumer of that protocol.
+
 ## Evidence Classes
 
 | Class | Meaning | Example |

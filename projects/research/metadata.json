@@ -1,0 +1,87 @@
+{
+  "id": "research",
+  "slug": "research",
+  "name": "Research",
+  "subtitle": "Evidence layer",
+  "role": "Evidence layer",
+  "category": "Research program",
+  "type": "Research program",
+  "stage": "Open research",
+  "visibility": "public",
+  "display_order": 10,
+  "audience": [
+    "Researchers",
+    "Builders",
+    "The curious"
+  ],
+  "color": "#8ca4c7",
+  "position": [
+    0,
+    -5,
+    -3
+  ],
+  "thesis": "Frontier work becomes credible when its uncertainty is visible \u2014 not when its claims are loudest.",
+  "description": "Preserves architecture notes, experiments, benchmarks, limitations, failures, and the boundary between what is observed and what is merely hoped.",
+  "before": "A compelling story is enough.",
+  "after": "Claims earn trust through evidence, provenance, and reproducibility.",
+  "links": [
+    "kb",
+    "synsync",
+    "excursion",
+    "docs",
+    "repos"
+  ],
+  "dependencies": [
+    "kb"
+  ],
+  "reverse_dependencies": [
+    "biocapt",
+    "synsync",
+    "excursion",
+    "field",
+    "docs",
+    "repos"
+  ],
+  "requires": [
+    "Knowledge Bubbles"
+  ],
+  "provides": [
+    "evidence layer",
+    "benchmarks"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "CC-BY",
+  "tags": [
+    "research",
+    "evidence",
+    "benchmarks"
+  ],
+  "keywords": [
+    "open research",
+    "reproducibility"
+  ],
+  "documentation_status": "living",
+  "demo_status": "none",
+  "test_status": "open",
+  "release_channel": "open",
+  "risk": "low",
+  "stability": "living",
+  "compatibility": "Web",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Open research notes + benchmarks",
+    "for": "Researchers, builders, the curious",
+    "open": "github.com/knowurknottty",
+    "limit": null
+  },
+  "inv": {
+    "human": "Read what we actually found, including failures.",
+    "builder": "Reproducible experiments.",
+    "researcher": "Evidence layer for the whole lab."
+  }
+}

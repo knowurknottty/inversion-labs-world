@@ -1,0 +1,77 @@
+{
+  "id": "franken",
+  "slug": "franken",
+  "name": "FrankenCAPT",
+  "subtitle": "Skill governance",
+  "role": "Skill governance",
+  "category": "Architecture",
+  "type": "Architecture",
+  "stage": "Active development",
+  "visibility": "public",
+  "display_order": 3,
+  "audience": [
+    "Builders"
+  ],
+  "color": "#e1b453",
+  "position": [
+    5,
+    2,
+    1
+  ],
+  "thesis": "Capability without governance becomes an uncontrolled pile of tools \u2014 not intelligence.",
+  "description": "FrankenCAPT ingests, evaluates, composes, and governs capabilities. It keeps the ecosystem coherent without bottlenecking growth.",
+  "before": "More tools automatically mean more intelligence.",
+  "after": "Capabilities become useful when curated, bounded, and composable.",
+  "links": [
+    "capt",
+    "ctp",
+    "khsb",
+    "kb"
+  ],
+  "dependencies": [
+    "capt"
+  ],
+  "reverse_dependencies": [],
+  "requires": [
+    "CAPT"
+  ],
+  "provides": [
+    "skill registry",
+    "composition bounds"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "MIT (planned)",
+  "tags": [
+    "skills",
+    "governance",
+    "composition"
+  ],
+  "keywords": [
+    "capability governance",
+    "skill registry"
+  ],
+  "documentation_status": "living",
+  "demo_status": "none",
+  "test_status": "partial",
+  "release_channel": "main",
+  "risk": "low",
+  "stability": "stable",
+  "compatibility": "Node 18+",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Architecture + evaluation harness",
+    "for": "Builders integrating capabilities",
+    "open": "github.com/knowurknottty",
+    "limit": null
+  },
+  "inv": {
+    "human": "Know that the tools you use are curated, not piled.",
+    "builder": "Capability registry, composition, bounds.",
+    "researcher": "Skill governance as a research problem."
+  }
+}
