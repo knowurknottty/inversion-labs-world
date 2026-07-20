@@ -38,9 +38,7 @@
     "CTP"
   ],
   "provides": [
-    "bounded envelopes",
-    "routing",
-    "identity"
+    "spec-freeze-protocol"
   ],
   "maintainers": [
     "Inversion Labs"
@@ -71,9 +69,10 @@
     "for": "Builders of local system meshes",
     "open": "github.com/knowurknottty",
     "limit": null,
-    "url_tier": "org-root",
+    "url_tier": "project-specific",
     "url_reachability": "unverified",
-    "url_last_checked": "2026-07-20"
+    "url_last_checked": "2026-07-20",
+    "url_class": "documentation"
   },
   "inv": {
     "human": "Your devices talk to each other on your terms.",
@@ -88,17 +87,78 @@
     "franken"
   ],
   "related_to": [
-    "capt",
-    "franken",
-    "ctp"
+    "docs"
   ],
   "provenance": {
-    "stage": "registry-governance",
-    "thesis": "registry-governance",
-    "proof.exists": "curated",
-    "proof.open": "curated",
-    "documentation_status": "docs-ci-pending",
-    "demo_status": "deploy-health-pending",
-    "test_status": "ci-pending"
-  }
+    "stage": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "thesis": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "quarterly",
+      "authority": "inversion-labs"
+    },
+    "proof.exists": {
+      "source": "curated",
+      "confidence": "curated",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "proof.open": {
+      "source": "curated",
+      "confidence": "needs-confirmation",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "documentation_status": {
+      "source": "docs-ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-docs-change",
+      "authority": "docs-pipeline"
+    },
+    "demo_status": {
+      "source": "deploy-health-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-deploy",
+      "authority": "deploy-pipeline"
+    },
+    "test_status": {
+      "source": "ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-push",
+      "authority": "ci-pipeline"
+    }
+  },
+  "consumes": [
+    "capt",
+    "ctp"
+  ],
+  "extends": [],
+  "supersedes": [],
+  "inspired_by": [
+    "governance-models"
+  ],
+  "derived_from": [
+    "ctp"
+  ],
+  "conflicts_with": [],
+  "optional_with": []
 }

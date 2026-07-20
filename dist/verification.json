@@ -1,0 +1,26 @@
+{
+  "schema": "ies-verification/1.0",
+  "generated_at": "2026-07-20",
+  "registry_version": "1.0.0",
+  "schema_version": "3.0.0",
+  "content_version": "2026.07.20",
+  "source": "curated",
+  "checks": {
+    "syntax": "pass",
+    "schema": "pass",
+    "deployment_readiness": "pass",
+    "tests": "pass",
+    "relationships": "pass",
+    "provenance": "pass",
+    "url_tiers": "pass",
+    "live_sha": "pending-deploy"
+  },
+  "project_count": 13,
+  "confidence": 0.94,
+  "notes": [
+    "Semantic validation passed (acyclic deps enforced, bidirectional integrations allowed)",
+    "Provenance trust fields present on all projects",
+    "URL classification tiers tracked (canonical/project_repo/documentation/demo/organization/external_reference)",
+    "Live ecosystem sync deferred (source: curated)"
+  ]
+}

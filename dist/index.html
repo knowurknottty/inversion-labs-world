@@ -452,7 +452,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script type="application/json" id="registry">{
   "registry_version": "1.0.0",
-  "schema_version": "2.1.0",
+  "schema_version": "3.0.0",
   "content_version": "2026.07.20",
   "generated_at": "2026-07-20",
   "generated_by": "prepare_deploy.py",
@@ -501,8 +501,8 @@
         "biological signal ingestion"
       ],
       "provides": [
-        "embodied cognition model",
-        "somatic context"
+        "biosignal-context",
+        "cognitive-state-graph"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -534,9 +534,10 @@
         "for": "Researchers, clinicians, individuals",
         "open": "github.com/knowurknottty",
         "limit": "Research stage; not a shipped product",
-        "url_tier": "org-root",
+        "url_tier": "project-specific",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "project_repo"
       },
       "inv": {
         "human": "See how your body's signals could inform a system that serves you.",
@@ -551,19 +552,79 @@
         "synsync"
       ],
       "related_to": [
-        "capt",
-        "synsync",
-        "hme"
+        "research"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [
+        "capt"
+      ],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "neurotech"
+      ],
+      "derived_from": [
+        "capt"
+      ],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "capt",
@@ -608,9 +669,8 @@
         "local-first runtime"
       ],
       "provides": [
-        "memory substrate",
-        "protocol orchestration",
-        "governed reasoning"
+        "cognitive-architecture",
+        "reasoning-pipeline"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -643,9 +703,10 @@
         "for": "Developers building local or sovereign AI",
         "open": "github.com/knowurknottty",
         "limit": null,
-        "url_tier": "org-root",
+        "url_tier": "project-specific",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "canonical"
       },
       "inv": {
         "human": "Understand how your own AI systems could be governed and inspected.",
@@ -661,20 +722,78 @@
         "franken"
       ],
       "related_to": [
-        "kb",
-        "ctp",
-        "khsb",
-        "biocapt"
+        "docs",
+        "research"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "human-cognition"
+      ],
+      "derived_from": [],
+      "conflicts_with": [],
+      "optional_with": [
+        "hme"
+      ]
     },
     {
       "id": "ctp",
@@ -716,8 +835,7 @@
         "CAPT"
       ],
       "provides": [
-        "transaction protocol",
-        "agent contracts"
+        "protocol-spec"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -748,9 +866,10 @@
         "for": "Builders of multi-agent systems",
         "open": "github.com/knowurknottty",
         "limit": null,
-        "url_tier": "org-root",
+        "url_tier": "project-specific",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "documentation"
       },
       "inv": {
         "human": "Know that AI-to-AI deals are visible, not hidden.",
@@ -765,19 +884,79 @@
         "franken"
       ],
       "related_to": [
-        "capt",
-        "franken",
-        "khsb"
+        "docs"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [
+        "capt"
+      ],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "protocol-theory"
+      ],
+      "derived_from": [
+        "capt"
+      ],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "docs",
@@ -818,8 +997,7 @@
         "Knowledge Bubbles"
       ],
       "provides": [
-        "architecture memory",
-        "governance docs"
+        "documentation"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -850,9 +1028,10 @@
         "for": "Builders, researchers",
         "open": "github.com/knowurknottty",
         "limit": null,
-        "url_tier": "org-root",
+        "url_tier": "project-specific",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "documentation"
       },
       "inv": {
         "human": "Understand the system's own memory.",
@@ -866,19 +1045,81 @@
         "research"
       ],
       "related_to": [
-        "kb",
-        "research",
-        "repos"
+        "ctp",
+        "khsb"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [
+        "kb",
+        "research"
+      ],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "technical-writing"
+      ],
+      "derived_from": [
+        "kb"
+      ],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "excursion",
@@ -917,8 +1158,7 @@
         "observation practice"
       ],
       "provides": [
-        "field discovery",
-        "ecological signal"
+        "field-discovery"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -952,7 +1192,8 @@
         "limit": null,
         "url_tier": "org-root",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "external_reference"
       },
       "inv": {
         "human": "Join observation walks and field practice.",
@@ -965,19 +1206,75 @@
         "research"
       ],
       "related_to": [
-        "research",
-        "field",
-        "hme"
+        "field"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "naturalist-tradition"
+      ],
+      "derived_from": [],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "field",
@@ -1018,8 +1315,7 @@
         "Excursion"
       ],
       "provides": [
-        "structured observation",
-        "provenance"
+        "field-notes"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -1051,7 +1347,8 @@
         "limit": null,
         "url_tier": "org-root",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "external_reference"
       },
       "inv": {
         "human": "Contribute observations with honest uncertainty.",
@@ -1066,19 +1363,79 @@
         "research"
       ],
       "related_to": [
-        "excursion",
-        "research",
         "kb"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [
+        "excursion"
+      ],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "ethnography"
+      ],
+      "derived_from": [
+        "excursion"
+      ],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "franken",
@@ -1118,8 +1475,7 @@
         "CAPT"
       ],
       "provides": [
-        "skill registry",
-        "composition bounds"
+        "composable-runtime"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -1150,9 +1506,10 @@
         "for": "Builders integrating capabilities",
         "open": "github.com/knowurknottty",
         "limit": null,
-        "url_tier": "org-root",
+        "url_tier": "project-specific",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "project_repo"
       },
       "inv": {
         "human": "Know that the tools you use are curated, not piled.",
@@ -1168,20 +1525,80 @@
         "khsb"
       ],
       "related_to": [
-        "capt",
-        "ctp",
-        "khsb",
-        "kb"
+        "research"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [
+        "capt",
+        "kb"
+      ],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "franken-capt-concept"
+      ],
+      "derived_from": [
+        "capt"
+      ],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "hme",
@@ -1222,8 +1639,7 @@
         "bioCAPT"
       ],
       "provides": [
-        "multi-lens synthesis",
-        "interpretive API"
+        "health-metrics"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -1254,9 +1670,10 @@
         "for": "Individuals, clinicians, researchers",
         "open": "github.com/knowurknottty",
         "limit": "Concept stage; interpretive, not diagnostic",
-        "url_tier": "org-root",
+        "url_tier": "project-specific",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "project_repo"
       },
       "inv": {
         "human": "See yourself through more than one lens, honestly.",
@@ -1268,19 +1685,79 @@
       ],
       "integrates_with": [],
       "related_to": [
-        "biocapt",
-        "synsync",
-        "research"
+        "synsync"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [
+        "biocapt"
+      ],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "preventive-health"
+      ],
+      "derived_from": [
+        "biocapt"
+      ],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "kb",
@@ -1324,8 +1801,8 @@
         "CAPT"
       ],
       "provides": [
-        "portable knowledge objects",
-        "provenance"
+        "knowledge-graph",
+        "memory-palace"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -1356,9 +1833,10 @@
         "for": "Anyone exchanging trustworthy info",
         "open": "github.com/knowurknottty",
         "limit": null,
-        "url_tier": "org-root",
+        "url_tier": "project-specific",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "project_repo"
       },
       "inv": {
         "human": "Your notes could carry their own sources and doubts.",
@@ -1374,20 +1852,79 @@
         "franken"
       ],
       "related_to": [
-        "capt",
-        "franken",
-        "research",
-        "docs"
+        "field"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [
+        "capt"
+      ],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "memory-research"
+      ],
+      "derived_from": [
+        "capt"
+      ],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "khsb",
@@ -1429,9 +1966,7 @@
         "CTP"
       ],
       "provides": [
-        "bounded envelopes",
-        "routing",
-        "identity"
+        "spec-freeze-protocol"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -1462,9 +1997,10 @@
         "for": "Builders of local system meshes",
         "open": "github.com/knowurknottty",
         "limit": null,
-        "url_tier": "org-root",
+        "url_tier": "project-specific",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "documentation"
       },
       "inv": {
         "human": "Your devices talk to each other on your terms.",
@@ -1479,19 +2015,80 @@
         "franken"
       ],
       "related_to": [
-        "capt",
-        "franken",
-        "ctp"
+        "docs"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [
+        "capt",
+        "ctp"
+      ],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "governance-models"
+      ],
+      "derived_from": [
+        "ctp"
+      ],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "repos",
@@ -1533,8 +2130,7 @@
         "GitHub"
       ],
       "provides": [
-        "public code",
-        "reproducible builds"
+        "code-hosting"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -1567,7 +2163,8 @@
         "limit": null,
         "url_tier": "org-root",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "organization"
       },
       "inv": {
         "human": "See the actual code behind the claims.",
@@ -1580,19 +2177,73 @@
         "docs"
       ],
       "related_to": [
-        "research",
-        "docs",
-        "franken"
+        "research"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [],
+      "derived_from": [],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "research",
@@ -1642,8 +2293,7 @@
         "Knowledge Bubbles"
       ],
       "provides": [
-        "evidence layer",
-        "benchmarks"
+        "research-output"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -1676,7 +2326,8 @@
         "limit": null,
         "url_tier": "org-root",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "organization"
       },
       "inv": {
         "human": "Read what we actually found, including failures.",
@@ -1695,21 +2346,80 @@
         "repos"
       ],
       "related_to": [
-        "kb",
-        "synsync",
-        "excursion",
-        "docs",
-        "repos"
+        "field"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [
+        "kb",
+        "biocapt"
+      ],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "open-science"
+      ],
+      "derived_from": [
+        "kb"
+      ],
+      "conflicts_with": [],
+      "optional_with": []
     },
     {
       "id": "synsync",
@@ -1749,8 +2459,7 @@
         "audio output"
       ],
       "provides": [
-        "state-transition audio",
-        "entrainment protocol"
+        "synchronized-audio"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -1782,9 +2491,10 @@
         "for": "Individuals seeking focus, rest, transition",
         "open": "inversion-labs-world.pages.dev/synsync",
         "limit": "Early access; claims are measured, not certified",
-        "url_tier": "org-root",
+        "url_tier": "project-specific",
         "url_reachability": "unverified",
-        "url_last_checked": "2026-07-20"
+        "url_last_checked": "2026-07-20",
+        "url_class": "demo"
       },
       "inv": {
         "human": "Use a real system for attention and rest today.",
@@ -1798,19 +2508,79 @@
         "hme"
       ],
       "related_to": [
-        "biocapt",
-        "hme",
-        "research"
+        "field"
       ],
       "provenance": {
-        "stage": "registry-governance",
-        "thesis": "registry-governance",
-        "proof.exists": "curated",
-        "proof.open": "curated",
-        "documentation_status": "docs-ci-pending",
-        "demo_status": "deploy-health-pending",
-        "test_status": "ci-pending"
-      }
+        "stage": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "release-engineer",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "thesis": {
+          "source": "registry-governance",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "quarterly",
+          "authority": "inversion-labs"
+        },
+        "proof.exists": {
+          "source": "curated",
+          "confidence": "curated",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "proof.open": {
+          "source": "curated",
+          "confidence": "needs-confirmation",
+          "verified_at": "2026-07-20",
+          "verified_by": "project-lead",
+          "refresh_policy": "per-release",
+          "authority": "inversion-labs"
+        },
+        "documentation_status": {
+          "source": "docs-ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-docs-change",
+          "authority": "docs-pipeline"
+        },
+        "demo_status": {
+          "source": "deploy-health-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-deploy",
+          "authority": "deploy-pipeline"
+        },
+        "test_status": {
+          "source": "ci-pending",
+          "confidence": "inferred",
+          "verified_at": "2026-07-20",
+          "verified_by": "ci",
+          "refresh_policy": "on-push",
+          "authority": "ci-pipeline"
+        }
+      },
+      "consumes": [
+        "biocapt"
+      ],
+      "extends": [],
+      "supersedes": [],
+      "inspired_by": [
+        "biofeedback"
+      ],
+      "derived_from": [
+        "biocapt"
+      ],
+      "conflicts_with": [],
+      "optional_with": []
     }
   ]
 }</script>

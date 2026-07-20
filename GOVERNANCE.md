@@ -108,7 +108,9 @@ this becomes source-mapped automation.
 - `verified_at` in registry root is the freshness signal.
 - Interface shows `source: curated` in registry root — never implies live fetch
   unless integrated.
-- See `ISSUES.md` for the stale-verifier defect and its required fix.
+- Issues are tracked in `registry/issues/` as structured JSON (e.g.
+  `VERIF-001.json`), not a single markdown file. See IES §8–§9 for governance
+  and compatibility policy.
 
 ## Single Deployment Authority
 

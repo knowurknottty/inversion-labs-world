@@ -1,6 +1,8 @@
 {
   "registry_version": "1.0.0",
-  "schema_version": "2.1.0",
+  "schema_version": "3.0.0",
+  "minimum_reader": "3.0.0",
+  "minimum_writer": "3.0.0",
   "content_version": "2026.07.20",
   "generated_at": "SOURCE_DATE_EPOCH",
   "generated_by": "prepare_deploy.py",
@@ -14,13 +16,24 @@
     "valid_visibility": ["public", "experimental", "internal", "archived"],
     "valid_verification_levels": ["verified", "inferred", "curated", "needs-confirmation"],
     "relationship_types": {
-      "depends_on": "Build/init-time dependency. MUST be acyclic. Enforced by validator.",
-      "integrates_with": "Peer integration. Cycles allowed. Not enforced acyclic.",
-      "provides_to": "Capability exposed to others. Cycles allowed.",
-      "consumes_from": "Capability consumed from others. Cycles allowed.",
-      "related_to": "Thematic/contextual link. Cycles allowed.",
-      "supersedes": "Replaces a prior system. Acyclic by nature."
+      "depends_on": "Build/init/runtime dependency. MUST be acyclic. Enforced by validator.",
+      "integrates_with": "Bidirectional capability. Cycles allowed.",
+      "provides": "Capability exposed to others. Cycles allowed.",
+      "consumes": "Capability consumed from others. Cycles allowed.",
+      "extends": "Inheritance/specialization. Acyclic by nature.",
+      "supersedes": "Replaces a prior system. Acyclic by nature.",
+      "related_to": "Informational/thematic link. Cycles allowed.",
+      "inspired_by": "Historical influence. Cycles allowed.",
+      "derived_from": "Lineage/source. Acyclic by nature.",
+      "conflicts_with": "Mutually exclusive. Symmetric; self-conflict rejected.",
+      "optional_with": "Enhancement-only. Cycles allowed."
     },
+    "acyclic_relationships": ["depends_on", "extends", "supersedes", "derived_from"],
+    "url_classes": [
+      "canonical", "project_repo", "documentation", "demo", "release",
+      "ci", "roadmap", "organization", "archive", "external_reference"
+    ],
+    "provenance_fields": ["source", "confidence", "verified_at", "verified_by", "refresh_policy", "authority"],
     "link_tiers": {
       "syntactically_valid": "URL parses and has allowed scheme",
       "reachable": "HTTP 2xx at last check",

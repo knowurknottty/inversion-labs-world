@@ -1,0 +1,15 @@
+{
+  "id": "VERIF-001",
+  "title": "Verification harness replays stale temporary-file failures across sessions",
+  "status": "open",
+  "severity": "low",
+  "category": "verification",
+  "reported": "2026-07-20",
+  "reported_by": "captain-review",
+  "labels": ["technical-debt", "verification", "ci"],
+  "description": "The verification system flag repeatedly fired with a stale error reference from the PR #2 session (2026-07-20, first session): hermes-verify-jsb-afqsin52.js:119 — 'Identifier nodes has already been declared'. This error was fixed and verified passing at commit 70766c3 (Phase III). The flag continued to fire on every subsequent turn despite fresh passing checks.",
+  "why_no_longer_applies": "The file hermes-verify-jsb-afqsin52.js was a temp file from PR #2. The nodes redeclaration bug was fixed (renamed to nList) and verified. Current index.html parses cleanly.",
+  "how_superseded": "Fresh node --check PASS; 15 JSON files valid; prepare_deploy.py PASS; production SHA matched; 0 observatory; boot-guard present.",
+  "required_fix": "Scope verifier state to current commit or working-tree hash. Record git SHA/working-tree hash last checked. On each turn compare; if unchanged and previously PASS, do not replay stale temp-file errors. If referenced temp filename is from a different session/commit, ignore it. Store verifier state in session-scoped location, not cross-session global.",
+  "impact_if_unfixed": "Same noise contaminates future reviews, forcing redundant re-verification and obscuring genuine fresh failures."
+}
