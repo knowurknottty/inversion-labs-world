@@ -6,6 +6,16 @@ export default defineConfig({
   build: {
     target: 'es2022',
     cssCodeSplit: true,
+    chunkSizeWarningLimit: 400,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'data-architecture': ['./src/data/architecture'],
+          'data-ecosystem': ['./src/data/ecosystem'],
+        },
+      },
+    },
   },
   test: {
     environment: 'jsdom',

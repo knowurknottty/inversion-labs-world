@@ -4,16 +4,16 @@ type LensState = 'platform' | 'person'
 
 const lensContent: Record<LensState, { label: string; title: string; body: string; traits: string[] }> = {
   platform: {
-    label: 'Platform-controlled',
+    label: 'Platform-controlled memory',
     title: 'Context enters. Its trail disappears.',
-    body: 'When memory is bound to an application, the person using it may have no clear object to inspect, transfer, or govern.',
-    traits: ['Application-bound', 'Opaque lineage', 'Access implied by use'],
+    body: 'When memory is owned by an application, the person using it has no object to inspect, transfer, or revoke. The context exists — but not as something you can act on.',
+    traits: ['Application-bound — no portability', 'Opaque lineage — no trail', 'Access implied by use — no explicit permission'],
   },
   person: {
-    label: 'User-governed',
-    title: 'Memory remains an object with a trail.',
-    body: 'In the inverted model, content, provenance, permissions, and revisions travel together as something the person can act on.',
-    traits: ['Portable envelope', 'Visible lineage', 'Explicit permission'],
+    label: 'User-governed memory',
+    title: 'Memory stays an object you can act on.',
+    body: 'In the inverted model, content, provenance, permissions, and revision history travel together as a single envelope. The person can inspect it, move it, or revoke access — outside any application boundary.',
+    traits: ['Portable envelope — survives platform changes', 'Visible lineage — full transformation trail', 'Explicit permission — revocable at any time'],
   },
 }
 
@@ -27,20 +27,20 @@ export function LensSection() {
         <p className="section-index"><span>05</span> The memory inversion</p>
         <h2 id="lens-title">Same memory. Different authority.</h2>
         <p>
-          Toggle the lens to see what changes when memory moves from an application-owned side effect to a
-          person-governed object.
+          Toggle the lens to see exactly what changes when memory shifts from an application
+          side-effect to a person-governed object with an inspectable trail.
         </p>
       </div>
 
       <div className={`lens-instrument lens-${lens}`}>
-        <div className="segmented-control" aria-label="Memory governance perspective">
+        <div className="segmented-control" role="group" aria-label="Memory governance perspective">
           <button
             type="button"
             className={lens === 'platform' ? 'active' : ''}
             aria-pressed={lens === 'platform'}
             onClick={() => setLens('platform')}
           >
-            Platform view
+            Platform owns it
           </button>
           <button
             type="button"
@@ -48,11 +48,11 @@ export function LensSection() {
             aria-pressed={lens === 'person'}
             onClick={() => setLens('person')}
           >
-            Inverted view
+            You own it
           </button>
         </div>
 
-        <div className="lens-stage" aria-live="polite">
+        <div className="lens-stage" aria-live="polite" aria-atomic="true">
           <div className="lens-object" aria-hidden="true">
             <span className="object-corner corner-a" />
             <span className="object-corner corner-b" />
@@ -69,7 +69,7 @@ export function LensSection() {
             <p className="lens-label">{content.label}</p>
             <h3>{content.title}</h3>
             <p>{content.body}</p>
-            <ul>
+            <ul aria-label="Consequences of this model">
               {content.traits.map((trait) => <li key={trait}>{trait}</li>)}
             </ul>
           </div>

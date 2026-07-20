@@ -1,10 +1,14 @@
-const sourceThreads = ['GATE', 'Gateway', 'Warfighter Optimization']
+const sourceThreads = [
+  { label: 'GATE', note: 'Hemi-Sync predecessor' },
+  { label: 'Gateway Process', note: 'Monroe Institute / Army research' },
+  { label: 'Warfighter Optimization', note: 'DoD attention and recovery protocols' },
+]
 
 const productFacts = [
-  'Live public demo',
-  'Local audio render',
-  'Binaural + isochronic',
-  'Evidence graded',
+  { text: 'Live public demo — no account required' },
+  { text: 'Audio rendered locally in your browser' },
+  { text: 'Binaural beats and isochronic tones' },
+  { text: 'Inline evidence grades for every protocol' },
 ]
 
 export function SynSyncProduct() {
@@ -13,12 +17,12 @@ export function SynSyncProduct() {
       <div className="synsync-field" aria-hidden="true" />
 
       <div className="section-heading synsync-heading">
-        <p className="section-index"><span>03</span> Live product / SynSync Pro</p>
-        <h2 id="synsync-title">A public product you can use now.</h2>
+        <p className="section-index"><span>03</span> Live product — SynSync Pro</p>
+        <h2 id="synsync-title">A working product you can open right now.</h2>
         <p>
-          SynSync Pro turns brainwave entrainment into a user-directed browser instrument. It is the clearest public
-          demonstration of the lab&apos;s operating rule: intimate technology should remain understandable and under the
-          listener&apos;s control.
+          SynSync Pro is a browser-based brainwave entrainment studio. It turns acoustic
+          protocols drawn from institutional research into a personal, inspectable instrument —
+          one where the evidence grades, the audio source, and the processing chain are all visible.
         </p>
       </div>
 
@@ -34,9 +38,9 @@ export function SynSyncProduct() {
             <path className="signal-wave signal-wave-b" d="M0 159 C45 86 75 86 120 159 S195 232 240 159 S315 86 360 159 S435 232 480 159 S555 86 600 159 S675 232 720 159" />
           </svg>
           <div className="signal-axis">
-            <span>Left</span>
-            <span className="signal-pulse">Rendering</span>
-            <span>Right</span>
+            <span>Left channel</span>
+            <span className="signal-pulse">Rendering locally</span>
+            <span>Right channel</span>
           </div>
         </div>
 
@@ -44,11 +48,11 @@ export function SynSyncProduct() {
           <p className="product-kicker"><span aria-hidden="true" /> Live public product</p>
           <h3>SynSync Pro</h3>
           <p>
-            A browser-based brainwave entrainment studio for exploring binaural and isochronic audio protocols, with
-            visible evidence grades and audio rendered on the listener&apos;s device.
+            Explore binaural and isochronic audio protocols with visible evidence grades.
+            No account. No install. Your device renders the audio — it never leaves your machine.
           </p>
-          <ul className="product-facts" aria-label="SynSync product characteristics">
-            {productFacts.map((fact) => <li key={fact}>{fact}</li>)}
+          <ul className="product-facts" aria-label="SynSync Pro product characteristics">
+            {productFacts.map((fact) => <li key={fact.text}>{fact.text}</li>)}
           </ul>
           <a
             className="button synsync-button"
@@ -64,20 +68,21 @@ export function SynSyncProduct() {
       <div className="synsync-lower">
         <details className="lineage-disclosure">
           <summary>
-            <span>Research lineage named in the product thesis</span>
+            <span>Research lineage referenced in the product thesis</span>
             <strong>GATE · Gateway · Warfighter Optimization</strong>
           </summary>
           <div className="lineage-panel" aria-labelledby="lineage-title">
             <div className="lineage-intro">
-              <p className="product-kicker">The product inversion</p>
-              <h3 id="lineage-title">Institutional research reframed as a personal instrument.</h3>
+              <p className="product-kicker">The inversion</p>
+              <h3 id="lineage-title">Institutional research made into a personal, inspectable instrument.</h3>
             </div>
             <div className="lineage-flow">
-              <ul aria-label="Source threads named in the Inversion Labs product thesis">
+              <ul aria-label="Source research threads referenced in the Inversion Labs product thesis">
                 {sourceThreads.map((thread, index) => (
-                  <li key={thread}>
+                  <li key={thread.label}>
                     <span>0{index + 1}</span>
-                    <strong>{thread}</strong>
+                    <strong>{thread.label}</strong>
+                    <em>{thread.note}</em>
                   </li>
                 ))}
               </ul>
@@ -86,26 +91,29 @@ export function SynSyncProduct() {
                 <i>→</i>
               </div>
               <div className="lineage-result">
-                <span>Public / inspectable / user-directed</span>
-                <strong>SynSync</strong>
+                <span>Public · inspectable · user-directed</span>
+                <strong>SynSync Pro</strong>
               </div>
             </div>
             <p className="lineage-boundary">
-              This lineage is Inversion Labs&apos; framing of the product thesis. It does not imply institutional affiliation,
-              endorsement, or proof of efficacy.
+              This lineage describes Inversion Labs&apos; framing of the product thesis only.
+              It does not imply affiliation with, endorsement by, or reproduction of the cited
+              programs. The product makes no medical claims.
             </p>
           </div>
         </details>
 
         <blockquote className="customer-principle">
           <p>The customer is never the product.</p>
-          <footer>Inversion Labs / line in the sand</footer>
+          <footer>Inversion Labs — operating constraint</footer>
         </blockquote>
       </div>
 
       <p className="synsync-safety">
-        Brainwave entrainment is supportive, not medical treatment. Effects vary. Review protocol evidence and
-        contraindications, keep volume comfortable, and stop if you feel unwell.
+        Brainwave entrainment is a supportive practice, not medical treatment. Effects vary between
+        individuals and are not clinically established for all use cases. Review the evidence grade
+        displayed for each protocol, keep volume at a comfortable level, and stop if you feel unwell.
+        Not suitable for people with epilepsy or seizure disorders without medical guidance.
       </p>
     </section>
   )

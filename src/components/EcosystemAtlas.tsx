@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   ecosystemSystems,
   evidenceLabel,
@@ -60,7 +60,7 @@ function ProjectDetail({ system, onClose }: { system: EcosystemSystem; onClose: 
 
       <dl className="detail-ledger">
         <div><dt>Category</dt><dd>{system.category}</dd></div>
-        <div><dt>For</dt><dd>{system.audience.join(', ')}</dd></div>
+        <div><dt>Audience</dt><dd>{system.audience.join(', ')}</dd></div>
         <div><dt>Evidence record</dt><dd>{system.proof.exists}</dd></div>
         <div><dt>Documentation</dt><dd>{system.documentation_status}</dd></div>
         <div><dt>Tests</dt><dd>{system.test_status}</dd></div>
@@ -77,11 +77,15 @@ function ProjectDetail({ system, onClose }: { system: EcosystemSystem; onClose: 
         <div className="detail-io">
           <div>
             <h4>Requires</h4>
-            {system.requires.length > 0 ? <ul>{system.requires.map((item) => <li key={item}>{item}</li>)}</ul> : <p>None declared.</p>}
+            {system.requires.length > 0
+              ? <ul>{system.requires.map((item) => <li key={item}>{item}</li>)}</ul>
+              : <p>None declared.</p>}
           </div>
           <div>
             <h4>Provides</h4>
-            {system.provides.length > 0 ? <ul>{system.provides.map((item) => <li key={item}>{item}</li>)}</ul> : <p>None declared.</p>}
+            {system.provides.length > 0
+              ? <ul>{system.provides.map((item) => <li key={item}>{item}</li>)}</ul>
+              : <p>None declared.</p>}
           </div>
         </div>
       )}
@@ -93,7 +97,7 @@ function ProjectDetail({ system, onClose }: { system: EcosystemSystem; onClose: 
           if (ids.length === 0) return null
           return (
             <p key={key}>
-              <span>{label}</span>{' '}
+              <span>{label}:</span>{' '}
               {ids.map((id) => systemById.get(id)?.name ?? id).join(', ')}
             </p>
           )
@@ -110,7 +114,9 @@ function ProjectDetail({ system, onClose }: { system: EcosystemSystem; onClose: 
           Open verified public surface <span aria-hidden="true">↗</span>
         </a>
       ) : (
-        <p className="detail-no-link">A project-specific public link is not confirmed. No link is presented as proof.</p>
+        <p className="detail-no-link">
+          No confirmed public link for this project. Nothing is presented as proof in its absence.
+        </p>
       )}
     </aside>
   )
@@ -150,32 +156,34 @@ export function EcosystemAtlas() {
 
   const hasActiveFilter = query.trim() !== '' || category !== 'All' || proof !== 'all'
   const displayed = showAll || hasActiveFilter ? filtered : filtered.slice(0, 4)
-
   const selected = selectedId ? systemById.get(selectedId) ?? null : null
 
-  const closeDetail = () => {
+  const closeDetail = useCallback(() => {
     const trigger = detailTriggerRef.current
     setSelectedId(null)
     window.setTimeout(() => trigger?.focus(), 0)
-  }
+  }, [])
+
+  // Fix: proper dep array so this effect does not re-register on every render
+  const handleEscapeClose = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Escape') closeDetail()
+  }, [closeDetail])
 
   useEffect(() => {
     if (!selectedId) return
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') closeDetail()
-    }
-    window.addEventListener('keydown', handleEscape)
-    return () => window.removeEventListener('keydown', handleEscape)
-  })
+    window.addEventListener('keydown', handleEscapeClose)
+    return () => window.removeEventListener('keydown', handleEscapeClose)
+  }, [selectedId, handleEscapeClose])
 
   return (
     <section className="ecosystem-atlas" id="systems" aria-labelledby="systems-title">
       <div className="section-heading atlas-heading">
         <p className="section-index"><span>04</span> Governed ecosystem registry</p>
-        <h2 id="systems-title">Thirteen records. Different maturity. No blurred categories.</h2>
+        <h2 id="systems-title">Thirteen records. Different maturity levels. No blurred categories.</h2>
         <p>
-          Products, protocols, architecture, research, and field practice are not the same thing. This atlas exposes
-          the status, public proof, intended audience, relationships, and limitations recorded for each system.
+          Products, protocols, architecture, research programs, and field practices are distinct things.
+          This registry exposes the status, public proof, audience, relationships, and known limitations
+          recorded for each system — unfiltered.
         </p>
       </div>
 
@@ -191,34 +199,55 @@ export function EcosystemAtlas() {
               <li key={stage}>
                 <span>{stage}</span>
                 <strong>{stageSystems.length}</strong>
-                <p>{stageSystems.length > 0 ? stageSystems.map((system) => system.name).join(' · ') : 'No public records'}</p>
+                <p>{stageSystems.length > 0
+                  ? stageSystems.map((system) => system.name).join(' · ')
+                  : 'No public records at this stage'}
+                </p>
               </li>
             )
           })}
         </ol>
-        <p className="maturity-note">Counts are generated from the curated registry validated during every production build.</p>
+        <p className="maturity-note">
+          Counts are live — generated from the registry validated at every production build.
+        </p>
       </div>
 
       <div className="atlas-controls" aria-label="Filter ecosystem records">
         <label>
           <span>Find a system</span>
-          <input value={query} onChange={(event) => setQuery(event.target.value)} type="search" placeholder="Search name or role" />
+          <input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="search"
+            placeholder="Search by name or role"
+            aria-label="Search ecosystem systems"
+          />
         </label>
         <label>
           <span>Category</span>
-          <select value={category} onChange={(event) => setCategory(event.target.value as (typeof categories)[number])}>
+          <select
+            value={category}
+            onChange={(event) => setCategory(event.target.value as (typeof categories)[number])}
+            aria-label="Filter by category"
+          >
             {categories.map((item) => <option key={item}>{item}</option>)}
           </select>
         </label>
         <label>
           <span>Public evidence</span>
-          <select value={proof} onChange={(event) => setProof(event.target.value as ProofFilter)}>
+          <select
+            value={proof}
+            onChange={(event) => setProof(event.target.value as ProofFilter)}
+            aria-label="Filter by evidence level"
+          >
             <option value="all">All records</option>
-            <option value="verified">Verified public surfaces</option>
+            <option value="verified">Verified public surface only</option>
             <option value="curated">Curated claims only</option>
           </select>
         </label>
-        <p aria-live="polite">Showing {displayed.length} of {filtered.length} matches</p>
+        <p aria-live="polite" aria-atomic="true">
+          Showing {displayed.length} of {filtered.length}{filtered.length !== ecosystemSystems.length ? ` filtered from ${ecosystemSystems.length}` : ''} records
+        </p>
       </div>
 
       <div className={`atlas-workspace ${selected ? 'has-selection' : ''}`}>
@@ -236,7 +265,7 @@ export function EcosystemAtlas() {
               <h3>{system.name}</h3>
               <p>{system.subtitle}</p>
               <dl>
-                <div><dt>Status</dt><dd>{system.stage}</dd></div>
+                <div><dt>Maturity</dt><dd>{system.stage}</dd></div>
                 <div><dt>Public link</dt><dd>{system.proof.url_reachability === 'verified' ? 'Verified' : 'Not confirmed'}</dd></div>
               </dl>
               <button
@@ -254,13 +283,23 @@ export function EcosystemAtlas() {
           ))}
           {filtered.length === 0 && (
             <div className="atlas-empty">
-              <h3>No record matches those filters.</h3>
-              <button type="button" onClick={() => { setQuery(''); setCategory('All'); setProof('all') }}>Reset filters</button>
+              <h3>No records match those filters.</h3>
+              <button
+                type="button"
+                onClick={() => { setQuery(''); setCategory('All'); setProof('all') }}
+              >
+                Clear all filters
+              </button>
             </div>
           )}
           {!hasActiveFilter && filtered.length > 4 && (
             <div className="atlas-reveal">
-              <p>{showAll ? 'All governed records are visible.' : 'Nine additional architecture, research, protocol, and practice records remain.'}</p>
+              <p>
+                {showAll
+                  ? 'All governed records are visible.'
+                  : `${filtered.length - 4} additional records — architecture, research, protocol, and practice — are hidden.`
+                }
+              </p>
               <button
                 type="button"
                 onClick={() => {
@@ -268,7 +307,7 @@ export function EcosystemAtlas() {
                   setSelectedId(null)
                 }}
               >
-                {showAll ? 'Show the four lead records' : 'Show all 13 records'}
+                {showAll ? 'Show featured records only' : `Show all ${filtered.length} records`}
               </button>
             </div>
           )}

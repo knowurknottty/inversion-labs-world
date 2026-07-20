@@ -2,34 +2,34 @@ const principles = [
   {
     number: 'I',
     title: 'Sovereignty over dependency',
-    text: 'A person should retain a real exit path from the systems holding their context.',
-    example: 'Move a memory object without losing its source, permissions, or revision trail.',
-    consequence: 'Portability and revocation must exist in the data model, not only in account settings.',
+    text: 'A person should hold a real exit path from any system that stores their context — not a settings toggle, a full data portability guarantee.',
+    example: 'Move a memory object across platforms without losing its source, permissions, or revision trail.',
+    consequence: 'Portability and revocation must be modeled in the data layer, not bolted on as an account feature.',
     related: 'Knowledge Bubbles · CTP',
   },
   {
     number: 'II',
     title: 'Symbiosis over replacement',
-    text: 'Intelligence should extend human judgment without quietly taking authority from the person.',
-    example: 'An agent can propose an action while its inputs, role, and permission boundary remain visible.',
-    consequence: 'Reasoning, memory, and action are separated into inspectable components.',
+    text: 'Intelligence should extend human judgment. When an agent quietly assumes authority, that is not assistance — it is substitution.',
+    example: 'An agent proposes an action while its inputs, role, and permission boundary remain visible and overridable.',
+    consequence: 'Reasoning, memory, and action are separated into individually inspectable components.',
     related: 'CAPT · FrankenCAPT',
   },
   {
     number: 'III',
     title: 'Local-first by design',
-    text: "Sensitive state should stay on the person's device whenever the product can function there.",
-    example: 'SynSync renders its acoustic protocols in the browser rather than requiring an account workflow.',
-    consequence: 'Useful local behavior must not depend on remote identity, storage, or telemetry.',
+    text: "Sensitive state belongs on the person's device whenever the product can function there. Remote sync is opt-in, not the default.",
+    example: 'SynSync Pro renders its full audio processing chain in the browser with no account, no remote call, no telemetry.',
+    consequence: 'Useful local behavior must not depend on remote identity, storage, or telemetry pipelines.',
     related: 'SynSync · bioCAPT',
   },
   {
     number: 'IV',
     title: 'Proof before mythology',
-    text: 'A compelling thesis never upgrades itself into evidence.',
-    example: 'Every system record separates public links, curated claims, maturity, and known limitations.',
-    consequence: 'Build validation can verify metadata integrity without claiming product efficacy or adoption.',
-    related: 'Research · Documentation',
+    text: 'A compelling thesis never upgrades itself into evidence. Maturity levels and known limitations are stated explicitly — not softened.',
+    example: 'Every registry entry separates verified public links from curated claims and records its known limit in a single field.',
+    consequence: 'Build validation can check metadata integrity without claiming product efficacy, safety, or adoption.',
+    related: 'Ecosystem registry · Verification record',
   },
 ]
 
@@ -38,8 +38,11 @@ export function Principles() {
     <section className="principles" id="principles" aria-labelledby="principles-title">
       <div className="section-heading principles-heading">
         <p className="section-index"><span>07</span> Operating principles</p>
-        <h2 id="principles-title">Principles only matter when they change the architecture.</h2>
-        <p>Each principle is paired with a human example, a technical consequence, and the records where it appears.</p>
+        <h2 id="principles-title">A principle that does not change the architecture is decoration.</h2>
+        <p>
+          Each principle is grounded in a human-legible example, a concrete architecture consequence,
+          and the registry records where that consequence is actually visible.
+        </p>
       </div>
       <ol className="principles-list">
         {principles.map((principle) => (
@@ -48,11 +51,11 @@ export function Principles() {
             <h3>{principle.title}</h3>
             <p>{principle.text}</p>
             <details>
-              <summary>See the concrete consequence</summary>
+              <summary>See how this principle changes the architecture</summary>
               <dl>
                 <div><dt>Example</dt><dd>{principle.example}</dd></div>
                 <div><dt>Architecture consequence</dt><dd>{principle.consequence}</dd></div>
-                <div><dt>Related records</dt><dd>{principle.related}</dd></div>
+                <div><dt>Visible in</dt><dd>{principle.related}</dd></div>
               </dl>
             </details>
           </li>
