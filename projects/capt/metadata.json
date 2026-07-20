@@ -75,11 +75,37 @@
     "exists": "Active open-source architecture",
     "for": "Developers building local or sovereign AI",
     "open": "github.com/knowurknottty",
-    "limit": null
+    "limit": null,
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20"
   },
   "inv": {
     "human": "Understand how your own AI systems could be governed and inspected.",
     "builder": "Core substrate: memory, protocol, orchestration components.",
     "researcher": "Reference architecture for governed cognition."
+  },
+  "depends_on": [],
+  "integrates_with": [
+    "kb",
+    "ctp",
+    "khsb",
+    "biocapt",
+    "franken"
+  ],
+  "related_to": [
+    "kb",
+    "ctp",
+    "khsb",
+    "biocapt"
+  ],
+  "provenance": {
+    "stage": "registry-governance",
+    "thesis": "registry-governance",
+    "proof.exists": "curated",
+    "proof.open": "curated",
+    "documentation_status": "docs-ci-pending",
+    "demo_status": "deploy-health-pending",
+    "test_status": "ci-pending"
   }
 }

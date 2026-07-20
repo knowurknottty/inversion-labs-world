@@ -68,11 +68,32 @@
     "exists": "Research architecture",
     "for": "Individuals, clinicians, researchers",
     "open": "github.com/knowurknottty",
-    "limit": "Concept stage; interpretive, not diagnostic"
+    "limit": "Concept stage; interpretive, not diagnostic",
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20"
   },
   "inv": {
     "human": "See yourself through more than one lens, honestly.",
     "builder": "Multi-lens synthesis API.",
     "researcher": "Interpretive synthesis under uncertainty."
+  },
+  "depends_on": [
+    "biocapt"
+  ],
+  "integrates_with": [],
+  "related_to": [
+    "biocapt",
+    "synsync",
+    "research"
+  ],
+  "provenance": {
+    "stage": "registry-governance",
+    "thesis": "registry-governance",
+    "proof.exists": "curated",
+    "proof.open": "curated",
+    "documentation_status": "docs-ci-pending",
+    "demo_status": "deploy-health-pending",
+    "test_status": "ci-pending"
   }
 }

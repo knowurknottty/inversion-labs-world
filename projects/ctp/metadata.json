@@ -69,11 +69,35 @@
     "exists": "Spec + reference implementation",
     "for": "Builders of multi-agent systems",
     "open": "github.com/knowurknottty",
-    "limit": null
+    "limit": null,
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20"
   },
   "inv": {
     "human": "Know that AI-to-AI deals are visible, not hidden.",
     "builder": "Transaction protocol for agent coordination.",
     "researcher": "Accountability in distributed cognition."
+  },
+  "depends_on": [
+    "capt"
+  ],
+  "integrates_with": [
+    "khsb",
+    "franken"
+  ],
+  "related_to": [
+    "capt",
+    "franken",
+    "khsb"
+  ],
+  "provenance": {
+    "stage": "registry-governance",
+    "thesis": "registry-governance",
+    "proof.exists": "curated",
+    "proof.open": "curated",
+    "documentation_status": "docs-ci-pending",
+    "demo_status": "deploy-health-pending",
+    "test_status": "ci-pending"
   }
 }

@@ -68,11 +68,34 @@
     "exists": "Deployed product (early access)",
     "for": "Individuals seeking focus, rest, transition",
     "open": "inversion-labs-world.pages.dev/synsync",
-    "limit": "Early access; claims are measured, not certified"
+    "limit": "Early access; claims are measured, not certified",
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20"
   },
   "inv": {
     "human": "Use a real system for attention and rest today.",
     "builder": "API for state-transition audio.",
     "researcher": "Acoustic entrainment with measured claims."
+  },
+  "depends_on": [
+    "biocapt"
+  ],
+  "integrates_with": [
+    "hme"
+  ],
+  "related_to": [
+    "biocapt",
+    "hme",
+    "research"
+  ],
+  "provenance": {
+    "stage": "registry-governance",
+    "thesis": "registry-governance",
+    "proof.exists": "curated",
+    "proof.open": "curated",
+    "documentation_status": "docs-ci-pending",
+    "demo_status": "deploy-health-pending",
+    "test_status": "ci-pending"
   }
 }

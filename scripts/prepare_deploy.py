@@ -55,6 +55,19 @@ def load_registry() -> dict:
         raise SystemExit("_registry.json missing")
     root = json.loads(root_meta.read_text(encoding="utf-8"))
 
+    # Schema version policy: reject unsupported future major versions.
+    SUPPORTED_MAJOR = 2
+    sv = root.get("schema_version", "0.0.0")
+    try:
+        major = int(sv.split(".")[0])
+    except (ValueError, AttributeError):
+        raise SystemExit(f"Invalid schema_version: {sv}")
+    if major > SUPPORTED_MAJOR:
+        raise SystemExit(
+            f"Unsupported schema_version {sv} (max supported major: {SUPPORTED_MAJOR}). "
+            f"Define a migration before consuming future schemas."
+        )
+
     projects = []
     for d in sorted(PROJECTS_DIR.iterdir()):
         if not d.is_dir() or d.name.startswith("_"):
@@ -102,16 +115,29 @@ def validate_semantics(reg: dict) -> None:
             errors.append(f"{pid}: invalid visibility '{p.get('visibility')}'")
         if p.get("verification_level") not in valid_levels:
             errors.append(f"{pid}: invalid verification_level '{p.get('verification_level')}'")
-        # Links / dependencies must exist
+        # Links / relationships must reference existing projects
         for link in p.get("links", []):
             if link not in id_set:
                 errors.append(f"{pid}: broken link to '{link}'")
-        for dep in p.get("dependencies", []):
+        for dep in p.get("depends_on", []):
             if dep not in id_set:
-                errors.append(f"{pid}: broken dependency '{dep}'")
+                errors.append(f"{pid}: broken depends_on '{dep}'")
+        for rel in p.get("integrates_with", []):
+            if rel not in id_set:
+                errors.append(f"{pid}: broken integrates_with '{rel}'")
+        for rel in p.get("related_to", []):
+            if rel not in id_set:
+                errors.append(f"{pid}: broken related_to '{rel}'")
+        # Link tier tracking must exist
+        if "url_tier" not in p.get("proof", {}):
+            errors.append(f"{pid}: proof.url_tier missing (link tier tracking required)")
+        # Provenance map must exist
+        if "provenance" not in p:
+            errors.append(f"{pid}: provenance map missing (field-level source required)")
 
-    # No cycles in dependencies (DFS)
-    graph = {p["id"]: p.get("dependencies", []) for p in projects}
+    # Acyclicity enforced ONLY on depends_on (build/init deps).
+    # integrates_with / related_to / provides_to / consumes_from may cycle.
+    graph = {p["id"]: p.get("depends_on", []) for p in projects}
     WHITE, GRAY, BLACK = 0, 1, 2
     color = {k: WHITE for k in graph}
 
@@ -119,7 +145,7 @@ def validate_semantics(reg: dict) -> None:
         color[node] = GRAY
         for nxt in graph.get(node, []):
             if color.get(nxt) == GRAY:
-                errors.append(f"Dependency cycle: {' -> '.join(stack + [nxt])}")
+                errors.append(f"depends_on cycle (must be acyclic): {' -> '.join(stack + [nxt])}")
             elif color.get(nxt) == WHITE:
                 dfs(nxt, stack + [node])
         color[node] = BLACK
@@ -128,27 +154,28 @@ def validate_semantics(reg: dict) -> None:
         if color[n] == WHITE:
             dfs(n, [])
 
-    # No orphans: every project should be reachable from at least one other
-    # (either as a link or dependency) unless it's a root-level entry point
-    referenced = set()
-    for p in projects:
-        referenced.update(p.get("links", []))
-        referenced.update(p.get("dependencies", []))
-    for p in projects:
-        if p["id"] not in referenced and p.get("visibility") == "public":
-            # Allowed for top-level architecture entries, but warn
-            pass  # no error — intentional roots exist
+    # integrates_with cycles are LEGITIMATE — logged, not failed.
+    iw_graph = {p["id"]: p.get("integrates_with", []) for p in projects}
+    iw_cycles = []
+    icolor = {k: WHITE for k in iw_graph}
+    def iw_dfs(node, stack):
+        icolor[node] = GRAY
+        for nxt in iw_graph.get(node, []):
+            if icolor.get(nxt) == GRAY:
+                iw_cycles.append(' -> '.join(stack + [nxt]))
+            elif icolor.get(nxt) == WHITE:
+                iw_dfs(nxt, stack + [node])
+        icolor[node] = BLACK
+    for n in iw_graph:
+        if icolor[n] == WHITE:
+            iw_dfs(n, [])
 
     if errors:
         raise SystemExit("Semantic validation failed:\n  " + "\n  ".join(errors))
 
-    # Reverse-dependency consistency check (warn only)
-    for p in projects:
-        for rd in p.get("reverse_dependencies", []):
-            if rd not in id_set:
-                errors.append(f"{p['id']}: broken reverse_dependency '{rd}'")
-    if errors:
-        raise SystemExit("Semantic validation failed:\n  " + "\n  ".join(errors))
+    if iw_cycles:
+        # Informational only — legitimate bidirectional relationships
+        print(f"  note: {len(iw_cycles)} integrates_with cycle(s) allowed (e.g. {iw_cycles[0]})")
 
 
 def main() -> None:
@@ -158,12 +185,31 @@ def main() -> None:
     reg = load_registry()
     validate_semantics(reg)
 
+    # Reproducible timestamp: SOURCE_DATE_EPOCH > git commit timestamp > static
+    import os
+    import subprocess
+    gen_at = reg["root"].get("generated_at")
+    if gen_at == "SOURCE_DATE_EPOCH":
+        epoch = os.environ.get("SOURCE_DATE_EPOCH")
+        if epoch:
+            import datetime
+            gen_at = datetime.datetime.utcfromtimestamp(int(epoch)).strftime("%Y-%m-%d")
+        else:
+            try:
+                out = subprocess.run(
+                    ["git", "log", "-1", "--format=%ci"],
+                    capture_output=True, text=True, cwd=ROOT
+                )
+                gen_at = out.stdout.strip()[:10] if out.returncode == 0 else "2026-07-20"
+            except Exception:
+                gen_at = "2026-07-20"
+
     # Build the injected registry object (flat, UI-compatible)
     injected = {
         "registry_version": reg["root"].get("registry_version"),
         "schema_version": reg["root"].get("schema_version"),
         "content_version": reg["root"].get("content_version"),
-        "generated_at": reg["root"].get("generated_at"),
+        "generated_at": gen_at,
         "generated_by": reg["root"].get("generated_by"),
         "verified_at": reg["root"].get("verified_at"),
         "source": reg["root"].get("source"),

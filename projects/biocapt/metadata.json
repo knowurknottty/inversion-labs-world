@@ -72,11 +72,35 @@
     "exists": "Research architecture + prototypes",
     "for": "Researchers, clinicians, individuals",
     "open": "github.com/knowurknottty",
-    "limit": "Research stage; not a shipped product"
+    "limit": "Research stage; not a shipped product",
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20"
   },
   "inv": {
     "human": "See how your body's signals could inform a system that serves you.",
     "builder": "Sensory + state ingestion interfaces.",
     "researcher": "Embodied cognition datasets and protocols."
+  },
+  "depends_on": [
+    "capt"
+  ],
+  "integrates_with": [
+    "hme",
+    "synsync"
+  ],
+  "related_to": [
+    "capt",
+    "synsync",
+    "hme"
+  ],
+  "provenance": {
+    "stage": "registry-governance",
+    "thesis": "registry-governance",
+    "proof.exists": "curated",
+    "proof.open": "curated",
+    "documentation_status": "docs-ci-pending",
+    "demo_status": "deploy-health-pending",
+    "test_status": "ci-pending"
   }
 }

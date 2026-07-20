@@ -68,11 +68,34 @@
     "exists": "Living documentation",
     "for": "Builders, researchers",
     "open": "github.com/knowurknottty",
-    "limit": null
+    "limit": null,
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20"
   },
   "inv": {
     "human": "Understand the system's own memory.",
     "builder": "Architecture decisions, explained.",
     "researcher": "Governance through legibility."
+  },
+  "depends_on": [
+    "kb"
+  ],
+  "integrates_with": [
+    "research"
+  ],
+  "related_to": [
+    "kb",
+    "research",
+    "repos"
+  ],
+  "provenance": {
+    "stage": "registry-governance",
+    "thesis": "registry-governance",
+    "proof.exists": "curated",
+    "proof.open": "curated",
+    "documentation_status": "docs-ci-pending",
+    "demo_status": "deploy-health-pending",
+    "test_status": "ci-pending"
   }
 }

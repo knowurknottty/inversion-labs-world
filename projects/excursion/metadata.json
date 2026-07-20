@@ -67,11 +67,33 @@
     "exists": "Living practice + field notes",
     "for": "Anyone who observes the world",
     "open": "inversion-labs-world.pages.dev/excursion",
-    "limit": null
+    "limit": null,
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20"
   },
   "inv": {
     "human": "Join observation walks and field practice.",
     "builder": "Data ingestion from field capture.",
     "researcher": "Citizen science with provenance."
+  },
+  "depends_on": [],
+  "integrates_with": [
+    "field",
+    "research"
+  ],
+  "related_to": [
+    "research",
+    "field",
+    "hme"
+  ],
+  "provenance": {
+    "stage": "registry-governance",
+    "thesis": "registry-governance",
+    "proof.exists": "curated",
+    "proof.open": "curated",
+    "documentation_status": "docs-ci-pending",
+    "demo_status": "deploy-health-pending",
+    "test_status": "ci-pending"
   }
 }

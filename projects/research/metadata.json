@@ -77,11 +77,41 @@
     "exists": "Open research notes + benchmarks",
     "for": "Researchers, builders, the curious",
     "open": "github.com/knowurknottty",
-    "limit": null
+    "limit": null,
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20"
   },
   "inv": {
     "human": "Read what we actually found, including failures.",
     "builder": "Reproducible experiments.",
     "researcher": "Evidence layer for the whole lab."
+  },
+  "depends_on": [
+    "kb"
+  ],
+  "integrates_with": [
+    "biocapt",
+    "synsync",
+    "excursion",
+    "field",
+    "docs",
+    "repos"
+  ],
+  "related_to": [
+    "kb",
+    "synsync",
+    "excursion",
+    "docs",
+    "repos"
+  ],
+  "provenance": {
+    "stage": "registry-governance",
+    "thesis": "registry-governance",
+    "proof.exists": "curated",
+    "proof.open": "curated",
+    "documentation_status": "docs-ci-pending",
+    "demo_status": "deploy-health-pending",
+    "test_status": "ci-pending"
   }
 }

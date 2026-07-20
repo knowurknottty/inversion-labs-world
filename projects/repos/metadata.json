@@ -69,11 +69,33 @@
     "exists": "Public repositories",
     "for": "Developers, researchers, funders",
     "open": "github.com/knowurknottty",
-    "limit": null
+    "limit": null,
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20"
   },
   "inv": {
     "human": "See the actual code behind the claims.",
     "builder": "Fork, build, contribute.",
     "researcher": "Reproducible builds and tests."
+  },
+  "depends_on": [],
+  "integrates_with": [
+    "research",
+    "docs"
+  ],
+  "related_to": [
+    "research",
+    "docs",
+    "franken"
+  ],
+  "provenance": {
+    "stage": "registry-governance",
+    "thesis": "registry-governance",
+    "proof.exists": "curated",
+    "proof.open": "curated",
+    "documentation_status": "docs-ci-pending",
+    "demo_status": "deploy-health-pending",
+    "test_status": "ci-pending"
   }
 }

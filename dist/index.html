@@ -452,7 +452,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script type="application/json" id="registry">{
   "registry_version": "1.0.0",
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "content_version": "2026.07.20",
   "generated_at": "2026-07-20",
   "generated_by": "prepare_deploy.py",
@@ -533,12 +533,36 @@
         "exists": "Research architecture + prototypes",
         "for": "Researchers, clinicians, individuals",
         "open": "github.com/knowurknottty",
-        "limit": "Research stage; not a shipped product"
+        "limit": "Research stage; not a shipped product",
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "See how your body's signals could inform a system that serves you.",
         "builder": "Sensory + state ingestion interfaces.",
         "researcher": "Embodied cognition datasets and protocols."
+      },
+      "depends_on": [
+        "capt"
+      ],
+      "integrates_with": [
+        "hme",
+        "synsync"
+      ],
+      "related_to": [
+        "capt",
+        "synsync",
+        "hme"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -618,12 +642,38 @@
         "exists": "Active open-source architecture",
         "for": "Developers building local or sovereign AI",
         "open": "github.com/knowurknottty",
-        "limit": null
+        "limit": null,
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "Understand how your own AI systems could be governed and inspected.",
         "builder": "Core substrate: memory, protocol, orchestration components.",
         "researcher": "Reference architecture for governed cognition."
+      },
+      "depends_on": [],
+      "integrates_with": [
+        "kb",
+        "ctp",
+        "khsb",
+        "biocapt",
+        "franken"
+      ],
+      "related_to": [
+        "kb",
+        "ctp",
+        "khsb",
+        "biocapt"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -697,12 +747,36 @@
         "exists": "Spec + reference implementation",
         "for": "Builders of multi-agent systems",
         "open": "github.com/knowurknottty",
-        "limit": null
+        "limit": null,
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "Know that AI-to-AI deals are visible, not hidden.",
         "builder": "Transaction protocol for agent coordination.",
         "researcher": "Accountability in distributed cognition."
+      },
+      "depends_on": [
+        "capt"
+      ],
+      "integrates_with": [
+        "khsb",
+        "franken"
+      ],
+      "related_to": [
+        "capt",
+        "franken",
+        "khsb"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -775,12 +849,35 @@
         "exists": "Living documentation",
         "for": "Builders, researchers",
         "open": "github.com/knowurknottty",
-        "limit": null
+        "limit": null,
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "Understand the system's own memory.",
         "builder": "Architecture decisions, explained.",
         "researcher": "Governance through legibility."
+      },
+      "depends_on": [
+        "kb"
+      ],
+      "integrates_with": [
+        "research"
+      ],
+      "related_to": [
+        "kb",
+        "research",
+        "repos"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -852,12 +949,34 @@
         "exists": "Living practice + field notes",
         "for": "Anyone who observes the world",
         "open": "inversion-labs-world.pages.dev/excursion",
-        "limit": null
+        "limit": null,
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "Join observation walks and field practice.",
         "builder": "Data ingestion from field capture.",
         "researcher": "Citizen science with provenance."
+      },
+      "depends_on": [],
+      "integrates_with": [
+        "field",
+        "research"
+      ],
+      "related_to": [
+        "research",
+        "field",
+        "hme"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -929,12 +1048,36 @@
         "exists": "Living notebook",
         "for": "Observers, researchers",
         "open": "inversion-labs-world.pages.dev/field",
-        "limit": null
+        "limit": null,
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "Contribute observations with honest uncertainty.",
         "builder": "Structured observation ingestion.",
         "researcher": "Raw signal with provenance."
+      },
+      "depends_on": [
+        "excursion"
+      ],
+      "integrates_with": [
+        "excursion",
+        "research"
+      ],
+      "related_to": [
+        "excursion",
+        "research",
+        "kb"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -1006,12 +1149,38 @@
         "exists": "Architecture + evaluation harness",
         "for": "Builders integrating capabilities",
         "open": "github.com/knowurknottty",
-        "limit": null
+        "limit": null,
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "Know that the tools you use are curated, not piled.",
         "builder": "Capability registry, composition, bounds.",
         "researcher": "Skill governance as a research problem."
+      },
+      "depends_on": [
+        "capt"
+      ],
+      "integrates_with": [
+        "kb",
+        "ctp",
+        "khsb"
+      ],
+      "related_to": [
+        "capt",
+        "ctp",
+        "khsb",
+        "kb"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -1084,12 +1253,33 @@
         "exists": "Research architecture",
         "for": "Individuals, clinicians, researchers",
         "open": "github.com/knowurknottty",
-        "limit": "Concept stage; interpretive, not diagnostic"
+        "limit": "Concept stage; interpretive, not diagnostic",
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "See yourself through more than one lens, honestly.",
         "builder": "Multi-lens synthesis API.",
         "researcher": "Interpretive synthesis under uncertainty."
+      },
+      "depends_on": [
+        "biocapt"
+      ],
+      "integrates_with": [],
+      "related_to": [
+        "biocapt",
+        "synsync",
+        "research"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -1165,12 +1355,38 @@
         "exists": "Architecture + reference implementation",
         "for": "Anyone exchanging trustworthy info",
         "open": "github.com/knowurknottty",
-        "limit": null
+        "limit": null,
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "Your notes could carry their own sources and doubts.",
         "builder": "Portable semantic objects with provenance.",
         "researcher": "Provenance as a first-class data property."
+      },
+      "depends_on": [
+        "capt"
+      ],
+      "integrates_with": [
+        "research",
+        "docs",
+        "franken"
+      ],
+      "related_to": [
+        "capt",
+        "franken",
+        "research",
+        "docs"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -1245,12 +1461,36 @@
         "exists": "Spec + routing prototype",
         "for": "Builders of local system meshes",
         "open": "github.com/knowurknottty",
-        "limit": null
+        "limit": null,
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "Your devices talk to each other on your terms.",
         "builder": "Bounded envelopes, routing, identity.",
         "researcher": "Local-first system interoperability."
+      },
+      "depends_on": [
+        "capt",
+        "ctp"
+      ],
+      "integrates_with": [
+        "franken"
+      ],
+      "related_to": [
+        "capt",
+        "franken",
+        "ctp"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -1324,12 +1564,34 @@
         "exists": "Public repositories",
         "for": "Developers, researchers, funders",
         "open": "github.com/knowurknottty",
-        "limit": null
+        "limit": null,
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "See the actual code behind the claims.",
         "builder": "Fork, build, contribute.",
         "researcher": "Reproducible builds and tests."
+      },
+      "depends_on": [],
+      "integrates_with": [
+        "research",
+        "docs"
+      ],
+      "related_to": [
+        "research",
+        "docs",
+        "franken"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -1411,12 +1673,42 @@
         "exists": "Open research notes + benchmarks",
         "for": "Researchers, builders, the curious",
         "open": "github.com/knowurknottty",
-        "limit": null
+        "limit": null,
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "Read what we actually found, including failures.",
         "builder": "Reproducible experiments.",
         "researcher": "Evidence layer for the whole lab."
+      },
+      "depends_on": [
+        "kb"
+      ],
+      "integrates_with": [
+        "biocapt",
+        "synsync",
+        "excursion",
+        "field",
+        "docs",
+        "repos"
+      ],
+      "related_to": [
+        "kb",
+        "synsync",
+        "excursion",
+        "docs",
+        "repos"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     },
     {
@@ -1489,12 +1781,35 @@
         "exists": "Deployed product (early access)",
         "for": "Individuals seeking focus, rest, transition",
         "open": "inversion-labs-world.pages.dev/synsync",
-        "limit": "Early access; claims are measured, not certified"
+        "limit": "Early access; claims are measured, not certified",
+        "url_tier": "org-root",
+        "url_reachability": "unverified",
+        "url_last_checked": "2026-07-20"
       },
       "inv": {
         "human": "Use a real system for attention and rest today.",
         "builder": "API for state-transition audio.",
         "researcher": "Acoustic entrainment with measured claims."
+      },
+      "depends_on": [
+        "biocapt"
+      ],
+      "integrates_with": [
+        "hme"
+      ],
+      "related_to": [
+        "biocapt",
+        "hme",
+        "research"
+      ],
+      "provenance": {
+        "stage": "registry-governance",
+        "thesis": "registry-governance",
+        "proof.exists": "curated",
+        "proof.open": "curated",
+        "documentation_status": "docs-ci-pending",
+        "demo_status": "deploy-health-pending",
+        "test_status": "ci-pending"
       }
     }
   ]

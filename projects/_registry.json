@@ -1,16 +1,32 @@
 {
   "registry_version": "1.0.0",
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "content_version": "2026.07.20",
-  "generated_at": "2026-07-20",
+  "generated_at": "SOURCE_DATE_EPOCH",
   "generated_by": "prepare_deploy.py",
   "verified_at": "2026-07-20",
   "source": "curated",
+  "generated_notice": "This file is assembled from projects/*/metadata.json by prepare_deploy.py. Do not hand-edit. CI regenerates and diffs it; builds fail if the committed aggregate is stale.",
   "validation": {
     "required_fields": ["id", "slug", "name", "type", "stage", "thesis", "description", "links", "proof"],
     "valid_stages": ["Live", "Active development", "Open research", "Living practice", "Concept", "Archived"],
     "valid_categories": ["Architecture", "Protocol", "Product", "Research program", "Field practice"],
     "valid_visibility": ["public", "experimental", "internal", "archived"],
-    "valid_verification_levels": ["verified", "inferred", "curated", "needs-confirmation"]
+    "valid_verification_levels": ["verified", "inferred", "curated", "needs-confirmation"],
+    "relationship_types": {
+      "depends_on": "Build/init-time dependency. MUST be acyclic. Enforced by validator.",
+      "integrates_with": "Peer integration. Cycles allowed. Not enforced acyclic.",
+      "provides_to": "Capability exposed to others. Cycles allowed.",
+      "consumes_from": "Capability consumed from others. Cycles allowed.",
+      "related_to": "Thematic/contextual link. Cycles allowed.",
+      "supersedes": "Replaces a prior system. Acyclic by nature."
+    },
+    "link_tiers": {
+      "syntactically_valid": "URL parses and has allowed scheme",
+      "reachable": "HTTP 2xx at last check",
+      "authoritative": "Points to the specific project's own repo/docs/demo, not an org root",
+      "last_verified": "Timestamp of last reachability check",
+      "expected_content_type": "html/json/markdown per link purpose"
+    }
   }
 }

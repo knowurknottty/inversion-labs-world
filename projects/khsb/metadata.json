@@ -70,11 +70,35 @@
     "exists": "Spec + routing prototype",
     "for": "Builders of local system meshes",
     "open": "github.com/knowurknottty",
-    "limit": null
+    "limit": null,
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20"
   },
   "inv": {
     "human": "Your devices talk to each other on your terms.",
     "builder": "Bounded envelopes, routing, identity.",
     "researcher": "Local-first system interoperability."
+  },
+  "depends_on": [
+    "capt",
+    "ctp"
+  ],
+  "integrates_with": [
+    "franken"
+  ],
+  "related_to": [
+    "capt",
+    "franken",
+    "ctp"
+  ],
+  "provenance": {
+    "stage": "registry-governance",
+    "thesis": "registry-governance",
+    "proof.exists": "curated",
+    "proof.open": "curated",
+    "documentation_status": "docs-ci-pending",
+    "demo_status": "deploy-health-pending",
+    "test_status": "ci-pending"
   }
 }
