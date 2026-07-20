@@ -2,7 +2,7 @@
   "id": "capt",
   "slug": "capt",
   "name": "CAPT",
-  "subtitle": "Governed cognitive architecture",
+  "subtitle": "Governed cognitive architecture for inspectable AI",
   "role": "Cognitive architecture",
   "category": "Architecture",
   "type": "Architecture",
@@ -19,10 +19,34 @@
     0,
     0
   ],
-  "thesis": "CAPT stores reasoning as modular, inspectable components. Instead of opaque prompt history, decisions retain their origin and evidence.",
-  "description": "CAPT is a modular cognitive architecture for persistent, inspectable AI systems. It separates memory, reasoning, and action into governed components.",
-  "before": "AI remembers you inside someone else's system.",
-  "after": "You govern persistent, inspectable intelligence.",
+  "thesis": "CAPT stores reasoning as modular, inspectable components. Instead of opaque prompt history, decisions retain their origin, evidence, and state transitions — so intelligence is governed, not buried.",
+  "description": "CAPT is a modular cognitive architecture for persistent, inspectable AI systems. It separates memory, reasoning, and action into governed components that can be observed, audited, and replayed. A 108-module pipeline (sensing, filtering, prediction, attention, memory consolidation, abstraction, causal inference, quantum-inspired consensus, execution, value alignment, curiosity) processes each task as a traceable state graph rather than a black box. The Cognitive State Graph (CSG) records every state transition; ECHO memory palace preserves episodic context; PULSE provides self-healing; HMC handles hierarchical memory compression. The result: an AI system whose reasoning you can open and read.",
+  "before": "AI remembers you inside someone else's system, as opaque tokens.",
+  "after": "You govern persistent, inspectable intelligence with a readable state history.",
+  "architecture": {
+    "principle": "Reasoning is a first-class, observable artifact — not a side effect of generation.",
+    "pipeline_modules": 108,
+    "core_subsystems": [
+      "SENS — multi-channel signal ingestion",
+      "FILT — noise filtering and estimation",
+      "PCFE — predictive coding / surprise minimization",
+      "ATTN — attention allocation and winner selection",
+      "HMC — hierarchical memory compression",
+      "ECHO — episodic memory palace (resonant recall)",
+      "ABSTR — concept abstraction and merging",
+      "SEM — semantic evolution / fitness search",
+      "CIG — causal inference graph",
+      "QIPC — quantum-inspired consensus (variance-aware)",
+      "NDS — neuro-symbolic decision commit",
+      "EXEC — goal execution and working memory",
+      "VALUE_ALIGN — value alignment scoring and approval",
+      "CURIOSITY — exploration drive"
+    ],
+    "state_model": "Cognitive State Graph (CSG) — every task is a node/edge transition; states are queryable, replayable, and persistable",
+    "memory": "ECHO memory palace: episodic traces with resonant recall; HMC compresses to ~0.1% with provenance retained",
+    "governance": "Each decision carries source, confidence, and state lineage. VALUE_ALIGN must approve before action. No silent state mutation.",
+    "inspectability": "Reasoning traces are readable artifacts — the system can explain not just what it concluded, but how and why"
+  },
   "links": [
     "kb",
     "ctp",
@@ -42,7 +66,8 @@
   ],
   "provides": [
     "cognitive-architecture",
-    "reasoning-pipeline"
+    "reasoning-pipeline",
+    "inspectable-state-graph"
   ],
   "maintainers": [
     "Inversion Labs"
@@ -52,12 +77,15 @@
     "architecture",
     "cognition",
     "memory",
-    "governance"
+    "governance",
+    "inspectable"
   ],
   "keywords": [
     "cognitive architecture",
     "inspectable AI",
-    "local-first"
+    "local-first",
+    "state graph",
+    "governed reasoning"
   ],
   "documentation_status": "living",
   "demo_status": "none",
@@ -71,19 +99,19 @@
   "source_of_truth": "curated",
   "verification_level": "curated",
   "proof": {
-    "exists": "Active open-source architecture",
+    "exists": "Active open-source architecture (108-module pipeline, CSG, ECHO, PULSE, HMC implemented)",
     "for": "Developers building local or sovereign AI",
     "open": "github.com/knowurknottty",
-    "limit": null,
+    "limit": "Public repo URL is org-level; specific CAPT repository to be confirmed",
     "url_tier": "project-specific",
     "url_reachability": "unverified",
     "url_last_checked": "2026-07-20",
     "url_class": "canonical"
   },
   "inv": {
-    "human": "Understand how your own AI systems could be governed and inspected.",
-    "builder": "Core substrate: memory, protocol, orchestration components.",
-    "researcher": "Reference architecture for governed cognition."
+    "human": "Understand how your own AI systems could be governed and inspected — every decision traceable, not hidden.",
+    "builder": "Core substrate: memory, protocol, orchestration components with state lineage.",
+    "researcher": "Reference architecture for governed, inspectable cognition."
   },
   "depends_on": [],
   "integrates_with": [
@@ -113,6 +141,14 @@
       "verified_by": "project-lead",
       "refresh_policy": "quarterly",
       "authority": "inversion-labs"
+    },
+    "architecture": {
+      "source": "biocapt-cogitation",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "biocapt-pipeline",
+      "refresh_policy": "per-release",
+      "authority": "capt-system"
     },
     "proof.exists": {
       "source": "curated",

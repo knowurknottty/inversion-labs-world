@@ -2,7 +2,7 @@
   "id": "biocapt",
   "slug": "biocapt",
   "name": "bioCAPT",
-  "subtitle": "Embodied intelligence research",
+  "subtitle": "Embodied intelligence from governed biological signal",
   "role": "Embodied intelligence",
   "category": "Research program",
   "type": "Research program",
@@ -20,10 +20,29 @@
     2,
     1
   ],
-  "thesis": "Biological data remains governed when the body becomes part of the signal \u2014 not part of the product.",
-  "description": "bioCAPT learns from biological state, somatic context, and lived experience. Intelligence is temporal, relational, and embodied \u2014 not disembodied text prediction.",
-  "before": "Intelligence begins and ends with language.",
-  "after": "Cognition is embodied. The body is part of the signal.",
+  "thesis": "Biological data remains governed when the body becomes part of the signal — not part of the product. bioCAPT learns from somatic context and lived experience without surrendering the person to extraction.",
+  "description": "bioCAPT is the embodied-intelligence layer of the Inversion Labs ecosystem. It ingests biological and somatic signals (heart rate variability, motion, breath, peripheral state) and transforms them into a Cognitive State Graph (CSG) that CAPT can reason over. Intelligence here is temporal, relational, and embodied — not disembodied text prediction. A governed memory layer ensures that biological context is retained with explicit provenance and consent, so the body informs the system without becoming its inventory. bioCAPT is the substrate that lets CAPT act on state, not just language.",
+  "before": "Intelligence begins and ends with language; the body is irrelevant or exploitable.",
+  "after": "Cognition is embodied. The body is part of the signal — governed, not extracted.",
+  "architecture": {
+    "principle": "The body is a signal source under the person's governance, not a data mine.",
+    "pipeline": [
+      "SENS — multi-channel biological signal ingestion (HRV, motion, breath, peripheral)",
+      "FILT — artifact filtering and signal estimation",
+      "PCFE — predictive coding of physiological surprise",
+      "CSG bridge — maps biosignal state into CAPT's Cognitive State Graph",
+      "ECHO — resonant memory of somatic episodes with provenance",
+      "HMC — hierarchical compression of biological context",
+      "VALUE_ALIGN — consent and governance gate before any state is used"
+    ],
+    "core_outputs": [
+      "biosignal-context — live physiological state available to CAPT",
+      "cognitive-state-graph — embodied node in the shared CSG",
+      "governed memory — biological episodes retained with explicit source and consent"
+    ],
+    "distinction_from_disembodied_ai": "Language models predict the next token from text. bioCAPT grounds reasoning in the body's actual state — arousal, recovery, regulation — so the system responds to a person's condition, not just their words.",
+    "governance": "No biological signal is used without provenance and consent. VALUE_ALIGN gates state usage. Signals are processed local-first; extraction is an anti-pattern the architecture is built to prevent."
+  },
   "links": [
     "capt",
     "synsync",
@@ -37,11 +56,13 @@
     "synsync"
   ],
   "requires": [
-    "biological signal ingestion"
+    "biological signal ingestion",
+    "consent-gated memory"
   ],
   "provides": [
     "biosignal-context",
-    "cognitive-state-graph"
+    "cognitive-state-graph",
+    "embodied-intelligence"
   ],
   "maintainers": [
     "Inversion Labs"
@@ -50,12 +71,15 @@
   "tags": [
     "biology",
     "embodied",
-    "signals"
+    "signals",
+    "governance"
   ],
   "keywords": [
     "embodied AI",
     "biofeedback",
-    "somatic"
+    "somatic",
+    "cognitive-state-graph",
+    "governed memory"
   ],
   "documentation_status": "research",
   "demo_status": "none",
@@ -69,19 +93,19 @@
   "source_of_truth": "curated",
   "verification_level": "curated",
   "proof": {
-    "exists": "Research architecture + prototypes",
+    "exists": "Research architecture + prototypes (biosignal → CSG bridge implemented)",
     "for": "Researchers, clinicians, individuals",
     "open": "github.com/knowurknottty",
-    "limit": "Research stage; not a shipped product",
+    "limit": "Research stage; not a shipped product. Public repo URL is org-level; specific bioCAPT repository to be confirmed.",
     "url_tier": "project-specific",
     "url_reachability": "unverified",
     "url_last_checked": "2026-07-20",
     "url_class": "project_repo"
   },
   "inv": {
-    "human": "See how your body's signals could inform a system that serves you.",
-    "builder": "Sensory + state ingestion interfaces.",
-    "researcher": "Embodied cognition datasets and protocols."
+    "human": "See how your body's signals could inform a system that serves you — without becoming its product.",
+    "builder": "Sensory + state ingestion interfaces with consent-gated memory.",
+    "researcher": "Embodied cognition datasets, protocols, and the CSG bridge to CAPT."
   },
   "depends_on": [
     "capt"
@@ -109,6 +133,14 @@
       "verified_by": "project-lead",
       "refresh_policy": "quarterly",
       "authority": "inversion-labs"
+    },
+    "architecture": {
+      "source": "biocapt-cogitation",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "biocapt-pipeline",
+      "refresh_policy": "per-release",
+      "authority": "biocapt-system"
     },
     "proof.exists": {
       "source": "curated",

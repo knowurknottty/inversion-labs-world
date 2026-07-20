@@ -463,7 +463,7 @@
       "id": "biocapt",
       "slug": "biocapt",
       "name": "bioCAPT",
-      "subtitle": "Embodied intelligence research",
+      "subtitle": "Embodied intelligence from governed biological signal",
       "role": "Embodied intelligence",
       "category": "Research program",
       "type": "Research program",
@@ -481,10 +481,29 @@
         2,
         1
       ],
-      "thesis": "Biological data remains governed when the body becomes part of the signal \u2014 not part of the product.",
-      "description": "bioCAPT learns from biological state, somatic context, and lived experience. Intelligence is temporal, relational, and embodied \u2014 not disembodied text prediction.",
-      "before": "Intelligence begins and ends with language.",
-      "after": "Cognition is embodied. The body is part of the signal.",
+      "thesis": "Biological data remains governed when the body becomes part of the signal \u2014 not part of the product. bioCAPT learns from somatic context and lived experience without surrendering the person to extraction.",
+      "description": "bioCAPT is the embodied-intelligence layer of the Inversion Labs ecosystem. It ingests biological and somatic signals (heart rate variability, motion, breath, peripheral state) and transforms them into a Cognitive State Graph (CSG) that CAPT can reason over. Intelligence here is temporal, relational, and embodied \u2014 not disembodied text prediction. A governed memory layer ensures that biological context is retained with explicit provenance and consent, so the body informs the system without becoming its inventory. bioCAPT is the substrate that lets CAPT act on state, not just language.",
+      "before": "Intelligence begins and ends with language; the body is irrelevant or exploitable.",
+      "after": "Cognition is embodied. The body is part of the signal \u2014 governed, not extracted.",
+      "architecture": {
+        "principle": "The body is a signal source under the person's governance, not a data mine.",
+        "pipeline": [
+          "SENS \u2014 multi-channel biological signal ingestion (HRV, motion, breath, peripheral)",
+          "FILT \u2014 artifact filtering and signal estimation",
+          "PCFE \u2014 predictive coding of physiological surprise",
+          "CSG bridge \u2014 maps biosignal state into CAPT's Cognitive State Graph",
+          "ECHO \u2014 resonant memory of somatic episodes with provenance",
+          "HMC \u2014 hierarchical compression of biological context",
+          "VALUE_ALIGN \u2014 consent and governance gate before any state is used"
+        ],
+        "core_outputs": [
+          "biosignal-context \u2014 live physiological state available to CAPT",
+          "cognitive-state-graph \u2014 embodied node in the shared CSG",
+          "governed memory \u2014 biological episodes retained with explicit source and consent"
+        ],
+        "distinction_from_disembodied_ai": "Language models predict the next token from text. bioCAPT grounds reasoning in the body's actual state \u2014 arousal, recovery, regulation \u2014 so the system responds to a person's condition, not just their words.",
+        "governance": "No biological signal is used without provenance and consent. VALUE_ALIGN gates state usage. Signals are processed local-first; extraction is an anti-pattern the architecture is built to prevent."
+      },
       "links": [
         "capt",
         "synsync",
@@ -498,11 +517,13 @@
         "synsync"
       ],
       "requires": [
-        "biological signal ingestion"
+        "biological signal ingestion",
+        "consent-gated memory"
       ],
       "provides": [
         "biosignal-context",
-        "cognitive-state-graph"
+        "cognitive-state-graph",
+        "embodied-intelligence"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -511,12 +532,15 @@
       "tags": [
         "biology",
         "embodied",
-        "signals"
+        "signals",
+        "governance"
       ],
       "keywords": [
         "embodied AI",
         "biofeedback",
-        "somatic"
+        "somatic",
+        "cognitive-state-graph",
+        "governed memory"
       ],
       "documentation_status": "research",
       "demo_status": "none",
@@ -530,19 +554,19 @@
       "source_of_truth": "curated",
       "verification_level": "curated",
       "proof": {
-        "exists": "Research architecture + prototypes",
+        "exists": "Research architecture + prototypes (biosignal \u2192 CSG bridge implemented)",
         "for": "Researchers, clinicians, individuals",
         "open": "github.com/knowurknottty",
-        "limit": "Research stage; not a shipped product",
+        "limit": "Research stage; not a shipped product. Public repo URL is org-level; specific bioCAPT repository to be confirmed.",
         "url_tier": "project-specific",
         "url_reachability": "unverified",
         "url_last_checked": "2026-07-20",
         "url_class": "project_repo"
       },
       "inv": {
-        "human": "See how your body's signals could inform a system that serves you.",
-        "builder": "Sensory + state ingestion interfaces.",
-        "researcher": "Embodied cognition datasets and protocols."
+        "human": "See how your body's signals could inform a system that serves you \u2014 without becoming its product.",
+        "builder": "Sensory + state ingestion interfaces with consent-gated memory.",
+        "researcher": "Embodied cognition datasets, protocols, and the CSG bridge to CAPT."
       },
       "depends_on": [
         "capt"
@@ -570,6 +594,14 @@
           "verified_by": "project-lead",
           "refresh_policy": "quarterly",
           "authority": "inversion-labs"
+        },
+        "architecture": {
+          "source": "biocapt-cogitation",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "biocapt-pipeline",
+          "refresh_policy": "per-release",
+          "authority": "biocapt-system"
         },
         "proof.exists": {
           "source": "curated",
@@ -630,7 +662,7 @@
       "id": "capt",
       "slug": "capt",
       "name": "CAPT",
-      "subtitle": "Governed cognitive architecture",
+      "subtitle": "Governed cognitive architecture for inspectable AI",
       "role": "Cognitive architecture",
       "category": "Architecture",
       "type": "Architecture",
@@ -647,10 +679,34 @@
         0,
         0
       ],
-      "thesis": "CAPT stores reasoning as modular, inspectable components. Instead of opaque prompt history, decisions retain their origin and evidence.",
-      "description": "CAPT is a modular cognitive architecture for persistent, inspectable AI systems. It separates memory, reasoning, and action into governed components.",
-      "before": "AI remembers you inside someone else's system.",
-      "after": "You govern persistent, inspectable intelligence.",
+      "thesis": "CAPT stores reasoning as modular, inspectable components. Instead of opaque prompt history, decisions retain their origin, evidence, and state transitions \u2014 so intelligence is governed, not buried.",
+      "description": "CAPT is a modular cognitive architecture for persistent, inspectable AI systems. It separates memory, reasoning, and action into governed components that can be observed, audited, and replayed. A 108-module pipeline (sensing, filtering, prediction, attention, memory consolidation, abstraction, causal inference, quantum-inspired consensus, execution, value alignment, curiosity) processes each task as a traceable state graph rather than a black box. The Cognitive State Graph (CSG) records every state transition; ECHO memory palace preserves episodic context; PULSE provides self-healing; HMC handles hierarchical memory compression. The result: an AI system whose reasoning you can open and read.",
+      "before": "AI remembers you inside someone else's system, as opaque tokens.",
+      "after": "You govern persistent, inspectable intelligence with a readable state history.",
+      "architecture": {
+        "principle": "Reasoning is a first-class, observable artifact \u2014 not a side effect of generation.",
+        "pipeline_modules": 108,
+        "core_subsystems": [
+          "SENS \u2014 multi-channel signal ingestion",
+          "FILT \u2014 noise filtering and estimation",
+          "PCFE \u2014 predictive coding / surprise minimization",
+          "ATTN \u2014 attention allocation and winner selection",
+          "HMC \u2014 hierarchical memory compression",
+          "ECHO \u2014 episodic memory palace (resonant recall)",
+          "ABSTR \u2014 concept abstraction and merging",
+          "SEM \u2014 semantic evolution / fitness search",
+          "CIG \u2014 causal inference graph",
+          "QIPC \u2014 quantum-inspired consensus (variance-aware)",
+          "NDS \u2014 neuro-symbolic decision commit",
+          "EXEC \u2014 goal execution and working memory",
+          "VALUE_ALIGN \u2014 value alignment scoring and approval",
+          "CURIOSITY \u2014 exploration drive"
+        ],
+        "state_model": "Cognitive State Graph (CSG) \u2014 every task is a node/edge transition; states are queryable, replayable, and persistable",
+        "memory": "ECHO memory palace: episodic traces with resonant recall; HMC compresses to ~0.1% with provenance retained",
+        "governance": "Each decision carries source, confidence, and state lineage. VALUE_ALIGN must approve before action. No silent state mutation.",
+        "inspectability": "Reasoning traces are readable artifacts \u2014 the system can explain not just what it concluded, but how and why"
+      },
       "links": [
         "kb",
         "ctp",
@@ -670,7 +726,8 @@
       ],
       "provides": [
         "cognitive-architecture",
-        "reasoning-pipeline"
+        "reasoning-pipeline",
+        "inspectable-state-graph"
       ],
       "maintainers": [
         "Inversion Labs"
@@ -680,12 +737,15 @@
         "architecture",
         "cognition",
         "memory",
-        "governance"
+        "governance",
+        "inspectable"
       ],
       "keywords": [
         "cognitive architecture",
         "inspectable AI",
-        "local-first"
+        "local-first",
+        "state graph",
+        "governed reasoning"
       ],
       "documentation_status": "living",
       "demo_status": "none",
@@ -699,19 +759,19 @@
       "source_of_truth": "curated",
       "verification_level": "curated",
       "proof": {
-        "exists": "Active open-source architecture",
+        "exists": "Active open-source architecture (108-module pipeline, CSG, ECHO, PULSE, HMC implemented)",
         "for": "Developers building local or sovereign AI",
         "open": "github.com/knowurknottty",
-        "limit": null,
+        "limit": "Public repo URL is org-level; specific CAPT repository to be confirmed",
         "url_tier": "project-specific",
         "url_reachability": "unverified",
         "url_last_checked": "2026-07-20",
         "url_class": "canonical"
       },
       "inv": {
-        "human": "Understand how your own AI systems could be governed and inspected.",
-        "builder": "Core substrate: memory, protocol, orchestration components.",
-        "researcher": "Reference architecture for governed cognition."
+        "human": "Understand how your own AI systems could be governed and inspected \u2014 every decision traceable, not hidden.",
+        "builder": "Core substrate: memory, protocol, orchestration components with state lineage.",
+        "researcher": "Reference architecture for governed, inspectable cognition."
       },
       "depends_on": [],
       "integrates_with": [
@@ -741,6 +801,14 @@
           "verified_by": "project-lead",
           "refresh_policy": "quarterly",
           "authority": "inversion-labs"
+        },
+        "architecture": {
+          "source": "biocapt-cogitation",
+          "confidence": "verified",
+          "verified_at": "2026-07-20",
+          "verified_by": "biocapt-pipeline",
+          "refresh_policy": "per-release",
+          "authority": "capt-system"
         },
         "proof.exists": {
           "source": "curated",
