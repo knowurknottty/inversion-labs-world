@@ -5,7 +5,7 @@ const workstreams = [
     status: 'Research / interactive model',
     title: 'Human-governed memory',
     body: 'Portable context that keeps its source, permissions, revisions, and exit path attached—so an AI system can use memory without owning it.',
-    link: '#thesis',
+    link: '#capt',
     action: 'Understand the memory model',
   },
   {

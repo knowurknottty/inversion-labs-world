@@ -2489,6 +2489,144 @@ svg {
   .site-footer > a:last-child { min-height: 2.75rem; display: flex; align-items: center; }
 }
 
+/* ==========================================================================
+   CAPT Solo v0.4.0
+   ========================================================================== */
+
+.capt-solo {
+  background: var(--ink);
+  color: var(--text);
+}
+
+.capt-solo .section-heading {
+  padding: clamp(5.5rem, 10vw, 9rem) var(--page-pad);
+}
+
+.capt-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: clamp(3rem, 6vw, 5.5rem);
+}
+
+.capt-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 30rem;
+  padding: clamp(1.5rem, 4vw, 4rem);
+  background: var(--ink-soft);
+  color: var(--text);
+}
+
+.capt-card h3 {
+  max-width: 10ch;
+  margin: auto 0 1rem;
+  font-family: var(--display);
+  font-size: clamp(3rem, 5vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.capt-card > p {
+  max-width: 34rem;
+  margin: 0 0 2rem;
+  line-height: 1.7;
+  opacity: 0.78;
+}
+
+.capt-rule {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 1.25rem 0 0;
+  color: #575b55;
+  font-size: 0.82rem;
+}
+
+.capt-rule span {
+  color: var(--vermillion-dark);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Inversion Excursion
+   ========================================================================== */
+
+.excursion-section {
+  background: var(--ink);
+  color: var(--text);
+}
+
+.excursion-section .section-heading {
+  padding: clamp(5.5rem, 10vw, 9rem) var(--page-pad);
+}
+
+.excursion-chapters {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: clamp(3rem, 6vw, 5.5rem);
+}
+
+.excursion-chapter {
+  display: flex;
+  flex-direction: column;
+  min-height: 30rem;
+  padding: clamp(1.5rem, 4vw, 4rem);
+}
+
+.excursion-chapter:nth-child(odd) { background: var(--ink-soft); color: var(--text); }
+.excursion-chapter:nth-child(even) { background: var(--vermillion); color: var(--ink); }
+
+.chapter-number {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid currentColor;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  opacity: 0.72;
+  text-transform: uppercase;
+}
+
+.excursion-chapter h3 {
+  max-width: 10ch;
+  margin: auto 0 1rem;
+  font-family: var(--display);
+  font-size: clamp(3rem, 5vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.excursion-chapter > p {
+  max-width: 34rem;
+  margin: 0 0 2rem;
+  line-height: 1.7;
+  opacity: 0.78;
+}
+
+.excursion-actions {
+  display: flex;
+  justify-content: center;
+  padding: clamp(3rem, 6vw, 5rem) var(--page-pad);
+}
+
+@media (max-width: 64rem) {
+  .capt-grid { grid-template-columns: 1fr; }
+  .capt-card { min-height: 24rem; }
+  .excursion-chapters { grid-template-columns: 1fr; }
+  .excursion-chapter { min-height: 24rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

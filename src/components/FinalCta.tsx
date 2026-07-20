@@ -2,7 +2,7 @@ export function FinalCta() {
   return (
     <section className="final-cta" aria-labelledby="final-title">
       <div>
-        <p className="section-index"><span>07</span> Choose where to enter</p>
+        <p className="section-index"><span>08</span> Choose where to enter</p>
         <h2 id="final-title">Use the product. Inspect the thinking.</h2>
       </div>
       <p>

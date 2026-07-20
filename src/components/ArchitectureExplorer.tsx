@@ -336,7 +336,7 @@ export function ArchitectureExplorer() {
   return (
     <section className="architecture-section" id="architecture" aria-labelledby="architecture-title">
       <div className="section-heading architecture-heading">
-        <p className="section-index"><span>05</span> Inspect the memory architecture</p>
+        <p className="section-index"><span>06</span> Inspect the memory architecture</p>
         <h2 id="architecture-title">Move from the system to the object—and keep the trail.</h2>
         <p>
           This deterministic, illustrative map shows how nodes, connections, depth, and an agent role fit together.

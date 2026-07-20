@@ -19,18 +19,6 @@ describe('Inversion Labs experience', () => {
     expect(screen.getByText(/Demonstration data · not live telemetry/i)).toBeInTheDocument()
   })
 
-  it('gives the inversion lens a concrete two-state behavior', () => {
-    render(<App />)
-
-    fireEvent.click(screen.getByRole('button', { name: 'Platform view' }))
-    expect(screen.getByRole('heading', { name: /Context enters/i })).toBeInTheDocument()
-    expect(screen.getByText('Opaque lineage')).toBeInTheDocument()
-
-    fireEvent.click(screen.getByRole('button', { name: 'Inverted view' }))
-    expect(screen.getByRole('heading', { name: /Memory remains an object/i })).toBeInTheDocument()
-    expect(screen.getByText('Visible lineage')).toBeInTheDocument()
-  })
-
   it('navigates meaningful depth and opens a governance object', () => {
     render(<App />)
 
@@ -77,5 +65,24 @@ describe('Inversion Labs experience', () => {
     expect(screen.getAllByRole('link', { name: /Open SynSync Pro/ }).some(
       (link) => link.getAttribute('href') === 'https://synsyncpro.netlify.app',
     )).toBe(true)
+  })
+
+  it('presents CAPT Solo v0.4.0 and Inversion Excursion sections', () => {
+    render(<App />)
+
+    expect(screen.getByRole('heading', { name: 'Proof-governed intelligence infrastructure.' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Proof-governed skills' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'ClaimGuard' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Knowledge Bubbles' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Capability degradation' })).toBeInTheDocument()
+
+    expect(screen.getByRole('heading', { name: 'An interactive book through seven thresholds of becoming.' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The Ivory Tower' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The Five Scrolls' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The Seven Dungeons' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The Master Keys' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The Ascension' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The Grimoire' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The Transmission' })).toBeInTheDocument()
   })
 })

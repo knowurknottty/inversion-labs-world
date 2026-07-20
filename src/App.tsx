@@ -1,7 +1,8 @@
 import { ArchitectureExplorer } from './components/ArchitectureExplorer'
+import { CaptSolo } from './components/CaptSolo'
+import { Excursion } from './components/Excursion'
 import { FinalCta } from './components/FinalCta'
 import { Hero } from './components/Hero'
-import { LensSection } from './components/LensSection'
 import { Principles } from './components/Principles'
 import { SiteFooter } from './components/SiteFooter'
 import { SiteHeader } from './components/SiteHeader'
@@ -17,7 +18,8 @@ export default function App() {
         <Hero />
         <WorkOverview />
         <SynSyncProduct />
-        <LensSection />
+        <CaptSolo />
+        <Excursion />
         <ArchitectureExplorer />
         <Principles />
         <FinalCta />
