@@ -5,16 +5,34 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: inversion-labs-world-production
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: read
       deployments: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Prepare and verify deployment artifact
+        run: python scripts/prepare_deploy.py
+
+      - name: Record deployed commit
+        run: printf '%s\n' '${{ github.sha }}' > dist/DEPLOYED_COMMIT.txt
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: pages deploy . --project-name inversion-labs-world --branch main
+          command: pages deploy dist --project-name inversion-labs-world --branch main --commit-hash ${{ github.sha }} --commit-message "${{ github.event.head_commit.message || 'Manual deployment' }}"
