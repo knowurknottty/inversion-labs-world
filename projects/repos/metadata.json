@@ -1,0 +1,155 @@
+{
+  "id": "repos",
+  "slug": "repos",
+  "name": "Repositories",
+  "subtitle": "Working evidence",
+  "role": "Working evidence",
+  "category": "Protocol",
+  "type": "Protocol",
+  "stage": "Live",
+  "visibility": "public",
+  "display_order": 12,
+  "audience": [
+    "Developers",
+    "Researchers",
+    "Funders"
+  ],
+  "color": "#c08c68",
+  "position": [
+    4,
+    -1,
+    -5
+  ],
+  "thesis": "Code is not proof of a vision \u2014 but it is evidence the vision is being built.",
+  "description": "Exposes implementation, architecture, release state, tests, and the gap between concept and production candidate.",
+  "before": "A polished claim proves a system exists.",
+  "after": "Artifacts, tests, and reproducible builds establish what is real.",
+  "links": [
+    "research",
+    "docs",
+    "franken"
+  ],
+  "dependencies": [
+    "research",
+    "docs"
+  ],
+  "reverse_dependencies": [],
+  "requires": [
+    "GitHub"
+  ],
+  "provides": [
+    "code-hosting"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "MIT (per repo)",
+  "tags": [
+    "code",
+    "repositories",
+    "evidence"
+  ],
+  "keywords": [
+    "repositories",
+    "open source"
+  ],
+  "documentation_status": "living",
+  "demo_status": "none",
+  "test_status": "CI",
+  "release_channel": "main",
+  "risk": "low",
+  "stability": "stable",
+  "compatibility": "GitHub",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Public repositories",
+    "for": "Developers, researchers, funders",
+    "open": "github.com/knowurknottty",
+    "limit": null,
+    "url_tier": "org-root",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20",
+    "url_class": "organization"
+  },
+  "inv": {
+    "human": "See the actual code behind the claims.",
+    "builder": "Fork, build, contribute.",
+    "researcher": "Reproducible builds and tests."
+  },
+  "depends_on": [],
+  "integrates_with": [
+    "research",
+    "docs"
+  ],
+  "related_to": [
+    "research"
+  ],
+  "provenance": {
+    "stage": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "thesis": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "quarterly",
+      "authority": "inversion-labs"
+    },
+    "proof.exists": {
+      "source": "curated",
+      "confidence": "curated",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "proof.open": {
+      "source": "curated",
+      "confidence": "needs-confirmation",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "documentation_status": {
+      "source": "docs-ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-docs-change",
+      "authority": "docs-pipeline"
+    },
+    "demo_status": {
+      "source": "deploy-health-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-deploy",
+      "authority": "deploy-pipeline"
+    },
+    "test_status": {
+      "source": "ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-push",
+      "authority": "ci-pipeline"
+    }
+  },
+  "consumes": [],
+  "extends": [],
+  "supersedes": [],
+  "inspired_by": [],
+  "derived_from": [],
+  "conflicts_with": [],
+  "optional_with": []
+}

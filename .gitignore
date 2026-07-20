@@ -6,3 +6,7 @@ coverage
 playwright-report
 test-results
 /audit/
+/public/registry.json
+/public/verification.json
+__pycache__/
+*.pyc

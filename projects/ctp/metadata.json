@@ -1,0 +1,163 @@
+{
+  "id": "ctp",
+  "slug": "ctp",
+  "name": "CTP",
+  "subtitle": "Transaction protocol",
+  "role": "Transaction protocol",
+  "category": "Protocol",
+  "type": "Protocol",
+  "stage": "Live",
+  "visibility": "public",
+  "display_order": 6,
+  "audience": [
+    "Builders of multi-agent systems"
+  ],
+  "color": "#5eb0ff",
+  "position": [
+    4,
+    -3,
+    -1
+  ],
+  "thesis": "CTP wraps each agent request in an explicit contract. Instead of opaque message passing, work travels with its evidence and accountability.",
+  "description": "CTP structures cognitive requests, responses, evidence, and state transitions so agents can collaborate without dissolving accountability.",
+  "before": "Agents pass opaque messages and hope.",
+  "after": "Cognitive work travels through explicit, inspectable transactions.",
+  "links": [
+    "capt",
+    "franken",
+    "khsb"
+  ],
+  "dependencies": [
+    "capt"
+  ],
+  "reverse_dependencies": [
+    "khsb",
+    "franken"
+  ],
+  "requires": [
+    "CAPT"
+  ],
+  "provides": [
+    "protocol-spec"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "MIT (planned)",
+  "tags": [
+    "protocol",
+    "agents",
+    "transactions"
+  ],
+  "keywords": [
+    "agent protocol",
+    "contracts"
+  ],
+  "documentation_status": "spec",
+  "demo_status": "none",
+  "test_status": "reference",
+  "release_channel": "main",
+  "risk": "low",
+  "stability": "stable",
+  "compatibility": "Any",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Spec + reference implementation",
+    "for": "Builders of multi-agent systems",
+    "open": "github.com/knowurknottty",
+    "limit": null,
+    "url_tier": "project-specific",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20",
+    "url_class": "documentation"
+  },
+  "inv": {
+    "human": "Know that AI-to-AI deals are visible, not hidden.",
+    "builder": "Transaction protocol for agent coordination.",
+    "researcher": "Accountability in distributed cognition."
+  },
+  "depends_on": [
+    "capt"
+  ],
+  "integrates_with": [
+    "khsb",
+    "franken"
+  ],
+  "related_to": [
+    "docs"
+  ],
+  "provenance": {
+    "stage": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "thesis": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "quarterly",
+      "authority": "inversion-labs"
+    },
+    "proof.exists": {
+      "source": "curated",
+      "confidence": "curated",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "proof.open": {
+      "source": "curated",
+      "confidence": "needs-confirmation",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "documentation_status": {
+      "source": "docs-ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-docs-change",
+      "authority": "docs-pipeline"
+    },
+    "demo_status": {
+      "source": "deploy-health-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-deploy",
+      "authority": "deploy-pipeline"
+    },
+    "test_status": {
+      "source": "ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-push",
+      "authority": "ci-pipeline"
+    }
+  },
+  "consumes": [
+    "capt"
+  ],
+  "extends": [],
+  "supersedes": [],
+  "inspired_by": [
+    "protocol-theory"
+  ],
+  "derived_from": [
+    "capt"
+  ],
+  "conflicts_with": [],
+  "optional_with": []
+}

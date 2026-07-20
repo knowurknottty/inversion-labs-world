@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inversion Labs — Build the Rails</title>
+<meta name="description" content="Crypto-native private equity. Acquiring durable businesses and embedding cryptographic rails for efficiency, transparency, and speed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --surface-1: #121214;
+    --surface-2: #1a1a1e;
+    --border: #222226;
+    --text-primary: #f0f0f0;
+    --text-secondary: #888892;
+    --text-muted: #55555e;
+    --accent: #6b9bff;
+    --accent-glow: rgba(107,155,255,0.15);
+    --green: #4ade80;
+    --amber: #fbbf24;
+    --radius: 8px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* Grid overlay */
+  .grid-overlay {
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(107,155,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(107,155,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(10,10,11,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+  nav .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+  nav .logo span { color: var(--accent); }
+  nav .nav-links { display: flex; gap: 2rem; list-style: none; }
+  nav .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; color: var(--text-secondary);
+    text-decoration: none; text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: color 0.15s ease;
+  }
+  nav .nav-links a:hover { color: var(--text-primary); }
+
+  /* Terminal badge */
+  .terminal-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; color: var(--green);
+    background: rgba(74,222,128,0.08);
+    border: 1px solid rgba(74,222,128,0.15);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+
+  main { position: relative; z-index: 1; }
+
+  /* Hero */
+  .hero {
+    min-height: 85vh;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2rem 6rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .hero .prompt-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .hero .prompt-line .prompt { color: var(--green); }
+  .hero .prompt-line .dir { color: var(--accent); }
+  .hero h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 .highlight {
+    color: var(--accent);
+    text-shadow: 0 0 60px var(--accent-glow);
+  }
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .hero .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero .cta-row a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .hero .cta-primary {
+    background: var(--accent);
+    color: #0a0a0b;
+    font-weight: 600;
+  }
+  .hero .cta-primary:hover {
+    background: #8ab4ff;
+    transform: translateY(-1px);
+  }
+  .hero .cta-secondary {
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+  .hero .cta-secondary:hover {
+    border-color: var(--text-muted);
+    background: var(--surface-1);
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    max-width: 720px;
+    margin: 0 auto 6rem;
+  }
+  .stats-row .stat {
+    background: var(--surface-1);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .stats-row .stat .number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .stats-row .stat .label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.3rem;
+  }
+  .stats-row .stat .number.green { color: var(--green); }
+  .stats-row .stat .number.amber { color: var(--amber); }
+
+  /* Sections */
+  section { padding: 5rem 2rem; max-width: 960px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+  }
+  section h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+  section h2 .highlight { color: var(--accent); }
+  section > p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
+
+  /* Thesis */
+  .thesis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .thesis-grid .card {
+    background: var(--surface-1);
+    padding: 2rem;
+  }
+  .thesis-grid .card .icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem; margin-bottom: 0.75rem;
+  }
+  .thesis-grid .card h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem; font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .thesis-grid .card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Portfolio */
+  .portfolio-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .portfolio-item {
+    background: var(--surface-1);
+    padding: 1.5rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+  }
+  .portfolio-item .info h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; font-weight: 600;
+  }
+  .portfolio-item .info p {
+    font-size: 0.8rem; color: var(--text-secondary);
+    margin-top: 0.15rem;
+  }
+  .portfolio-item .status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    background: rgba(74,222,128,0.08);
+    color: var(--green);
+    border: 1px solid rgba(74,222,128,0.15);
+    white-space: nowrap;
+  }
+
+  /* Terminal section */
+  .terminal-block {
+    background: #050508;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+  }
+  .terminal-block .term-header {
+    background: var(--surface-2);
+    padding: 0.6rem 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.7rem;
+  }
+  .terminal-block .term-header .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .terminal-block .term-header .dot:nth-child(1) { background: #ff5f57; }
+  .terminal-block .term-header .dot:nth-child(2) { background: #febc2e; }
+  .terminal-block .term-header .dot:nth-child(3) { background: #28c840; }
+  .terminal-block .term-body {
+    padding: 1.2rem 1.2rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+  .terminal-block .term-body .prompt { color: var(--green); }
+  .terminal-block .term-body .cmd { color: var(--text-primary); }
+  .terminal-block .term-body .res { color: var(--accent); }
+  .terminal-block .term-body .dim { color: var(--text-muted); }
+
+  /* Team */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .team-card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+  .team-card .initials {
+    width: 40px; height: 40px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .team-card h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; font-weight: 600;
+  }
+  .team-card .role {
+    font-size: 0.75rem; color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  /* Backers */
+  .backers-row {
+    display: flex; flex-wrap: wrap; gap: 2rem 3rem;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+  .backers-row span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  footer .mono {
+    font-size: 0.75rem; color: var(--text-muted);
+  }
+  footer a {
+    color: var(--accent); text-decoration: none;
+  }
+
+  @media (max-width: 640px) {
+    nav .nav-links { display: none; }
+    .hero { padding-top: 6rem; }
+    .portfolio-item { flex-direction: column; align-items: flex-start; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="grid-overlay"></div>
+
+<nav>
+  <div class="logo">INVERSION<span>_LABS</span></div>
+  <ul class="nav-links">
+    <li><a href="#thesis">Thesis</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#backers">Backers</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="prompt-line">
+      <span class="prompt">$</span> <span class="dir">~/inversion</span> cat mission.md
+    </div>
+    <h1>Acquire. Embed.<br><span class="highlight">Transform.</span></h1>
+    <p>
+      Inversion Labs acquires durable operating businesses and embeds cryptographic rails
+      — making them faster, more transparent, and globally accessible. Crypto invisible to users. Impact unmistakable.
+    </p>
+    <div class="cta-row">
+      <a href="#" class="cta-primary">View Portfolio</a>
+      <a href="#" class="cta-secondary">Read White Paper →</a>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat">
+      <div class="number green">$26.5M</div>
+      <div class="label">Seed Round</div>
+    </div>
+    <div class="stat">
+      <div class="number amber">$100M</div>
+      <div class="label">Valuation</div>
+    </div>
+    <div class="stat">
+      <div class="number">5</div>
+      <div class="label">Portfolio Cos.</div>
+    </div>
+    <div class="stat">
+      <div class="number">3</div>
+      <div class="label">Sectors Active</div>
+    </div>
+  </div>
+
+  <!-- Thesis -->
+  <section id="thesis">
+    <div class="section-label">/ Thesis</div>
+    <h2>The <span class="highlight">inversion</span> of private equity</h2>
+    <p>Just as KKR revolutionized buyouts with financial engineering in the 1980s, we are doing the same with cryptographic engineering.</p>
+
+    <div class="thesis-grid">
+      <div class="card">
+        <div class="icon">⎔</div>
+        <h3>Acquire Durable Businesses</h3>
+        <p>We target cash-flow-positive businesses in telecom, finance, and logistics with legacy infrastructure ready for modernization.</p>
+      </div>
+      <div class="card">
+        <div class="icon">◈</div>
+        <h3>Embed Crypto Rails</h3>
+        <p>Replace slow, opaque settlement layers with cryptographic primitives — programmable payments, verifiable supply chains, on-chain identity.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⌘</div>
+        <h3>Scale the Platform</h3>
+        <p>Our in-house tech arm builds the shared infrastructure deployed across every portfolio company. One platform, many businesses.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terminal Demo -->
+  <section>
+    <div class="terminal-block">
+      <div class="term-header">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        inversionctl — portfolio overview
+      </div>
+      <div class="term-body">
+        <span class="prompt">$</span> <span class="cmd">inversionctl portfolio list --format table</span><br>
+        <span class="dim">┌──────────┬──────────────────────┬──────────┬──────────┐</span><br>
+        <span class="dim">│</span> ID       <span class="dim">│</span> Sector               <span class="dim">│</span> Status   <span class="dim">│</span> ROI     <span class="dim">│</span><br>
+        <span class="dim">├──────────┼──────────────────────┼──────────┼──────────┤</span><br>
+        <span class="dim">│</span> <span class="res">IL-001</span>   <span class="dim">│</span> Telecom Infra        <span class="dim">│</span> <span class="green">Live</span>     <span class="dim">│</span> <span class="amber">+34%</span>    <span class="dim">│</span><br>
+        <span class="dim">│</span> <span class="res">IL-002</span>   <span class="dim">│</span> Payments Processing  <span class="dim">│</span> <span class="green">Live</span>     <span class="dim">│</span> <span class="amber">+28%</span>    <span class="dim">│</span><br>
+        <span class="dim">│</span> <span class="res">IL-003</span>   <span class="dim">│</span> Supply Chain Finance <span class="dim">│</span> <span class="dim">Integr.</span> <span class="dim">│</span> <span class="dim">--</span>      <span class="dim">│</span><br>
+        <span class="dim">└──────────┴──────────────────────┴──────────┴──────────┘</span><br>
+        <span style="color:var(--accent)">◇</span> <span class="dim">3 portfolios active · 2 rails live · $18.4M TVL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio">
+    <div class="section-label">/ Portfolio</div>
+    <h2>Current <span class="highlight">holdings</span></h2>
+    <p>Operating businesses we've acquired and are actively transforming with cryptographic infrastructure.</p>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <div class="info">
+          <h3>Nexus Communications</h3>
+          <p>Telecom infrastructure · Midwest USA</p>
+        </div>
+        <span class="status">Rails Live</span>
+      </div>
+      <div class="portfolio-item">
+        <div class="info">
+          <h3>Meridian Payments</h3>
+          <p>B2B payment processing · 12,000+ merchants</p>
+        </div>
+        <span class="status">Rails Live</span>
+      </div>
+      <div class="portfolio-item">
+        <div class="info">
+          <h3>ChainLink Logistics</h3>
+          <p>Supply chain finance · 8 ports integrated</p>
+        </div>
+        <span class="status">Integrating</span>
+      </div>
+      <div class="portfolio-item">
+        <div class="info">
+          <h3>StableCap Lending</h3>
+          <p>Consumer credit · Due diligence</p>
+        </div>
+        <span class="status">Acquiring</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team">
+    <div class="section-label">/ Team</div>
+    <h2>Deep crypto meets <span class="highlight">Wall Street</span></h2>
+    <p>Former ParaFi, Goldman Sachs, JP Morgan, and Sageview Capital operators building the next-generation private equity platform.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="initials">SR</div>
+        <h3>Santiago Roel Santos</h3>
+        <div class="role">Co-Founder & CEO</div>
+      </div>
+      <div class="team-card">
+        <div class="initials">SD</div>
+        <h3>Suzanne Dannheim</h3>
+        <div class="role">COO · ex-Goldman Sachs Digital Assets</div>
+      </div>
+      <div class="team-card">
+        <div class="initials">AN</div>
+        <h3>Operations Team</h3>
+        <div class="role">8 professionals across 3 continents</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Backers -->
+  <section id="backers">
+    <div class="section-label">/ Backers</div>
+    <h2>Institutional <span class="highlight">confidence</span></h2>
+    <p>$26.5M seed round led by Dragonfly with participation from the most sophisticated investors in crypto and traditional finance.</p>
+    <div class="backers-row">
+      <span>Dragonfly</span>
+      <span>VanEck</span>
+      <span>ParaFi</span>
+      <span>Wintermute</span>
+      <span>HashKey</span>
+      <span>Mirana</span>
+      <span>Faction</span>
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="#" style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--accent);">Press Kit →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="mono">
+    <span style="color:var(--text-muted)">© 2026 Inversion Labs · </span>
+    <a href="mailto:contact@inversionlabs.com">contact@inversionlabs.com</a>
+    <span style="color:var(--text-muted)"> · </span>
+    <a href="https://inversionlabs.com">inversionlabs.com</a>
+  </div>
+</footer>
+
+</body>
+</html>

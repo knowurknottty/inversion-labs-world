@@ -1,0 +1,163 @@
+{
+  "id": "docs",
+  "slug": "docs",
+  "name": "Documentation",
+  "subtitle": "Architecture memory",
+  "role": "Architecture memory",
+  "category": "Field practice",
+  "type": "Field practice",
+  "stage": "Living practice",
+  "visibility": "public",
+  "display_order": 13,
+  "audience": [
+    "Builders",
+    "Researchers"
+  ],
+  "color": "#8494b8",
+  "position": [
+    0,
+    1,
+    -6
+  ],
+  "thesis": "Systems become governable when their decisions remain legible \u2014 not when the documentation was written once and forgotten.",
+  "description": "Preserves the why behind interfaces, protocols, safety boundaries, and release decisions so the architecture can evolve without forgetting itself.",
+  "before": "Documentation describes software after the fact.",
+  "after": "Documentation is part of the system's memory and governance.",
+  "links": [
+    "kb",
+    "research",
+    "repos"
+  ],
+  "dependencies": [
+    "kb",
+    "research"
+  ],
+  "reverse_dependencies": [],
+  "requires": [
+    "Knowledge Bubbles"
+  ],
+  "provides": [
+    "documentation"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "CC-BY",
+  "tags": [
+    "documentation",
+    "governance",
+    "memory"
+  ],
+  "keywords": [
+    "docs",
+    "architecture memory"
+  ],
+  "documentation_status": "living",
+  "demo_status": "none",
+  "test_status": "living",
+  "release_channel": "living",
+  "risk": "low",
+  "stability": "living",
+  "compatibility": "Web",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Living documentation",
+    "for": "Builders, researchers",
+    "open": "github.com/knowurknottty",
+    "limit": null,
+    "url_tier": "project-specific",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20",
+    "url_class": "documentation"
+  },
+  "inv": {
+    "human": "Understand the system's own memory.",
+    "builder": "Architecture decisions, explained.",
+    "researcher": "Governance through legibility."
+  },
+  "depends_on": [
+    "kb"
+  ],
+  "integrates_with": [
+    "research"
+  ],
+  "related_to": [
+    "ctp",
+    "khsb"
+  ],
+  "provenance": {
+    "stage": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "thesis": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "quarterly",
+      "authority": "inversion-labs"
+    },
+    "proof.exists": {
+      "source": "curated",
+      "confidence": "curated",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "proof.open": {
+      "source": "curated",
+      "confidence": "needs-confirmation",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "documentation_status": {
+      "source": "docs-ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-docs-change",
+      "authority": "docs-pipeline"
+    },
+    "demo_status": {
+      "source": "deploy-health-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-deploy",
+      "authority": "deploy-pipeline"
+    },
+    "test_status": {
+      "source": "ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-push",
+      "authority": "ci-pipeline"
+    }
+  },
+  "consumes": [
+    "kb",
+    "research"
+  ],
+  "extends": [],
+  "supersedes": [],
+  "inspired_by": [
+    "technical-writing"
+  ],
+  "derived_from": [
+    "kb"
+  ],
+  "conflicts_with": [],
+  "optional_with": []
+}

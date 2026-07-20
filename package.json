@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "python3 scripts/prepare_vite_deploy.py",
     "build": "tsc -b && vite build",
+    "postbuild": "node scripts/copy-legacy-assets.mjs",
     "lint": "eslint .",
     "test": "vitest run",
     "typecheck": "tsc -b --pretty false",

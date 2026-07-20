@@ -37,3 +37,11 @@ npm run build
 - **Escape** exits the active guide or focus layer, then closes the inspector.
 
 All governance mutations are local to the current browser session. Exported JSON is explicitly marked as demonstration data.
+
+## Preserved ecosystem sources
+
+The repository's governed ecosystem metadata remains under `projects/`, with
+verification and relationship rules under `capt-verification/`, `registry/`,
+and the root governance documents. `npm run build` validates that registry,
+emits `registry.json` and `verification.json`, and carries the legacy static
+experiences into the generated `dist/` artifact before Cloudflare deployment.

@@ -1,0 +1,198 @@
+{
+  "id": "synsync",
+  "slug": "synsync",
+  "name": "SynSync",
+  "subtitle": "Open-source neuroacoustic entrainment",
+  "role": "State technology",
+  "category": "Product",
+  "type": "Product",
+  "stage": "Live",
+  "visibility": "public",
+  "display_order": 4,
+  "audience": [
+    "Individuals"
+  ],
+  "color": "#a083e0",
+  "position": [
+    -6,
+    -2,
+    2
+  ],
+  "thesis": "Neuroacoustic tools remain understandable and user-directed when sound is designed as a calibrated interface — not passive ambience — and every claim is graded by the evidence behind it.",
+  "description": "SynSync is an open-source, local-first brainwave entrainment platform. It generates binaural and isochronic acoustic protocols for sleep, focus, calm, energy, mood, and creativity — each graded by an explicit evidence level (I–IV) with cited peer-reviewed research. Runs entirely in-browser, no account, no data leaves the device.",
+  "before": "Wellness audio is passive ambience with unverifiable claims.",
+  "after": "Sound becomes a transparent, evidence-graded state interface the user controls.",
+  "links": [
+    "biocapt",
+    "hme",
+    "research"
+  ],
+  "dependencies": [
+    "biocapt",
+    "hme"
+  ],
+  "reverse_dependencies": [],
+  "requires": [
+    "audio output",
+    "headphones (for binaural protocols)"
+  ],
+  "provides": [
+    "synchronized-audio",
+    "evidence-graded-entrainment"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "Open source (MIT / GPLv3)",
+  "tags": [
+    "product",
+    "audio",
+    "state",
+    "entrainment",
+    "open-source"
+  ],
+  "keywords": [
+    "neuroacoustic",
+    "binaural",
+    "isochronic",
+    "focus",
+    "sleep",
+    "entrainment"
+  ],
+  "documentation_status": "product",
+  "demo_status": "live",
+  "test_status": "measured",
+  "release_channel": "stable",
+  "risk": "low",
+  "stability": "stable",
+  "compatibility": "Web + mobile (browser-only, no install)",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "evidence_model": {
+    "levels": {
+      "I": "Strongest Evidence — Multiple high-quality studies with consistent findings",
+      "II": "Strong Evidence — Several peer-reviewed studies supporting this protocol",
+      "III": "Moderate Evidence — Preliminary research with promising results",
+      "IV": "Emerging Evidence — Limited studies, requires further validation"
+    },
+    "sample_citations": [
+      "Marshall, L. et al. (2006) \"Boosting slow oscillations during sleep.\" Nature",
+      "Lutz, A. et al. (2004) \"Long-term meditators self-induce high-amplitude gamma synchrony.\"",
+      "Chaieb, L. et al. (2015) \"Auditory Beat Stimulation and Mood States.\" Front Psychiatry",
+      "Padmanabhan, R. et al. (2005) \"Pre-operative anxiety reduction with 6Hz entrainment.\""
+    ],
+    "categories": [
+      "suffering_reduction",
+      "performance_focus",
+      "recovery_addiction",
+      "flow_state",
+      "altered_states"
+    ],
+    "technical": "48kHz/24-bit render, octave layers, warm carrier, pink noise, spatial rotation, binaural + isochronic modes"
+  },
+  "proof": {
+    "exists": "Deployed open-source product (live demo)",
+    "for": "Individuals seeking focus, rest, mood, and recovery support",
+    "open": "https://synsyncpro.netlify.app",
+    "limit": "Entrainment is supportive, not medical treatment; claims are evidence-graded, not certified",
+    "url_tier": "project-specific",
+    "url_reachability": "verified",
+    "url_last_checked": "2026-07-20",
+    "url_class": "demo"
+  },
+  "inv": {
+    "human": "Use a real, open-source system for attention and rest today — no account, no tracking.",
+    "builder": "Embeddable entrainment engine with evidence-graded protocol library.",
+    "researcher": "Acoustic entrainment with cited literature and explicit evidence levels."
+  },
+  "depends_on": [
+    "biocapt"
+  ],
+  "integrates_with": [
+    "hme"
+  ],
+  "related_to": [
+    "field"
+  ],
+  "provenance": {
+    "stage": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "thesis": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "quarterly",
+      "authority": "inversion-labs"
+    },
+    "proof.exists": {
+      "source": "live-verification",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "proof.open": {
+      "source": "live-verification",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "evidence_model": {
+      "source": "product-inspection",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "synsync-product"
+    },
+    "documentation_status": {
+      "source": "docs-ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-docs-change",
+      "authority": "docs-pipeline"
+    },
+    "demo_status": {
+      "source": "live-verification",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "on-deploy",
+      "authority": "deploy-pipeline"
+    },
+    "test_status": {
+      "source": "ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-push",
+      "authority": "ci-pipeline"
+    }
+  },
+  "consumes": [
+    "biocapt"
+  ],
+  "extends": [],
+  "supersedes": [],
+  "inspired_by": [
+    "biofeedback"
+  ],
+  "derived_from": [
+    "biocapt"
+  ],
+  "conflicts_with": [],
+  "optional_with": []
+}

@@ -1,0 +1,167 @@
+{
+  "id": "kb",
+  "slug": "kb",
+  "name": "Knowledge Bubbles",
+  "subtitle": "Portable knowledge",
+  "role": "Portable knowledge",
+  "category": "Architecture",
+  "type": "Architecture",
+  "stage": "Live",
+  "visibility": "public",
+  "display_order": 5,
+  "audience": [
+    "Anyone exchanging trustworthy info"
+  ],
+  "color": "#c5c8d5",
+  "position": [
+    0,
+    4,
+    -1
+  ],
+  "thesis": "Knowledge Bubbles attach source, confidence, and contradiction to every claim. A fact becomes portable instead of a detached sentence.",
+  "description": "Knowledge Bubbles preserve a claim together with its source, confidence, contradictions, and consent rules. That lets knowledge move between systems without losing the context that made it trustworthy.",
+  "before": "A fact is a detached sentence.",
+  "after": "Knowledge carries context, provenance, confidence, and disagreement.",
+  "links": [
+    "capt",
+    "franken",
+    "research",
+    "docs"
+  ],
+  "dependencies": [
+    "capt"
+  ],
+  "reverse_dependencies": [
+    "research",
+    "docs",
+    "franken"
+  ],
+  "requires": [
+    "CAPT"
+  ],
+  "provides": [
+    "knowledge-graph",
+    "memory-palace"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "MIT (planned)",
+  "tags": [
+    "knowledge",
+    "provenance",
+    "portability"
+  ],
+  "keywords": [
+    "knowledge bubbles",
+    "provenance"
+  ],
+  "documentation_status": "living",
+  "demo_status": "none",
+  "test_status": "reference",
+  "release_channel": "main",
+  "risk": "low",
+  "stability": "stable",
+  "compatibility": "Node 18+",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Architecture + reference implementation",
+    "for": "Anyone exchanging trustworthy info",
+    "open": "github.com/knowurknottty",
+    "limit": null,
+    "url_tier": "project-specific",
+    "url_reachability": "unverified",
+    "url_last_checked": "2026-07-20",
+    "url_class": "project_repo"
+  },
+  "inv": {
+    "human": "Your notes could carry their own sources and doubts.",
+    "builder": "Portable semantic objects with provenance.",
+    "researcher": "Provenance as a first-class data property."
+  },
+  "depends_on": [
+    "capt"
+  ],
+  "integrates_with": [
+    "research",
+    "docs",
+    "franken"
+  ],
+  "related_to": [
+    "field"
+  ],
+  "provenance": {
+    "stage": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "thesis": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "quarterly",
+      "authority": "inversion-labs"
+    },
+    "proof.exists": {
+      "source": "curated",
+      "confidence": "curated",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "proof.open": {
+      "source": "curated",
+      "confidence": "needs-confirmation",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "documentation_status": {
+      "source": "docs-ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-docs-change",
+      "authority": "docs-pipeline"
+    },
+    "demo_status": {
+      "source": "deploy-health-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-deploy",
+      "authority": "deploy-pipeline"
+    },
+    "test_status": {
+      "source": "ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-push",
+      "authority": "ci-pipeline"
+    }
+  },
+  "consumes": [
+    "capt"
+  ],
+  "extends": [],
+  "supersedes": [],
+  "inspired_by": [
+    "memory-research"
+  ],
+  "derived_from": [
+    "capt"
+  ],
+  "conflicts_with": [],
+  "optional_with": []
+}

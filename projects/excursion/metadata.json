@@ -1,0 +1,181 @@
+{
+  "id": "excursion",
+  "slug": "excursion",
+  "name": "Inversion Excursion",
+  "subtitle": "Interactive book — seven thresholds of becoming",
+  "role": "Contemplative interactive experience",
+  "category": "Field practice",
+  "type": "Field practice",
+  "stage": "Live",
+  "visibility": "public",
+  "display_order": 9,
+  "audience": [
+    "Anyone who reflects"
+  ],
+  "color": "#65c995",
+  "position": [
+    -3,
+    -5,
+    -2
+  ],
+  "thesis": "Transformation begins with a single step inward. An interactive book can guide reflection without prescribing belief — the reader writes themselves into being.",
+  "description": "Inversion Excursion is a live interactive book: a contemplative journey through seven thresholds of becoming. Each chapter is a doorway with its own theme, epigraph, and entrainment audio (binaural beats tuned per threshold). It is the experiential sibling of the lab's research — where ideas become something you walk through, not just read. Field discovery and direct observation remain the practice it grows from.",
+  "before": "Transformation is something that happens to other people.",
+  "after": "You become through thresholds you choose to cross.",
+  "product_detail": {
+    "format": "Interactive web book (Next.js, canvas + audio)",
+    "chapters": [
+      {"n": 1, "slug": "the-ivory-tower", "title": "The Ivory Tower", "subtitle": "How We Became Pieces in a Game We Never Agreed to Play", "epigraph": "The beginning is the most important part of the work.", "epigraphAuthor": "Plato", "audio": {"baseFrequency": 174, "beatFrequency": 7.83}},
+      {"n": 2, "slug": "the-five-scrolls", "title": "The Five Scrolls", "subtitle": "The Maps That Show You What You Already Know", "epigraph": "The snake which cannot cast its skin has to die.", "epigraphAuthor": "Friedrich Nietzsche", "audio": {"baseFrequency": 285, "beatFrequency": 9}},
+      {"n": 3, "slug": "the-seven-dungeons", "title": "The Seven Dungeons", "subtitle": "Every System of Control Has a Door. Every Door Has a Key.", "epigraph": "The Void is not darkness. The Void is pure potential.", "epigraphAuthor": "Meister Eckhart", "audio": {"baseFrequency": 396, "beatFrequency": 10.5}},
+      {"n": 4, "slug": "the-master-keys", "title": "The Master Keys", "subtitle": "Tools for Unlocking What Was Never Locked", "epigraph": "What you seek is seeking you.", "epigraphAuthor": "Rumi", "audio": {"baseFrequency": 417, "beatFrequency": 6}},
+      {"n": 5, "slug": "the-ascension", "title": "The Ascension", "subtitle": "What Happens When You Stop Playing the Game", "epigraph": "The kingdom of God is within you.", "epigraphAuthor": "Luke 17:21", "audio": {"baseFrequency": 528, "beatFrequency": 8}},
+      {"n": 6, "slug": "the-grimoire", "title": "The Grimoire", "subtitle": "The Book You Write Yourself Into Being", "epigraph": "The hero's journey is not a destination. It is a way of being.", "epigraphAuthor": "Joseph Campbell", "audio": {"baseFrequency": 639, "beatFrequency": 7}},
+      {"n": 7, "slug": "the-transmission", "title": "The Transmission", "subtitle": "What You Bring Back and How You Give It Away", "epigraph": "The wound is the place where the light enters you.", "epigraphAuthor": "Rumi", "audio": {"baseFrequency": 963, "beatFrequency": 12}}
+    ],
+    "audio_model": "Each chapter pairs a base frequency (174–963 Hz, solfeggio-adjacent) with a binaural beat (6–12 Hz) for contemplative entrainment",
+    "interaction": "Canvas-based threshold navigation, optional audio, reflect/settings panels"
+  },
+  "links": [
+    "research",
+    "field",
+    "hme"
+  ],
+  "dependencies": [
+    "research"
+  ],
+  "reverse_dependencies": [],
+  "requires": [
+    "web browser",
+    "optional headphones for audio"
+  ],
+  "provides": [
+    "field-discovery",
+    "contemplative-experience"
+  ],
+  "maintainers": [
+    "Inversion Labs"
+  ],
+  "license": "CC-BY (field notes)",
+  "tags": [
+    "field",
+    "interactive-book",
+    "reflection",
+    "audio"
+  ],
+  "keywords": [
+    "excursion",
+    "contemplative",
+    "thresholds",
+    "binaural"
+  ],
+  "documentation_status": "living",
+  "demo_status": "live",
+  "test_status": "practice",
+  "release_channel": "living",
+  "risk": "low",
+  "stability": "live",
+  "compatibility": "Web + mobile",
+  "updated_from": "registry.json",
+  "generated": "2026-07-20",
+  "source_of_truth": "curated",
+  "verification_level": "curated",
+  "proof": {
+    "exists": "Live interactive book (7 chapters, audio entrainment)",
+    "for": "Anyone who reflects",
+    "open": "https://inversion-excursion.netlify.app",
+    "limit": "Experiential, not therapeutic; entrainment is supportive",
+    "url_tier": "project-specific",
+    "url_reachability": "verified",
+    "url_last_checked": "2026-07-20",
+    "url_class": "demo"
+  },
+  "inv": {
+    "human": "Walk seven thresholds of becoming — an interactive book you step through, not just read.",
+    "builder": "Reusable interactive-book framework with per-chapter theming + audio.",
+    "researcher": "Contemplative UX as a research surface for self-inquiry."
+  },
+  "depends_on": [],
+  "integrates_with": [
+    "field",
+    "research"
+  ],
+  "related_to": [
+    "field"
+  ],
+  "provenance": {
+    "stage": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "thesis": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "quarterly",
+      "authority": "inversion-labs"
+    },
+    "product_detail": {
+      "source": "live-verification",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "excursion-product"
+    },
+    "proof.exists": {
+      "source": "live-verification",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "proof.open": {
+      "source": "live-verification",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "per-release",
+      "authority": "inversion-labs"
+    },
+    "documentation_status": {
+      "source": "docs-ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-docs-change",
+      "authority": "docs-pipeline"
+    },
+    "demo_status": {
+      "source": "live-verification",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "release-engineer",
+      "refresh_policy": "on-deploy",
+      "authority": "deploy-pipeline"
+    },
+    "test_status": {
+      "source": "ci-pending",
+      "confidence": "inferred",
+      "verified_at": "2026-07-20",
+      "verified_by": "ci",
+      "refresh_policy": "on-push",
+      "authority": "ci-pipeline"
+    }
+  },
+  "consumes": [],
+  "extends": [],
+  "supersedes": [],
+  "inspired_by": [
+    "naturalist-tradition"
+  ],
+  "derived_from": [],
+  "conflicts_with": [],
+  "optional_with": []
+}
