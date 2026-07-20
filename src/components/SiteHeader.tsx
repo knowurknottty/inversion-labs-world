@@ -1,92 +1,82 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useState, useEffect } from 'react';
 
 const NAV_ITEMS = [
-  { href: '#evidence', label: 'Evidence' },
+  { href: '#lens', label: 'The Inversion' },
   { href: '#synsync', label: 'SynSync Pro' },
-  { href: '#systems', label: 'Systems' },
-  { href: '#thesis', label: 'The Inversion' },
+  { href: '#evidence', label: 'Evidence' },
+  { href: '#atlas', label: 'Systems' },
   { href: '#architecture', label: 'Architecture' },
   { href: '#principles', label: 'Principles' },
-  { href: '#participate', label: 'Participate' },
-] as const
-
-const DESKTOP_NAV_HREFS = new Set(['#evidence', '#systems', '#architecture', '#participate'])
+];
 
 export function SiteHeader() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const navRef = useRef<HTMLDivElement>(null)
-  const toggleRef = useRef<HTMLButtonElement>(null)
-
-  const closeMenu = useCallback(() => setMenuOpen(false), [])
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (!menuOpen) return
-    const handlePointerDown = (event: PointerEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        closeMenu()
-      }
-    }
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        closeMenu()
-        toggleRef.current?.focus()
-      }
-    }
-    document.addEventListener('pointerdown', handlePointerDown)
-    document.addEventListener('keydown', handleEscape)
-    return () => {
-      document.removeEventListener('pointerdown', handlePointerDown)
-      document.removeEventListener('keydown', handleEscape)
-    }
-  }, [menuOpen, closeMenu])
+    const handler = () => setScrolled(window.scrollY > 48);
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
 
   return (
-    <header className="site-header">
-      <a className="wordmark" href="#top">
-        <span className="wordmark-mark" aria-hidden="true">I/L</span>
-        <span>Inversion Labs <small>Field guide</small></span>
+    <header className={`site-header ${scrolled ? 'site-header--scrolled' : ''}`} role="banner">
+      <a className="wordmark" href="#hero" aria-label="Inversion Labs — return to top">
+        <span className="wordmark-mark" aria-hidden="true">
+          <span className="wm-bracket wm-bracket--tl" />
+          <span className="wm-bracket wm-bracket--tr" />
+          <span className="wm-bracket wm-bracket--bl" />
+          <span className="wm-bracket wm-bracket--br" />
+          <span className="wm-glyph">I/L</span>
+        </span>
+        <span className="wordmark-text">Inversion Labs</span>
       </a>
 
-      <nav className="desktop-nav" aria-label="Primary navigation">
-        {NAV_ITEMS.filter((item) => DESKTOP_NAV_HREFS.has(item.href)).map((item) => (
-          <a key={item.href} href={item.href}>{item.label}</a>
-        ))}
+      <nav className="site-nav" aria-label="Primary navigation">
+        <ul role="list">
+          {NAV_ITEMS.map(item => (
+            <li key={item.href}>
+              <a href={item.href} className="nav-link">{item.label}</a>
+            </li>
+          ))}
+        </ul>
       </nav>
 
-      <div className="mobile-nav" ref={navRef}>
-        <button
-          ref={toggleRef}
-          type="button"
-          className="mobile-nav-toggle"
-          aria-label="Toggle navigation menu"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-nav-panel"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span aria-hidden="true">{menuOpen ? '✕' : '☰'}</span>
-        </button>
-        {menuOpen && (
-          <nav
-            id="mobile-nav-panel"
-            className="mobile-nav-panel"
-            aria-label="Mobile navigation"
-          >
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+      <button
+        className="nav-toggle"
+        aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+        aria-expanded={menuOpen}
+        aria-controls="mobile-nav"
+        onClick={() => setMenuOpen(o => !o)}
+      >
+        {menuOpen ? (
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        ) : (
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
         )}
-      </div>
+      </button>
 
-      <a className="header-cta" href="https://github.com/knowurknottty/inversion-labs-world" target="_blank" rel="noreferrer">
-        Source <span aria-hidden="true">↗</span>
-      </a>
+      {menuOpen && (
+        <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile navigation">
+          <ul role="list">
+            {NAV_ITEMS.map(item => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className="mobile-nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </header>
-  )
+  );
 }

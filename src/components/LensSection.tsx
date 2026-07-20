@@ -1,80 +1,89 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import { useMemoryObject } from '../context/MemoryObject';
 
-type LensState = 'platform' | 'person'
+type LensState = 'invisible' | 'platform' | 'person';
 
-const lensContent: Record<LensState, { label: string; title: string; body: string; traits: string[] }> = {
+const LENS_COPY: Record<LensState, { headline: string; body: string; status: string }> = {
+  invisible: {
+    headline: 'Current default: memory is invisible.',
+    body: 'Most people have never considered who owns their context. It accumulates silently inside platforms — building a model of you that you cannot inspect, export, or revoke.',
+    status: 'UNBOUND / NO ENVELOPE',
+  },
   platform: {
-    label: 'Platform-controlled memory',
-    title: 'Context enters. Its trail disappears.',
-    body: 'When memory is owned by an application, the person using it has no object to inspect, transfer, or revoke. The context exists — but not as something you can act on.',
-    traits: ['Application-bound — no portability', 'Opaque lineage — no trail', 'Access implied by use — no explicit permission'],
+    headline: 'Platform owns it.',
+    body: 'Your memory, attention patterns, and coordination history live inside application boundaries. You are the input. The model of you is the product.',
+    status: 'CONTAINED / PLATFORM BOUNDARY',
   },
   person: {
-    label: 'User-governed memory',
-    title: 'Memory stays an object you can act on.',
-    body: 'In the inverted model, content, provenance, permissions, and revision history travel together as a single envelope. The person can inspect it, move it, or revoke access — outside any application boundary.',
-    traits: ['Portable envelope — survives platform changes', 'Visible lineage — full transformation trail', 'Explicit permission — revocable at any time'],
+    headline: 'You own it.',
+    body: 'Memory travels with you. It is local-first, person-portable, and inspectable. The platform is a tool you use — not a container you live inside.',
+    status: 'RELEASED / PERSON-PORTABLE',
   },
-}
+};
 
 export function LensSection() {
-  const [lens, setLens] = useState<LensState>('person')
-  const content = lensContent[lens]
+  const [lens, setLens] = useState<LensState>('invisible');
+  const { addEvent } = useMemoryObject();
+
+  const handleLens = (state: LensState) => {
+    setLens(state);
+    addEvent('lens', `toggled_to_${state}`);
+  };
+
+  useEffect(() => {
+    addEvent('lens', 'section_entered');
+  }, [addEvent]);
 
   return (
-    <section className="lens-section" id="thesis" aria-labelledby="lens-title">
-      <div className="section-heading lens-heading">
-        <p className="section-index"><span>05</span> The memory inversion</p>
-        <h2 id="lens-title">Same memory. Different authority.</h2>
-        <p>
-          Toggle the lens to see exactly what changes when memory shifts from an application
-          side-effect to a person-governed object with an inspectable trail.
+    <section className="lens-section" id="lens" aria-labelledby="lens-title">
+      <div className="lens-header">
+        <p className="section-index"><span>Lens</span></p>
+        <h2 id="lens-title">The Inversion</h2>
+        <p className="lens-subtitle">
+          Three states. One question: where does your context live?
         </p>
       </div>
 
-      <div className={`lens-instrument lens-${lens}`}>
-        <div className="segmented-control" role="group" aria-label="Memory governance perspective">
-          <button
-            type="button"
-            className={lens === 'platform' ? 'active' : ''}
-            aria-pressed={lens === 'platform'}
-            onClick={() => setLens('platform')}
-          >
-            Platform owns it
-          </button>
-          <button
-            type="button"
-            className={lens === 'person' ? 'active' : ''}
-            aria-pressed={lens === 'person'}
-            onClick={() => setLens('person')}
-          >
-            You own it
-          </button>
+      <div className="lens-stage" role="region" aria-label="Memory ownership demonstration">
+        <div className={`lens-environment lens-environment--${lens}`}>
+          <div className="lens-boundary-wall" aria-hidden="true">
+            <span className="boundary-label">APPLICATION BOUNDARY</span>
+          </div>
+
+          <div className={`lens-object lens-object--${lens}`} aria-label="Memory object">
+            <span className="corner-a" aria-hidden="true" />
+            <span className="corner-b" aria-hidden="true" />
+            <span className="corner-c" aria-hidden="true" />
+            <span className="corner-d" aria-hidden="true" />
+            <p className="lens-object-id">MEM / 0137</p>
+            <p className="lens-object-status">{LENS_COPY[lens].status}</p>
+          </div>
         </div>
 
-        <div className="lens-stage" aria-live="polite" aria-atomic="true">
-          <div className="lens-object" aria-hidden="true">
-            <span className="object-corner corner-a" />
-            <span className="object-corner corner-b" />
-            <span className="object-corner corner-c" />
-            <span className="object-corner corner-d" />
-            <div className="object-lines"><i /><i /><i /></div>
-            <span className="object-label">MEM / 0137</span>
-          </div>
-          <div className="lens-boundary" aria-hidden="true">
-            <span>APPLICATION BOUNDARY</span>
-          </div>
-          <div className="lens-trace" aria-hidden="true"><i /><i /><i /></div>
-          <div className="lens-copy">
-            <p className="lens-label">{content.label}</p>
-            <h3>{content.title}</h3>
-            <p>{content.body}</p>
-            <ul aria-label="Consequences of this model">
-              {content.traits.map((trait) => <li key={trait}>{trait}</li>)}
-            </ul>
-          </div>
+        <div className="lens-copy-block">
+          <h3 className="lens-copy-headline">{LENS_COPY[lens].headline}</h3>
+          <p className="lens-copy-body">{LENS_COPY[lens].body}</p>
         </div>
       </div>
+
+      <div
+        className="lens-controls"
+        role="group"
+        aria-label="Select memory ownership state"
+      >
+        {(['invisible', 'platform', 'person'] as LensState[]).map(state => (
+          <button
+            key={state}
+            className={`lens-toggle ${lens === state ? 'lens-toggle--active' : ''}`}
+            onClick={() => handleLens(state)}
+            aria-pressed={lens === state}
+          >
+            {state === 'invisible' && 'Current default'}
+            {state === 'platform' && 'Platform owns it'}
+            {state === 'person' && 'You own it'}
+          </button>
+        ))}
+      </div>
     </section>
-  )
+  );
 }
