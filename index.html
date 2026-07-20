@@ -115,8 +115,11 @@
   display:flex;justify-content:space-between;align-items:flex-start;
   padding:1.8rem 1.8rem 1rem;border-bottom:1px solid var(--glass-border);flex-shrink:0
 }
-.dw-hd .meta{font-size:.55rem;color:var(--dim);letter-spacing:.08em;font-family:"JetBrains Mono",monospace}
-.dw-hd h2{font:400 1.4rem/1.2 "Instrument Serif",Georgia,serif;margin:.15rem 0 .25rem}
+.dw-hd .bc{font-size:.46rem;color:var(--dim);letter-spacing:.04em;font-family:"JetBrains Mono",monospace;margin-bottom:.35rem;text-transform:uppercase}
+.dw-hd .bc b{color:var(--muted);font-weight:400}
+.dw-hd .bc .sep{margin:0 .35rem;opacity:.5}
+.dw-hd .meta{font-size:.5rem;color:var(--dim);letter-spacing:.08em;font-family:"JetBrains Mono",monospace}
+.dw-hd h2{font:400 1.7rem/1.15 "Instrument Serif",Georgia,serif;margin:.15rem 0 .3rem}
 .dw-hd .tags{display:flex;gap:.4rem;margin-top:.3rem;flex-wrap:wrap}
 .dw-hd .tag{font-size:.46rem;letter-spacing:.05em;font-family:"JetBrains Mono",monospace;padding:.15rem .5rem;border-radius:100px;border:1px solid var(--glass-border);color:var(--muted)}
 .dw-hd .tag.type{color:var(--blue);border-color:rgba(111,148,209,.3)}
@@ -206,8 +209,11 @@
 #endP .et{font-family:"Instrument Serif",Georgia,serif;font-size:1.1rem;color:var(--text)}
 #endP .et span{color:var(--red)}
 #endP .ea{display:flex;gap:.6rem;flex-wrap:wrap}
-#endP .ea a{font-family:"JetBrains Mono",monospace;font-size:.5rem;letter-spacing:.05em;padding:.4rem .9rem;border:1px solid var(--glass-border);border-radius:100px;color:var(--muted);text-decoration:none;transition:all .3s ease}
-#endP .ea a:hover{color:var(--text);border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.03)}
+#endP .ea a{font-family:"JetBrains Mono",monospace;font-size:.5rem;letter-spacing:.05em;padding:.4rem .9rem;border-radius:100px;color:var(--muted);text-decoration:none;transition:all .3s ease}
+#endP .ea a.primary{background:rgba(224,102,89,.14);border:1px solid rgba(224,102,89,.4);color:var(--text);font-size:.56rem;padding:.5rem 1.2rem}
+#endP .ea a.primary:hover{background:rgba(224,102,89,.22);border-color:rgba(224,102,89,.6)}
+#endP .ea a.secondary{border:1px solid var(--glass-border)}
+#endP .ea a.secondary:hover{color:var(--text);border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.03)}
 
 /* TOAST */
 #tt{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);z-index:50;padding:.4rem 1rem;border-radius:100px;font-size:.55rem;color:var(--muted);font-family:"JetBrains Mono",monospace;letter-spacing:.04em;opacity:0;transition:all .5s var(--ease);pointer-events:none}
@@ -231,6 +237,7 @@
 </style>
 </head>
 <body>
+<a href="#arrival" id="skipLink" class="sr">Skip to content</a>
 <div id="world"></div>
 <div id="grain"></div>
 
@@ -260,17 +267,17 @@
     <h2>Where would you like to start?</h2>
     <p class="sub">The same architecture, three ways in. Pick the one that fits who you are — you can switch anytime.</p>
     <div class="grid">
-      <button class="pcard" data-path="human">
+      <button class="pcard" data-path="human" aria-label="Start as Human: explore SynSync, HME, bioCAPT">
         <div class="pt serif">Human</div>
         <div class="pd">You're curious about what sovereign intelligence means for your own life, attention, and agency.</div>
         <div class="pgo">SynSync → HME → bioCAPT → thesis →</div>
       </button>
-      <button class="pcard" data-path="builder">
+      <button class="pcard" data-path="builder" aria-label="Start as Builder: explore CAPT, Knowledge Bubbles, CTP, KHSB, repositories">
         <div class="pt serif">Builder</div>
         <div class="pd">You write code or ship systems and want inspectable, local-first intelligence you can build on.</div>
         <div class="pgo">CAPT → Knowledge Bubbles → CTP → KHSB → repos →</div>
       </button>
-      <button class="pcard" data-path="researcher">
+      <button class="pcard" data-path="researcher" aria-label="Start as Researcher: explore bioCAPT, Research, Field Notes, Knowledge Bubbles, docs">
         <div class="pt serif">Researcher</div>
         <div class="pd">You study cognition, signals, protocols, or provenance and want the evidence layer.</div>
         <div class="pgo">bioCAPT → Research → Field Notes → Knowledge Bubbles → docs →</div>
@@ -304,9 +311,9 @@
   <div id="endP">
     <div class="et">Build with us — <span>governed intelligence is a practice, not a product.</span></div>
     <div class="ea">
-      <a href="https://github.com/knowurknottty" target="_blank" rel="noopener">Explore repositories</a>
-      <a href="https://inversion-labs-world.pages.dev/#capt" target="_blank" rel="noopener">Use a live system</a>
-      <a href="https://github.com/knowurknottty/inversion-labs-world" target="_blank" rel="noopener">Follow Inversion Labs</a>
+      <a href="https://inversion-labs-world.pages.dev/#capt" class="primary" target="_blank" rel="noopener">Explore the ecosystem</a>
+      <a href="https://github.com/knowurknottty" class="secondary" target="_blank" rel="noopener">Repositories</a>
+      <a href="https://github.com/knowurknottty/inversion-labs-world" class="secondary" target="_blank" rel="noopener">Follow</a>
     </div>
   </div>
 </div>
@@ -315,6 +322,7 @@
 <aside id="drawer" aria-labelledby="dwT">
   <div class="dw-hd">
     <div>
+      <div class="bc" id="dwBc"></div>
       <div class="meta" id="dwMeta"></div>
       <h2 id="dwT"></h2>
       <div class="tags" id="dwTags"></div>
@@ -387,7 +395,7 @@
 
 const S=[
 {id:'capt',name:'CAPT',role:'Cognitive architecture',type:'Architecture',stage:'Live',c:0x6f94d1,cs:'#6f94d1',p:[0,0,0],
- t:'Cognition remains inspectable when it has an architecture — not a pile of prompts.',
+ t:'CAPT stores reasoning as modular, inspectable components. Instead of opaque prompt history, decisions retain their origin and evidence.',
  d:'CAPT is a modular cognitive architecture for persistent, inspectable AI systems. It separates memory, reasoning, and action into governed components.',
  b:'AI remembers you inside someone else\'s system.',
  a:'You govern persistent, inspectable intelligence.',
@@ -400,7 +408,7 @@ const S=[
  b:'Intelligence begins and ends with language.',
  a:'Cognition is embodied. The body is part of the signal.',
  l:['capt','synsync','hme'],
- proof:{exists:'Research architecture + prototypes',for:'Researchers, clinicians, individuals',open:'github.com/knowurknottty'},
+ proof:{exists:'Research architecture + prototypes',for:'Researchers, clinicians, individuals',open:'github.com/knowurknottty',limit:'Research stage; not a shipped product'},
  inv:{human:'See how your body\'s signals could inform a system that serves you.',builder:'Sensory + state ingestion interfaces.',researcher:'Embodied cognition datasets and protocols.'}},
 {id:'franken',name:'FrankenCAPT',role:'Skill governance',type:'Architecture',stage:'Active development',c:0xe1b453,cs:'#e1b453',p:[5,2,1],
  t:'Capability without governance becomes an uncontrolled pile of tools — not intelligence.',
@@ -416,10 +424,10 @@ const S=[
  b:'Wellness audio is passive ambience.',
  a:'Sound becomes a calibrated, transparent state interface.',
  l:['biocapt','hme','research'],
- proof:{exists:'Deployed product (early access)',for:'Individuals seeking focus, rest, transition',open:'inversion-labs-world.pages.dev/synsync'},
+ proof:{exists:'Deployed product (early access)',for:'Individuals seeking focus, rest, transition',open:'inversion-labs-world.pages.dev/synsync',limit:'Early access; claims are measured, not certified'},
  inv:{human:'Use a real system for attention and rest today.',builder:'API for state-transition audio.',researcher:'Acoustic entrainment with measured claims.'}},
 {id:'kb',name:'Knowledge Bubbles',role:'Portable knowledge',type:'Architecture',stage:'Live',c:0xc5c8d5,cs:'#c5c8d5',p:[0,4,-1],
- t:'Claims retain provenance when knowledge carries its own evidence, consent, and uncertainty — not just its conclusion.',
+ t:'Knowledge Bubbles attach source, confidence, and contradiction to every claim. A fact becomes portable instead of a detached sentence.',
  d:'Knowledge Bubbles preserve a claim together with its source, confidence, contradictions, and consent rules. That lets knowledge move between systems without losing the context that made it trustworthy.',
  b:'A fact is a detached sentence.',
  a:'Knowledge carries context, provenance, confidence, and disagreement.',
@@ -427,7 +435,7 @@ const S=[
  proof:{exists:'Architecture + reference implementation',for:'Anyone exchanging trustworthy info',open:'github.com/knowurknottty'},
  inv:{human:'Your notes could carry their own sources and doubts.',builder:'Portable semantic objects with provenance.',researcher:'Provenance as a first-class data property.'}},
 {id:'ctp',name:'CTP',role:'Transaction protocol',type:'Protocol',stage:'Live',c:0x5eb0ff,cs:'#5eb0ff',p:[4,-3,-1],
- t:'Agents exchange intent through explicit contracts — not opaque message passing.',
+ t:'CTP wraps each agent request in an explicit contract. Instead of opaque message passing, work travels with its evidence and accountability.',
  d:'CTP structures cognitive requests, responses, evidence, and state transitions so agents can collaborate without dissolving accountability.',
  b:'Agents pass opaque messages and hope.',
  a:'Cognitive work travels through explicit, inspectable transactions.',
@@ -435,7 +443,7 @@ const S=[
  proof:{exists:'Spec + reference implementation',for:'Builders of multi-agent systems',open:'github.com/knowurknottty'},
  inv:{human:'Know that AI-to-AI deals are visible, not hidden.',builder:'Transaction protocol for agent coordination.',researcher:'Accountability in distributed cognition.'}},
 {id:'khsb',name:'KHSB',role:'System nervous system',type:'Protocol',stage:'Live',c:0xf0d15a,cs:'#f0d15a',p:[7,0,-2],
- t:'Local systems communicate without surrendering control when interconnection uses bounded contracts — not open borders.',
+ t:'KHSB connects local systems through bounded envelopes. Instead of open borders, interconnection uses explicit contracts and identity.',
  d:'KHSB is the communication tissue connecting systems through bounded envelopes, routing, identity, and protocol-aware exchange.',
  b:'Connectivity means opening every system to every other system.',
  a:'Systems communicate through explicit boundaries and contracts.',
@@ -448,7 +456,7 @@ const S=[
  b:'One framework explains the whole person.',
  a:'Multiple lenses coexist without pretending to be absolute truth.',
  l:['biocapt','synsync','research'],
- proof:{exists:'Research architecture',for:'Individuals, clinicians, researchers',open:'github.com/knowurknottty'},
+ proof:{exists:'Research architecture',for:'Individuals, clinicians, researchers',open:'github.com/knowurknottty',limit:'Concept stage; interpretive, not diagnostic'},
  inv:{human:'See yourself through more than one lens, honestly.',builder:'Multi-lens synthesis API.',researcher:'Interpretive synthesis under uncertainty.'}},
 {id:'excursion',name:'Inversion Excursion',role:'Field discovery',type:'Field practice',stage:'Living practice',c:0x65c995,cs:'#65c995',p:[-3,-5,-2],
  t:'The overlooked world is full of signal. Observation deserves a place before certainty.',
@@ -587,6 +595,9 @@ function choosePath(p){
 
 function pr(s){
   selected=s;if(museum)mu();dr.classList.add('open');
+  const bc=curPath?`<b>Inversion Labs</b><span class="sep">↓</span><b>${curPath[0].toUpperCase()+curPath.slice(1)}</b><span class="sep">↓</span>${s.name}`
+    :`<b>Inversion Labs</b><span class="sep">↓</span><b>${s.type}</b><span class="sep">↓</span>${s.name}`;
+  $('#dwBc').innerHTML=bc;
   $('#dwMeta').textContent=s.role;
   $('#dwT').textContent=s.name;
   $('#dwTags').innerHTML=`<span class="tag type">${s.type}</span><span class="tag stage">${s.stage}</span>`;
@@ -595,6 +606,7 @@ function pr(s){
   html+=`<div class="proof"><div class="lbl">What exists today</div>`;
   html+=`<div class="row"><b>${s.proof.exists}</b></div>`;
   html+=`<div class="row"><span>For</span><span>${s.proof.for}</span></div>`;
+  if(s.proof.limit)html+=`<div class="row"><span>Known limit</span><span>${s.proof.limit}</span></div>`;
   html+=`<div class="row"><span>Open</span><a href="https://${s.proof.open}" target="_blank" rel="noopener">${s.proof.open}</a></div></div>`;
   if(inv)html+=`<div class="iv"><div class="lbl">Why it matters to you</div><div class="af">${inv}</div></div>`;
   html+=`<div class="iv"><div class="lbl">The inversion</div><div class="bf">${s.b}</div><div class="ar">↓</div><div class="af">${s.a}</div></div>`;
@@ -610,6 +622,16 @@ function pr(s){
   db.querySelectorAll('.chip').forEach(b=>b.onclick=()=>pr(byId[b.dataset.id]));
   const dBtn=db.querySelector('#dBtn');if(dBtn){let x=0;dBtn.onclick=()=>pr(byId[s.l[x++%s.l.length]]);}
   db.querySelector('#oBtn').onclick=()=>{dr.classList.remove('open');selected=null;td=19;};
+  // Focus trap: keep Tab within drawer while open
+  dr.addEventListener('keydown',e=>{
+    if(e.key!=='Tab')return;
+    const f=dr.querySelectorAll('button,a[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+    if(!f.length)return;
+    const first=f[0],last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  });
+  $('#dwCl').focus();
   if(window.THREE){const v=new THREE.Vector3(...s.p);ty=Math.atan2(v.x,v.z||.01)*-.45;tp=Math.max(-.35,Math.min(.35,v.y*.05));}td=11;
   sr.textContent=`${s.name}. ${s.t}`;
 }
