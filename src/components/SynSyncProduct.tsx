@@ -1,8 +1,8 @@
 const sourceThreads = ['GATE', 'Gateway', 'Warfighter Optimization']
 
 const productFacts = [
-  'Open source',
-  'Browser based',
+  'Live public demo',
+  'Local audio render',
   'Binaural + isochronic',
   'Evidence graded',
 ]
@@ -14,10 +14,11 @@ export function SynSyncProduct() {
 
       <div className="section-heading synsync-heading">
         <p className="section-index"><span>03</span> Live product / SynSync Pro</p>
-        <h2 id="synsync-title">State technology, returned to the public.</h2>
+        <h2 id="synsync-title">A public product you can use now.</h2>
         <p>
-          SynSync Pro turns brainwave entrainment into an open, user-directed instrument. It is built to become the
-          definitive public app in its category—without turning intimate human state into someone else&apos;s asset.
+          SynSync Pro turns brainwave entrainment into a user-directed browser instrument. It is the clearest public
+          demonstration of the lab&apos;s operating rule: intimate technology should remain understandable and under the
+          listener&apos;s control.
         </p>
       </div>
 
@@ -44,7 +45,7 @@ export function SynSyncProduct() {
           <h3>SynSync Pro</h3>
           <p>
             A browser-based brainwave entrainment studio for exploring binaural and isochronic audio protocols, with
-            visible evidence grades and audio generated on the listener&apos;s device.
+            visible evidence grades and audio rendered on the listener&apos;s device.
           </p>
           <ul className="product-facts" aria-label="SynSync product characteristics">
             {productFacts.map((fact) => <li key={fact}>{fact}</li>)}
@@ -61,34 +62,40 @@ export function SynSyncProduct() {
       </div>
 
       <div className="synsync-lower">
-        <div className="lineage-panel" aria-labelledby="lineage-title">
-          <div className="lineage-intro">
-            <p className="product-kicker">The product inversion</p>
-            <h3 id="lineage-title">Institutional research becomes a personal instrument.</h3>
-          </div>
-          <div className="lineage-flow">
-            <ul aria-label="Source threads named in the Inversion Labs product thesis">
-              {sourceThreads.map((thread, index) => (
-                <li key={thread}>
-                  <span>0{index + 1}</span>
-                  <strong>{thread}</strong>
-                </li>
-              ))}
-            </ul>
-            <div className="lineage-turn" aria-hidden="true">
-              <span>Invert</span>
-              <i>→</i>
+        <details className="lineage-disclosure">
+          <summary>
+            <span>Research lineage named in the product thesis</span>
+            <strong>GATE · Gateway · Warfighter Optimization</strong>
+          </summary>
+          <div className="lineage-panel" aria-labelledby="lineage-title">
+            <div className="lineage-intro">
+              <p className="product-kicker">The product inversion</p>
+              <h3 id="lineage-title">Institutional research reframed as a personal instrument.</h3>
             </div>
-            <div className="lineage-result">
-              <span>Public / inspectable / user-directed</span>
-              <strong>SynSync</strong>
+            <div className="lineage-flow">
+              <ul aria-label="Source threads named in the Inversion Labs product thesis">
+                {sourceThreads.map((thread, index) => (
+                  <li key={thread}>
+                    <span>0{index + 1}</span>
+                    <strong>{thread}</strong>
+                  </li>
+                ))}
+              </ul>
+              <div className="lineage-turn" aria-hidden="true">
+                <span>Invert</span>
+                <i>→</i>
+              </div>
+              <div className="lineage-result">
+                <span>Public / inspectable / user-directed</span>
+                <strong>SynSync</strong>
+              </div>
             </div>
+            <p className="lineage-boundary">
+              This lineage is Inversion Labs&apos; framing of the product thesis. It does not imply institutional affiliation,
+              endorsement, or proof of efficacy.
+            </p>
           </div>
-          <p className="lineage-boundary">
-            This lineage is Inversion Labs&apos; framing of the product thesis. It does not imply institutional affiliation,
-            endorsement, or proof of efficacy.
-          </p>
-        </div>
+        </details>
 
         <blockquote className="customer-principle">
           <p>The customer is never the product.</p>

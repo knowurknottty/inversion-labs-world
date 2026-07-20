@@ -19,7 +19,7 @@
     2
   ],
   "thesis": "Neuroacoustic tools remain understandable and user-directed when sound is designed as a calibrated interface — not passive ambience — and every claim is graded by the evidence behind it.",
-  "description": "SynSync is an open-source, local-first brainwave entrainment platform. It generates binaural and isochronic acoustic protocols for sleep, focus, calm, energy, mood, and creativity — each graded by an explicit evidence level (I–IV) with cited peer-reviewed research. Runs entirely in-browser, no account, no data leaves the device.",
+  "description": "SynSync is an open-source, local-first brainwave entrainment platform. It generates binaural and isochronic acoustic protocols for sleep, focus, calm, energy, mood, and creativity — each graded by an explicit evidence level (I–IV) with cited peer-reviewed research. Core audio renders in the browser and the public experience does not require an account.",
   "before": "Wellness audio is passive ambience with unverifiable claims.",
   "after": "Sound becomes a transparent, evidence-graded state interface the user controls.",
   "links": [
@@ -96,14 +96,14 @@
     "exists": "Deployed open-source product (live demo)",
     "for": "Individuals seeking focus, rest, mood, and recovery support",
     "open": "https://synsyncpro.netlify.app",
-    "limit": "Entrainment is supportive, not medical treatment; claims are evidence-graded, not certified",
+    "limit": "Entrainment is supportive, not medical treatment; claims are evidence-graded, not certified. The deployed page currently includes Google Tag Manager, so zero-tracking or no-network claims are not established.",
     "url_tier": "project-specific",
     "url_reachability": "verified",
     "url_last_checked": "2026-07-20",
     "url_class": "demo"
   },
   "inv": {
-    "human": "Use a real, open-source system for attention and rest today — no account, no tracking.",
+    "human": "Use a public system for attention and rest today — no account required for the core browser experience.",
     "builder": "Embeddable entrainment engine with evidence-graded protocol library.",
     "researcher": "Acoustic entrainment with cited literature and explicit evidence levels."
   },

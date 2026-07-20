@@ -52,6 +52,7 @@ def test_v1_fixture():
           "inv": {"human": "h"}}
     assert "depends_on" not in v1
     print("  v1 fixture shape OK (no depends_on field)")
+    return True
 
 
 def test_malformed_v3():
@@ -174,16 +175,21 @@ def test_url_class_valid():
 
 def main():
     print("Registry schema tests (IES v3):")
-    test_v1_fixture()
-    test_malformed_v3()
-    test_future_version_rejected()
-    test_depends_on_acyclic()
-    test_extends_acyclic()
-    test_integrates_with_cycle_allowed()
-    test_conflicts_with_symmetry()
-    test_provenance_trust_required()
-    test_url_class_valid()
-    print("Done.")
+    results = [
+        test_v1_fixture(),
+        test_malformed_v3(),
+        test_future_version_rejected(),
+        test_depends_on_acyclic(),
+        test_extends_acyclic(),
+        test_integrates_with_cycle_allowed(),
+        test_conflicts_with_symmetry(),
+        test_provenance_trust_required(),
+        test_url_class_valid(),
+    ]
+    if not all(results):
+        print("FAILED: one or more registry tests did not pass.")
+        raise SystemExit(1)
+    print("Done: all registry tests passed.")
 
 
 if __name__ == "__main__":

@@ -81,9 +81,9 @@
     "exists": "Living notebook (observation + provenance model)",
     "for": "Observers, researchers",
     "open": "https://inversionexcursion.online/field",
-    "limit": "Practice surface; not a peer-reviewed journal",
+    "limit": "Practice surface; not a peer-reviewed journal. The dedicated public field-notes route has not been confirmed.",
     "url_tier": "project-specific",
-    "url_reachability": "verified",
+    "url_reachability": "unverified",
     "url_last_checked": "2026-07-20",
     "url_class": "documentation"
   },
@@ -136,8 +136,8 @@
       "authority": "inversion-labs"
     },
     "proof.open": {
-      "source": "live-verification",
-      "confidence": "verified",
+      "source": "route-audit",
+      "confidence": "needs-confirmation",
       "verified_at": "2026-07-20",
       "verified_by": "release-engineer",
       "refresh_policy": "per-release",

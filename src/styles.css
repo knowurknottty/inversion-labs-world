@@ -2401,7 +2401,7 @@ svg {
   .hero-lede { font-size: 1rem; }
   .hero-actions { align-items: stretch; flex-direction: column; }
   .hero-actions .button { width: 100%; }
-  .hero-actions .text-link { width: max-content; }
+  .hero-actions .text-link { display: inline-flex; align-items: center; width: max-content; min-height: 2.75rem; }
   .hero-specimen { margin-top: 2rem; }
   .hero-coordinate { display: none; }
   .section-index { align-items: flex-start; line-height: 1.5; }
@@ -2414,15 +2414,14 @@ svg {
   .work-rule { align-items: flex-start; flex-direction: column; }
   .lens-section,
   .architecture-section,
-  .synsync-product,
-  .principles { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+  .principles { padding-top: 5rem; padding-bottom: 5rem; }
+  .synsync-product { padding-top: 4rem; padding-bottom: 4rem; }
   .segmented-control { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
   .segmented-control button { padding: 0.65rem; }
-  .lens-stage { min-height: 36rem; padding-top: 15rem; }
-  .lens-object { top: 7rem; left: 40%; }
-  .lens-platform .lens-object { left: 16%; }
-  .lens-boundary { top: 15rem; height: 17rem; }
-  .lens-trace { top: 7rem; left: 40%; width: 26%; }
+  .lens-stage { display: block; min-height: auto; padding-top: 0; }
+  .lens-object,
+  .lens-boundary,
+  .lens-trace { display: none; }
   .lens-copy { padding: 1.5rem; }
   .lens-copy h3 { font-size: 2.5rem; }
   .lens-copy ul { grid-template-columns: 1fr; gap: 0.5rem; }
@@ -2457,10 +2456,10 @@ svg {
   .museum-backdrop { padding: 0; }
   .museum-card { width: 100%; border-right: 0; border-bottom: 0; border-left: 0; }
   .synsync-console { min-height: auto; }
-  .synsync-signal { min-height: 18rem; padding: 3rem 1rem; }
+  .synsync-signal { min-height: 14rem; padding: 2rem 1rem; }
   .synsync-signal::before,
   .synsync-signal::after { width: 22rem; }
-  .synsync-signal svg { height: 11rem; }
+  .synsync-signal svg { height: 9rem; }
   .synsync-copy { padding: 2rem 1rem; }
   .synsync-copy h3 { font-size: 3.8rem; }
   .product-facts { grid-template-columns: 1fr; }
@@ -2473,7 +2472,7 @@ svg {
   .lineage-turn { min-height: 3.5rem; }
   .lineage-turn i { transform: rotate(90deg); }
   .lineage-result { min-height: 9rem; }
-  .customer-principle { grid-template-columns: 1fr; min-height: 16rem; padding: 2rem 1rem; }
+  .customer-principle { grid-template-columns: 1fr; min-height: 12rem; padding: 1.5rem 1rem; }
   .customer-principle p { font-size: clamp(3.2rem, 15vw, 5.2rem); }
   .synsync-safety { text-align: left; }
   .principles-list { grid-template-columns: 1fr; }

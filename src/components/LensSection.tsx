@@ -24,7 +24,7 @@ export function LensSection() {
   return (
     <section className="lens-section" id="thesis" aria-labelledby="lens-title">
       <div className="section-heading lens-heading">
-        <p className="section-index"><span>04</span> The memory inversion</p>
+        <p className="section-index"><span>05</span> The memory inversion</p>
         <h2 id="lens-title">Same memory. Different authority.</h2>
         <p>
           Toggle the lens to see what changes when memory moves from an application-owned side effect to a

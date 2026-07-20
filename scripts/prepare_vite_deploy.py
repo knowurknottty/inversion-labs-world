@@ -63,19 +63,22 @@ def main() -> None:
         "checks": {
             "syntax": "pass",
             "schema": "pass",
-            "deployment_readiness": "pass",
-            "tests": "pass",
             "relationships": "pass",
             "provenance": "pass",
-            "url_tiers": "pass",
-            "live_sha": "pending-deploy",
+            "url_tiers": "metadata-validated",
+            "tests": os.environ.get("VERIFICATION_TESTS", "not-recorded"),
+            "deployment_readiness": os.environ.get(
+                "VERIFICATION_DEPLOYMENT_READINESS", "not-assessed"
+            ),
         },
+        "candidate_sha": os.environ.get("GITHUB_SHA", "not-recorded"),
         "project_count": len(published_registry["projects"]),
         "notes": [
             "Semantic validation passed",
             "Provenance trust fields are present",
-            "URL classification tiers are tracked",
+            "URL classification metadata is validated; reachability is not checked by this build step",
             "Registry source is curated, not a live fetch",
+            "Test and deployment-readiness results are recorded only when supplied by the verified CI sequence",
         ],
     }
 

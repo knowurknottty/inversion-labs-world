@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import App from './App'
 
@@ -7,11 +7,12 @@ describe('Inversion Labs experience', () => {
     window.history.replaceState({}, '', '/')
   })
 
-  it('explains the product premise and labels the demonstration data', () => {
+  it('leads with evidence and labels the demonstration data', () => {
     render(<App />)
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Technology is getting personal')
-    expect(screen.getByRole('heading', { name: 'Human-governed memory' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Intelligence should answer to you')
+    expect(screen.getByRole('heading', { name: /Start with what can be opened/i })).toBeInTheDocument()
+    expect(screen.getByText('verified public experiences')).toBeInTheDocument()
     expect(screen.getAllByRole('heading', { name: 'SynSync Pro' }).length).toBeGreaterThan(0)
     expect(screen.queryByText(/Demonstration data · not live telemetry/i)).not.toBeInTheDocument()
 
@@ -58,7 +59,7 @@ describe('Inversion Labs experience', () => {
   it('presents SynSync as an Inversion Labs product with a truthful boundary', () => {
     render(<App />)
 
-    expect(screen.getByRole('heading', { name: 'State technology, returned to the public.' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'A public product you can use now.' })).toBeInTheDocument()
     expect(screen.getAllByText('The customer is never the product.').length).toBeGreaterThan(0)
     expect(screen.getByText(/does not imply institutional affiliation/i)).toBeInTheDocument()
     expect(screen.getByText(/supportive, not medical treatment/i)).toBeInTheDocument()
@@ -67,22 +68,31 @@ describe('Inversion Labs experience', () => {
     )).toBe(true)
   })
 
-  it('presents CAPT Solo v0.4.0 and Inversion Excursion sections', () => {
+  it('renders the governed ecosystem and exposes maturity, proof, and limitations', () => {
     render(<App />)
 
-    expect(screen.getByRole('heading', { name: 'Proof-governed intelligence infrastructure.' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Proof-governed skills' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'ClaimGuard' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Knowledge Bubbles' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Capability degradation' })).toBeInTheDocument()
+    const atlas = screen.getByRole('region', { name: /Thirteen records/i })
+    expect(within(atlas).getByRole('heading', { name: 'CAPT' })).toBeInTheDocument()
+    expect(within(atlas).getByRole('heading', { name: 'Inversion Excursion' })).toBeInTheDocument()
+    expect(within(atlas).getAllByText('Curated claim').length).toBeGreaterThan(0)
 
-    expect(screen.getByRole('heading', { name: 'An interactive book through seven thresholds of becoming.' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'The Ivory Tower' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'The Five Scrolls' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'The Seven Dungeons' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'The Master Keys' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'The Ascension' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'The Grimoire' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'The Transmission' })).toBeInTheDocument()
+    const captCard = within(atlas).getByRole('heading', { name: 'CAPT' }).closest('article')
+    expect(captCard).not.toBeNull()
+    fireEvent.click(within(captCard!).getByRole('button', { name: /Inspect record/ }))
+    expect(within(atlas).getAllByRole('heading', { name: 'CAPT' })).toHaveLength(2)
+    expect(within(atlas).getByText(/specific CAPT repository to be confirmed/i)).toBeInTheDocument()
+    expect(within(atlas).getByText(/project-specific public link is not confirmed/i)).toBeInTheDocument()
+    fireEvent.keyDown(window, { key: 'Escape' })
+    expect(document.querySelector('#system-detail')).not.toBeInTheDocument()
+  })
+
+  it('filters systems without hiding the maturity context', () => {
+    render(<App />)
+
+    const atlas = screen.getByRole('region', { name: /Thirteen records/i })
+    fireEvent.change(within(atlas).getByLabelText('Category'), { target: { value: 'Product' } })
+    expect(within(atlas).getByText('Showing 1 of 1 matches')).toBeInTheDocument()
+    expect(within(atlas).getByRole('heading', { name: 'SynSync' })).toBeInTheDocument()
+    expect(within(atlas).queryByRole('heading', { name: 'CAPT' })).not.toBeInTheDocument()
   })
 })

@@ -6,21 +6,22 @@ export function Hero() {
       <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
 
       <div className="hero-copy">
-        <p className="section-index"><span>01</span> Human-governed intelligence + state technology</p>
+        <p className="section-index"><span>01</span> Inversion Labs / interactive field guide</p>
         <h1 id="hero-title">
-          Technology is getting personal.
-          <span>Authority should stay with the person.</span>
+          Intelligence should{' '}
+          <span>answer to you.</span>
         </h1>
         <p className="hero-lede">
-          Inversion Labs builds portable AI memory infrastructure and public state tools that remain inspectable,
-          user-directed, and answerable to the person using them.
+          We build local-first tools for memory, attention, and human–machine coordination. The work ranges from
+          public products to early research; this field guide shows what exists, what is still a claim, and where the
+          evidence can be inspected.
         </p>
         <div className="hero-actions">
-          <a className="button button-primary" href="#work">
-            See what we build <span aria-hidden="true">↓</span>
+          <a className="button button-primary" href="#evidence">
+            Inspect the evidence <span aria-hidden="true">↓</span>
           </a>
-          <a className="text-link" href="https://synsyncpro.netlify.app" target="_blank" rel="noreferrer">
-            Open SynSync Pro <span aria-hidden="true">↗</span>
+          <a className="text-link" href="#systems">
+            Explore 13 system records <span aria-hidden="true">→</span>
           </a>
         </div>
       </div>
@@ -42,12 +43,12 @@ export function Hero() {
             <strong>Your attention is not institutional property.</strong>
           </div>
         </div>
-        <p className="specimen-note">The customer is never the product. That is the common architecture.</p>
+        <p className="specimen-note">The customer is never the product. That is the operating constraint.</p>
       </aside>
 
       <div className="hero-footer" aria-hidden="true">
-        <span>Scroll to examine</span>
-        <span className="hero-coordinate">Memory / Attention / State / Authority</span>
+        <span>Problem → proof → systems → architecture</span>
+        <span className="hero-coordinate">No audience quiz. No custom controls required.</span>
       </div>
     </section>
   )

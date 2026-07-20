@@ -43,8 +43,14 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Test governed registry
+        run: npm run test:registry
+
       - name: Build and validate deployment artifact
         run: npm run build
+        env:
+          VERIFICATION_TESTS: pass
+          VERIFICATION_DEPLOYMENT_READINESS: checks-passed
 
       - name: Record deployed commit
         run: printf '%s\n' '${{ github.sha }}' > dist/DEPLOYED_COMMIT.txt

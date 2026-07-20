@@ -10,6 +10,7 @@
     "postbuild": "node scripts/copy-legacy-assets.mjs",
     "lint": "eslint .",
     "test": "vitest run",
+    "test:registry": "python3 tests/test_registry.py",
     "typecheck": "tsc -b --pretty false",
     "preview": "vite preview"
   },
