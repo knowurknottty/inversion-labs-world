@@ -6,10 +6,13 @@
   --paper-bright: #f0ece2;
   --paper-muted: #b6b0a4;
   --text: #f2eee4;
+  --text-soft: #c8c8c0;
   --muted: #9b9f98;
+  --muted-dim: #8a918a;
   --line: rgba(242, 238, 228, 0.16);
   --line-soft: rgba(242, 238, 228, 0.08);
   --vermillion: #f06f5e;
+  --vermillion-bright: #ff816f;
   --vermillion-dark: #8f362c;
   --mint: #72dfb7;
   --amber: #e6b66d;
@@ -307,7 +310,7 @@ svg {
 .hero-lede {
   max-width: 42rem;
   margin: 2.2rem 0 0;
-  color: #c8c8c0;
+  color: var(--text-soft);
   font-size: clamp(1rem, 1.4vw, 1.3rem);
   line-height: 1.65;
 }
@@ -348,7 +351,7 @@ svg {
 }
 
 .button-primary:hover {
-  background: #ff816f;
+  background: var(--vermillion-bright);
 }
 
 .text-link {
@@ -447,7 +450,7 @@ svg {
   left: var(--page-pad);
   display: flex;
   justify-content: space-between;
-  color: #8a918a;
+  color: var(--muted-dim);
   font-family: var(--mono);
   font-size: 0.64rem;
   letter-spacing: 0.08em;
@@ -465,6 +468,11 @@ svg {
   overflow: hidden;
   background: var(--paper-bright);
   color: var(--ink);
+}
+
+/* Light-surface focus ring: mint is low-contrast on paper-bright, use ink */
+.work-overview :focus-visible {
+  outline-color: var(--ink);
 }
 
 .work-overview::after {
@@ -1142,7 +1150,7 @@ svg {
 .graph-header > div:first-child {
   display: flex;
   flex-direction: column;
-  color: #8a918a;
+  color: var(--muted-dim);
   font-family: var(--mono);
   font-size: 0.52rem;
   letter-spacing: 0.06em;
@@ -1158,7 +1166,7 @@ svg {
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: #8a918a;
+  color: var(--muted-dim);
   font-family: var(--mono);
   font-size: 0.5rem;
   text-transform: uppercase;
