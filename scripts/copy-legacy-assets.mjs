@@ -8,6 +8,7 @@ const dist = path.join(root, 'dist')
 
 const preserved = [
   '_headers',
+  '_redirects',
   'GOVERNANCE.md',
   'IES.md',
   'METRICS.md',

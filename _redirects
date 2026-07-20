@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects — edge level, permanent, path + query preserved
+# www -> apex
+https://www.inversionexcursion.online/* https://inversionexcursion.online/:splat 301
+# legacy pages.dev production hostname -> new canonical domain
+https://inversion-labs-world.pages.dev/* https://inversionexcursion.online/:splat 301
