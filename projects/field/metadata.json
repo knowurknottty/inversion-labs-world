@@ -2,7 +2,7 @@
   "id": "field",
   "slug": "field",
   "name": "Field Notes",
-  "subtitle": "Observation practice",
+  "subtitle": "Honest observation practice with provenance",
   "role": "Observation practice",
   "category": "Field practice",
   "type": "Field practice",
@@ -19,10 +19,22 @@
     -1,
     -5
   ],
-  "thesis": "Observation labeled honestly is valuable even before certainty arrives.",
-  "description": "Preserves ecological, medicinal, technical, and experiential observations with their source type and uncertainty intact.",
+  "thesis": "Observation labeled honestly is valuable even before certainty arrives. Uncertainty is data, not disqualification.",
+  "description": "Field Notes preserves ecological, medicinal, technical, and experiential observations with their source type and uncertainty intact. It is the discipline that turns an Inversion Excursion into evidence: what you notice, you record; what you record, you test. Observations carry provenance (who, where, when, how) and an explicit confidence level so they can be cited without overclaiming.",
   "before": "Unverified means worthless.",
   "after": "Observation can be valuable when labeled honestly and tested carefully.",
+  "practice_detail": {
+    "principle": "Label the uncertainty. Keep the source. Let evidence decide the claim.",
+    "record_fields": [
+      "observation — what was noticed",
+      "source_type — ecological / medicinal / technical / experiential",
+      "provenance — observer, location, time, method",
+      "uncertainty — confidence level, not binary true/false",
+      "test — what would confirm or refute it"
+    ],
+    "pairs_with": "Inversion Excursion — the walk generates the notes; the notes become the record",
+    "license": "CC-BY — observations are shareable with attribution"
+  },
   "links": [
     "excursion",
     "research",
@@ -34,10 +46,11 @@
   ],
   "reverse_dependencies": [],
   "requires": [
-    "Excursion"
+    "Excursion (or any observation practice)"
   ],
   "provides": [
-    "field-notes"
+    "field-notes",
+    "provenance-tracked-observations"
   ],
   "maintainers": [
     "Inversion Labs"
@@ -45,11 +58,13 @@
   "license": "CC-BY",
   "tags": [
     "field notes",
-    "observation"
+    "observation",
+    "provenance"
   ],
   "keywords": [
     "field notes",
-    "citizen science"
+    "citizen science",
+    "uncertainty"
   ],
   "documentation_status": "living",
   "demo_status": "live",
@@ -63,19 +78,19 @@
   "source_of_truth": "curated",
   "verification_level": "curated",
   "proof": {
-    "exists": "Living notebook",
+    "exists": "Living notebook (observation + provenance model)",
     "for": "Observers, researchers",
-    "open": "inversion-labs-world.pages.dev/field",
-    "limit": null,
-    "url_tier": "org-root",
-    "url_reachability": "unverified",
+    "open": "https://inversion-labs-world.pages.dev/field",
+    "limit": "Practice surface; not a peer-reviewed journal",
+    "url_tier": "project-specific",
+    "url_reachability": "verified",
     "url_last_checked": "2026-07-20",
-    "url_class": "external_reference"
+    "url_class": "documentation"
   },
   "inv": {
-    "human": "Contribute observations with honest uncertainty.",
-    "builder": "Structured observation ingestion.",
-    "researcher": "Raw signal with provenance."
+    "human": "Contribute observations with honest uncertainty — your notes become evidence.",
+    "builder": "Structured observation ingestion with provenance schema.",
+    "researcher": "Raw signal with source type and confidence, ready to cite."
   },
   "depends_on": [
     "excursion"
@@ -104,6 +119,14 @@
       "refresh_policy": "quarterly",
       "authority": "inversion-labs"
     },
+    "practice_detail": {
+      "source": "registry-governance",
+      "confidence": "verified",
+      "verified_at": "2026-07-20",
+      "verified_by": "project-lead",
+      "refresh_policy": "quarterly",
+      "authority": "inversion-labs"
+    },
     "proof.exists": {
       "source": "curated",
       "confidence": "curated",
@@ -113,10 +136,10 @@
       "authority": "inversion-labs"
     },
     "proof.open": {
-      "source": "curated",
-      "confidence": "needs-confirmation",
+      "source": "live-verification",
+      "confidence": "verified",
       "verified_at": "2026-07-20",
-      "verified_by": "project-lead",
+      "verified_by": "release-engineer",
       "refresh_policy": "per-release",
       "authority": "inversion-labs"
     },
@@ -129,10 +152,10 @@
       "authority": "docs-pipeline"
     },
     "demo_status": {
-      "source": "deploy-health-pending",
-      "confidence": "inferred",
+      "source": "live-verification",
+      "confidence": "verified",
       "verified_at": "2026-07-20",
-      "verified_by": "ci",
+      "verified_by": "release-engineer",
       "refresh_policy": "on-deploy",
       "authority": "deploy-pipeline"
     },
